@@ -15,34 +15,33 @@
       <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
         <thead>
           <tr>
-            <th>Nama</th>
-            <th>Alamat</th>
-            <th>No telepon</th>
-            <th>Jenis Kelamin</th>
-            <th>Tanggal</th>
+            <th>Nama Paket</th>
+            <th>Harga</th>
+            <th>Status</th>
             <th>Aksi</th>
           </tr>
         </thead>
         <tfoot>
           <tr>
-            <th>Nama</th>
-            <th>Alamat</th>
-            <th>No telepon</th>
-            <th>Jenis Kelamin</th>
-            <th>Tanggal</th>
+            <th>Nama Paket</th>
+            <th>Harga</th>
+            <th>Status</th>
             <th>Aksi</th>
           </tr>
         </tfoot>
         <tbody>
         <?php 
-        foreach ($tb_pelanggan as $tb ) { ?>
+        foreach ($paket as $pk ) { ?>
           <tr>
-            <td><?=$tb->nama_pelanggan?></td>
-            <td><?=$tb->alamat?></td>
-            <td><?=$tb->no_telepon?></td>
-            <td><?=$tb->jenis_kelamin?></td>
-            <?php date_default_timezone_set('Asia/Jakarta');?>
-            <td><?= $tb->tanggal . '&nbsp;' . $tb->jam?></td>
+            <td><?=$pk->nama_paket?></td>
+            <td><?=$pk->harga?></td>
+            <td>
+            <?php if ($tr['status'] == 1) : ?>
+                <div class='alert alert-success small'><i class='fas fa-check'></i></div>
+            <?php else : ?>
+                <a class='btn btn-warning' href='' <i class='fas fa-check'></i></a>
+            <?php endif; ?>
+            </td>
             <td>
               <a class="btn btn-primary" href="<?php echo base_url('admin/C_pelanggan/edit/'. $tb->id_pelanggan); ?>"><i class="fas fa-pencil-alt"></i></a>
               <a class="btn btn-danger" href="<?php echo base_url('admin/C_pelanggan/hapus/'. $tb->id_pelanggan); ?>"><i class="fas fa-trash"></i></a>
