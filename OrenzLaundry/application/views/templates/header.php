@@ -17,6 +17,8 @@
 
   <!-- Custom styles for this template-->
   <link href="<?=base_url()?>assets/admin/css/sb-admin-2.css" rel="stylesheet">
+  <!-- Custom styles for this page -->
+  <link href="<?=base_url()?>assets/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
   
   <script src="<?=base_url()?>assets/ckeditor/ckeditor.js"></script>
 
