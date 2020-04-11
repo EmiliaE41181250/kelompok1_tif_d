@@ -24,6 +24,8 @@
   --white: #fff;
   --gray: #858796;
   --gray-dark: #5a5c69;
+  --ijo: #80C000;
+  --ijo-gelap: #669A00;
   --primary: #4e73df;
   --secondary: #858796;
   --success: #1cc88a;
@@ -159,13 +161,13 @@ sup {
 }
 
 a {
-  color: #4e73df;
+  color: #80C000;
   text-decoration: none;
   background-color: transparent;
 }
 
 a:hover {
-  color: #224abe;
+  color: #669A00;
   text-decoration: underline;
 }
 
@@ -2352,6 +2354,40 @@ fieldset:disabled a.btn {
 
 .btn-success:not(:disabled):not(.disabled):active:focus, .btn-success:not(:disabled):not(.disabled).active:focus,
 .show > .btn-success.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(62, 208, 156, 0.5);
+}
+
+.btn-ijo {
+  color: #fff;
+  background-color: #80C000;
+  border-color: #80C000;
+}
+
+.btn-ijo:hover {
+  color: #fff;
+  background-color: #669A00;
+  border-color: #669A00;
+}
+
+.btn-ijo:focus, .btn-ijo.focus {
+  box-shadow: 0 0 0 0.2rem rgba(62, 208, 156, 0.5);
+}
+
+.btn-ijo.disabled, .btn-ijo:disabled {
+  color: #fff;
+  background-color: #80C000;
+  border-color: #80C000;
+}
+
+.btn-ijo:not(:disabled):not(.disabled):active, .btn-ijo:not(:disabled):not(.disabled).active,
+.show > .btn-ijo.dropdown-toggle {
+  color: #fff;
+  background-color: #169b6b;
+  border-color: #149063;
+}
+
+.btn-ijo:not(:disabled):not(.disabled):active:focus, .btn-ijo:not(:disabled):not(.disabled).active:focus,
+.show > .btn-ijo.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem rgba(62, 208, 156, 0.5);
 }
 
@@ -6233,6 +6269,16 @@ button.bg-success:focus {
   background-color: #169b6b !important;
 }
 
+.bg-ijo {
+  background-color: #80C000 !important;
+}
+
+a.bg-ijo:hover, a.bg-ijo:focus,
+button.bg-ijo:hover,
+button.bg-ijo:focus {
+  background-color: #669A00 !important;
+}
+
 .bg-info {
   background-color: #36b9cc !important;
 }
@@ -6341,6 +6387,10 @@ button.bg-dark:focus {
 
 .border-success {
   border-color: #1cc88a !important;
+}
+
+.border-ijo {
+  border-color: #80C000!important;
 }
 
 .border-info {
@@ -9386,6 +9436,14 @@ a.text-success:hover, a.text-success:focus {
   color: #13855c !important;
 }
 
+.text-ijo {
+  color: #80C000 !important;
+}
+
+a.text-ijo:hover, a.text-ijo:focus {
+  color: #669a00 !important;
+}
+
 .text-info {
   color: #36b9cc !important;
 }
@@ -9684,6 +9742,12 @@ a:focus {
   background-size: cover;
 }
 
+.bg-gradient-ijo {
+  background-color: #80C000;
+  background-image: linear-gradient(180deg, #80C000 70%, #FFC300 100%);
+  background-size: cover;
+}
+
 .bg-gradient-info {
   background-color: #36b9cc;
   background-image: linear-gradient(180deg, #36b9cc 10%, #258391 100%);
@@ -9829,6 +9893,10 @@ a:focus {
 
 .border-bottom-success {
   border-bottom: 0.25rem solid #1cc88a !important;
+}
+
+.border-bottom-ijo {
+  border-bottom: 0.25rem solid #08c000 !important;
 }
 
 .border-left-info {
@@ -10995,4 +11063,14 @@ footer.sticky-footer .copyright {
 
 body.sidebar-toggled footer.sticky-footer {
   width: 100%;
+}
+
+.datepicker td, .datepicker th {
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 0.85rem;
+}
+
+.datepicker {
+  margin-bottom: 3rem;
 }

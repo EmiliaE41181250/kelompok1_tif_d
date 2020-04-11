@@ -46,4 +46,22 @@
     e.preventDefault();
   });
 
+  $('input[type="file"]').change(function(e){
+    var container = $(this).attr('id');
+    var fileName = $('#' + container).val().replace('C:\\fakepath\\', "");
+    $(this).next('.custom-file-label').html(fileName);
+  });
+
+  $('input[type="date"]').change(function() {
+    var start = new Date($('#awal').val());
+    var end = new Date($('#akhir').val());
+    var hari = new Date(60 * 60 * 24 * 1000);
+
+    if ((end - start) < hari) {
+      alert("Anda harus mengisi periode waktu setidaknya 24 jam atau lebih");
+      $('#awal').val("");
+      $('#akhir').val("");
+    }
+  }); //end change function
+
 })(jQuery); // End of use strict
