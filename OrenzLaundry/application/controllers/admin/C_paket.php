@@ -17,7 +17,7 @@ class C_paket extends CI_Controller {
 
             $this->load->view('templates/header');
             $this->load->view('templates/sidebar');
-            $this->load->view('admin/v_paket', $data);
+            $this->load->view('admin/paket/v_paket', $data);
             $this->load->view('templates/footer');
         }
     }

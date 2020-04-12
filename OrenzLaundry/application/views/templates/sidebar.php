@@ -52,11 +52,6 @@
       <span>Promo</span></a>
   </li>
 
-  <li class="nav-item">
-    <a class="nav-link" href="<?=base_url('admin/C_paket')?>">
-      <i class="fas fa-fw fa-dollar-sign"></i>
-      <span>Paket</span></a>
-  </li>
 
 <!-- Divider -->
 <hr class="sidebar-divider">
@@ -75,7 +70,7 @@
   <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
     <div class="bg-white py-2 collapse-inner rounded">
       <h6 class="collapse-header">Master:</h6>
-      <a class="collapse-item" href="<?=base_url('admin/paket')?>">Paket</a>
+      <a class="collapse-item" href="<?=base_url('admin/C_paket')?>">Paket</a>
       <a class="collapse-item" href="<?=base_url('admin/jenis_paket')?>">Jenis Paket</a>
       <a class="collapse-item" href="<?=base_url('admin/isi_paket')?>">Isi Paket</a>
       <a class="collapse-item" href="<?=base_url('admin/durasi_paket')?>">Durasi Paket</a>
