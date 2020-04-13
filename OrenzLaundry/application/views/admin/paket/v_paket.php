@@ -70,57 +70,62 @@
     <div class="modal-content">
     <form action="<?= base_url() . 'admin/promo/tambah'; ?>" method="post" enctype="multipart/form-data">
       <div class="modal-header">
-        <h5 class="modal-title font-weight-bolder text-ijo">Tambah Data</h5>
+        <h5 class="modal-title font-weight-bolder text-ijo">Tambah Data Paket</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
       </div>
       <div class="modal-body">
         <div class="form-group">
-          <label for="judul_promo">Judul Promo</label>
-          <input type="text" name="judul_promo" id="judul_promo" class="form-control" placeholder="Masukkan Judul Pomo . ." aria-describedby="JudulPromo" maxlength="100">
-          <small id="JudulPromo" class="text-muted">Masukkan Judul Promo tidak lebih dari 100 Karakter</small>
+          <label for="judul_promo">Nama Paket</label>
+          <input type="text" name="judul_promo" id="judul_promo" class="form-control" placeholder="Masukkan Judul Pomo . ." aria-describedby="namapaket" maxlength="100">
+          <small id="namapaket" class="text-muted">Masukkan Nama Paket tidak lebih dari 100 Karakter</small>
         </div>
         <div class="form-group">
-          <label for="deskripsi">Deskripsi</label>
-          <textarea type="text" name="deskripsi" id="deskripsi" class="form-control" placeholder="Masukkan Deskripsi . ." aria-describedby="descPromo"></textarea>
-          <small id="descPromo" class="text-muted">Tulislah deskripsi idealnya 1 Paragraph.</small>
+          <label for="nama_jenis_paket">Jenis Paket</label>
+            <select name="nama_jenis_paket" id="nama_jenis_paket" class="form-control mb-3" placeholder="Masukkan Jenis Paket . ." aria-describedby="jenispaket">
+              <option value="reguler">Reguler</option>
+              <option value="exspres">Exspres</option>
+              <option value="satuan">Satuan</option>
+            </select>
+          <small id="jenispaket" class="text-muted">Pilih Jenis Paket yang Anda Perlukan.</small>
         </div>
         <div class="form-group">
-          <label for="">Syarat & Ketentuan</label>
-          <textarea type="text" name="syarat_ketentuan" id="editor1" class="form-control" placeholder="Masukkan Syarat & Ketentuan" aria-describedby="helpId"><?=$prm->syarat_ketentuan?></textarea>
+          <label for="nama_isi_paket">Isi Paket</label>
+            <select name="nama_isi_paket" id="nama_isi_paket" class="form-control mb-3" placeholder="Masukkan Isi Paket . ." aria-describedby="isipaket">
+              <option value="cks">CKS (Cuci, Kering, Setrika)</option>
+              <option value="ck">CK (Cuci, Kering)</option>
+              <option value="s">S (Setrika)</option>
+            </select>
+          <small id="isipaket" class="text-muted">Pilih isi Paket yang Anda Perlukan.</small>
         </div>
         <div class="form-group">
-          <label for="jumlah">Jumlah Diskon</label><br>
-          <input type="number" name="jumlah" id="jumlah" class="form-control d-inline w-25" placeholder="Diskon . ." aria-describedby="jumlahDiskon" min="0" max="99"> / 100 <br>
-          <small id="jumlahDiskon" class="text-muted">Tuliskan jumlah diskon dari 0 - 99</small>
-        </div>
-        <div class="row">
-          <div class="col-lg-6 col-md-10">
-            <div class="form-group">
-              <label for="awal">Pilih Awal Periode Promo</label>
-              <input type="date" name="awal" id="awal" class="form-control">
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-10">
-            <div class="form-group">
-              <label for="akhir">Pilih Akhir Periode Promo</label>
-              <input type="date" name="akhir" id="akhir" class="form-control">
-            </div>
-          </div>
+          <label for="harga">Harga Paket</label><br>
+          <input type="text" name="harga" id="harga" class="form-control d-inline w-25" placeholder="Harga . ." aria-describedby="jumlahharga">
+          <small id="jumlahharga" class="text-muted">Jumlah Harga</small>
         </div>
         <div class="form-group">
-          <label for="gambar_promo">Banner Promo</label>
-          <div class="custom-file mb-2">
-              <input type="file" class="custom-file-input" name="gambar_promo" id="gambar_promo">
-              <label class="custom-file-label" for="gambar_promo">Masukkan Gambar berukuran 753 x 258 . .</label>
-          </div>
-          <small id="gambarPromo" class="form-text text-muted">Pilihlah File gambar banner promo berukuran 753 x 258. Max 3 MB. Format (JPG/PNG)</small>
+          <label for="nama_isi_paket">Durasi Paket</label>
+            <select name="durasi_paket" id="durasi_paket" class="form-control mb-3" placeholder="Masukkan Durasi Paket . ." aria-describedby="durasipaket">
+              <option value="3hari">3 Hari</option>
+              <option value="7hari">7 Hari</option>
+              <option value="1hari">1 Hari</option>
+            </select>
+          <small id="durasipaket" class="text-muted">Pilih Durasi Paket.</small>
+        </div>
+        <div class="form-group">
+          <label for="nama_barang">Barang</label>
+            <select name="nama_barang" id="nama_barang" class="form-control mb-3" placeholder="Masukkan Barang . ." aria-describedby="barang">
+              <option value="#"></option>
+              <option value="#"></option>
+              <option value="#"></option>
+            </select>
+          <small id="barang" class="text-muted">Barang.</small>
         </div>
         <div class="form-group w-50">
-          <label for="status">Status Promo</label>
+          <label for="status">Status Paket</label>
           <select class="form-control" name="status" id="status">
-            <option>Pilih Status Promo :</option>
+            <option>Pilih Status Paket :</option>
             <option value="Aktif">Aktif</option>
             <option value="Draft">Draft</option>
           </select>
