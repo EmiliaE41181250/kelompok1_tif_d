@@ -149,9 +149,9 @@ class C_paket extends CI_Controller {
         public function destroy($id)
         {
           // deklarasi $where by id
-          $where = array('id_promo' => $id);
+          $where = array('id_paket' => $id);
           // menjalankan fungsi delete pada model_promo
-          $this->model_promo->delete($where, 'promo');
+          $this->m_data_paket->delete($where, 'paket');
           // mengirim pesan berhasil dihapus
           $this->session->set_flashdata('pesan', '
           <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -162,6 +162,6 @@ class C_paket extends CI_Controller {
           </div>
           ');
           // mengarahkan ke halaman tabel promo
-          redirect('admin/promo');
+          redirect('admin/C_paket');
         }
     }

@@ -56,7 +56,7 @@
                 <div class="btn btn-info btn-sm mr-2 pr-3 pl-3"><i class="fa fa-info"></i></div>')?>
                 <?php echo anchor('admin/C_paket/edit/' . $pk->id_paket, '
                 <div class="btn btn-primary btn-sm mr-2"><i class="fa fa-edit"></i></div>')?>
-                <?php echo anchor('admin/paket/destroy/' . $pk->id_paket, '
+                <?php echo anchor('admin/C_paket/destroy/' . $pk->id_paket, '
                 <div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></div>')?>
                 
               </td>
