@@ -73,7 +73,7 @@ class PrimsLib {
     
     }
 
-    function upload_file1($file, $name, $format, $size){
+    function upload_image($file, $name, $format, $size){
         $ci =& get_instance();
         if ($name != '') {
             $config['upload_path'] = './assets/files/' . $file;

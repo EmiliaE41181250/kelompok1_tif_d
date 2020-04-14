@@ -27,10 +27,16 @@ class C_paket extends CI_Controller {
         public function edit($id)
         {
           $where = array('id_paket' => $id);
+          $data['jenis_paket'] = $this->m_data_paket->getAll('jenis_paket')->result();
+          $data['isi_paket'] = $this->m_data_paket->getAll('isi_paket')->result();
+          $data['durasi_paket'] = $this->m_data_paket->getAll('durasi_paket')->result();
+          $data['barang'] = $this->m_data_paket->getAll('barang')->result();
+          $data['paket'] = $this->m_data_paket->tampil_data('paket')->result();
+
           $data['paket'] = $this->m_data_paket->edit($where, 'paket')->result();
           $this->load->view('templates/header');
           $this->load->view('templates/sidebar');
-          $this->load->view('admin/paket/edit', $data);
+          $this->load->view('admin/paket/v_edit', $data);
           $this->load->view('templates/footer');
         }
       
@@ -51,11 +57,11 @@ class C_paket extends CI_Controller {
       
           $created_by = "admin";
           $created_at = date('Y-m-d H:i:s');
-          $gambar = null;
+          $gambar_promo = null;
           // menjalankan perintah untuk mengupload gambar
           if ($_FILES['gambar']['name'] != null) {
-            $gambar = $_FILES['gambar']['name'];
-            $gambar = $this->primslib->upload_file1('gambar', $gambar, 'jpg|jpeg|png', '3024');
+            $gambar_promo = $_FILES['gambar']['name'];
+            $gambar_promo = $this->primslib->upload_image('gambar', $gambar_promo, 'jpg|jpeg|png', '3024');
           }
       
           // merekam data yang dikirim melalui form
@@ -65,7 +71,7 @@ class C_paket extends CI_Controller {
             'id_jenis_paket' => $this->input->post('nama_jenis_paket'),
             'id_isi_paket' => $this->input->post('nama_isi_paket'),
             'harga' => $this->input->post('harga'),
-            'gambar' => $gambar,
+            'gambar' => $gambar_promo,
             'id_durasi' => $this->input->post('durasi_paket'),
             'id_barang' => $this->input->post('nama_barang'),
             'status' => $this->input->post('status')
@@ -82,7 +88,7 @@ class C_paket extends CI_Controller {
             </button>
           </div>
           ');
-          // mengarahkan ke halaman tabel promo
+          // mengarahkan ke halaman tabel paket
           redirect('admin/C_paket');
         }
       
