@@ -95,46 +95,42 @@ class C_paket extends CI_Controller {
         public function update()
         {
           // merekam id sebagai parameter where saat update
-          $where = array('id_promo' => $this->input->post('id_promo'));
+          $where = array('id_paket' => $this->input->post('id_paket'));
           // menentukan siapa dan kapan baris data ini diperbarui
           $updated_by = "admin";
           $updated_at = date('Y-m-d H:i:s');
           $gambar_promo = null;
           // memeriksa apakah admin mengganti gambar atau tidak
-          if ($_FILES['gambar_promo']['name'] != null) {
+          if ($_FILES['gambar']['name'] != null) {
             // jika memilih gambar
-            $gambar_promo = $_FILES['gambar_promo']['name'];
-            $gambar_promo = $this->primslib->upload_file('gambar_promo', $gambar_promo, 'jpg|jpeg|png', '3024');
+            $gambar_promo = $_FILES['gambar']['name'];
+            $gambar_promo = $this->primslib->upload_file('gambar', $gambar_promo, 'jpg|jpeg|png', '3024');
       
             $data = array(
-              'judul_promo' => $this->input->post('judul_promo'),
-              'deskripsi' => $this->input->post('deskripsi', true),
-              'syarat_ketentuan' => $this->input->post('syarat_ketentuan', true),
-              'jumlah' => $this->input->post('jumlah'),
-              'awal' => $this->input->post('awal'),
-              'akhir' => $this->input->post('akhir'),
-              'gambar' => $gambar_promo,
-              'status' => $this->input->post('status'),
-              'updated_by' => $updated_by,
-              'updated_at' => $updated_at
+            'nama_paket' => $this->input->post('nama_paket'),
+            'id_jenis_paket' => $this->input->post('nama_jenis_paket'),
+            'id_isi_paket' => $this->input->post('nama_isi_paket'),
+            'harga' => $this->input->post('harga'),
+            'gambar' => $gambar_promo,
+            'id_durasi' => $this->input->post('durasi_paket'),
+            'id_barang' => $this->input->post('nama_barang'),
+            'status' => $this->input->post('status')
             );
           }else{
             // jika tidak memilih gambar
             $data = array(
-              'judul_promo' => $this->input->post('judul_promo'),
-              'deskripsi' => $this->input->post('deskripsi', true),
-              'syarat_ketentuan' => $this->input->post('syarat_ketentuan', true),
-              'jumlah' => $this->input->post('jumlah'),
-              'awal' => $this->input->post('awal'),
-              'akhir' => $this->input->post('akhir'),
-              'status' => $this->input->post('status'),
-              'updated_by' => $updated_by,
-              'updated_at' => $updated_at
+              'nama_paket' => $this->input->post('nama_paket'),
+              'id_jenis_paket' => $this->input->post('nama_jenis_paket'),
+              'id_isi_paket' => $this->input->post('nama_isi_paket'),
+              'harga' => $this->input->post('harga'),
+              'id_durasi' => $this->input->post('durasi_paket'),
+              'id_barang' => $this->input->post('nama_barang'),
+              'status' => $this->input->post('status')
             );
           }
       
           // menjalankan method update pada model promo
-          $this->model_promo->update($where, $data, 'promo');
+          $this->m_data_paket->update($where, $data, 'paket');
       
           // mengirim pesan berhasil update data
           $this->session->set_flashdata('pesan', '
@@ -146,7 +142,7 @@ class C_paket extends CI_Controller {
           </div>
           ');
           // mengarahkan ke halaman tabel promo
-          redirect('admin/promo');
+          redirect('admin/C_paket');
         }
       
         // method yang berfungsi menghapus data

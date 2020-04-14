@@ -33,7 +33,7 @@
             <select name="nama_jenis_paket" id="nama_jenis_paket" class="form-control mb-3" placeholder="Masukkan Jenis Paket . ." aria-describedby="jenispaket">
               <option value=""> Please select </option>
               <?php foreach ($jenis_paket as $paket ) { ?>
-              <option value="<?=$paket->id_jenis_paket?>" <?php echo $paket->id_jenis_paket?>"><?=$paket->nama_jenis_paket?></option>
+              <option value="<?=$paket->id_jenis_paket?>" <?php echo $paket->id_jenis_paket? "selected" : "";?>><?=$paket->nama_jenis_paket?></option>
               <?php }?>
             </select>
           <small id="jenispaket" class="text-muted">Pilih Jenis Paket yang Anda Perlukan.</small>
@@ -43,14 +43,14 @@
             <select name="nama_isi_paket" id="nama_isi_paket" class="form-control mb-3" placeholder="Masukkan Isi Paket . ." aria-describedby="isipaket">
               <option value="">Please select</option>
               <?php foreach ($isi_paket as $isi ) { ?>
-              <option value="<?=$paket->id_isi_paket?>" <?php echo $isi->id_isi_paket?>"><?=$isi->nama_isi_paket?></option>
+              <option value="<?=$isi->id_isi_paket?>" <?php echo $isi->id_isi_paket? "selected" : "";?>><?=$isi->nama_isi_paket?></option>
               <?php }?>
             </select>
           <small id="isipaket" class="text-muted">Pilih isi Paket yang Anda Perlukan.</small>
         </div>
         <div class="form-group">
           <label for="harga">Harga Paket</label><br>
-          <input type="text" name="harga" id="harga" class="form-control d-inline w-25" placeholder="Harga . ." aria-describedby="jumlahharga">
+          <input  value="<?=$pk->harga?>" type="text" name="harga" id="harga" class="form-control d-inline w-25" placeholder="Harga . ." aria-describedby="jumlahharga">
           <small id="jumlahharga" class="text-muted">Jumlah Harga</small>
         </div>
         <div class="form-group">
@@ -66,7 +66,7 @@
             <select name="durasi_paket" id="durasi_paket" class="form-control mb-3" placeholder="Masukkan Durasi Paket . ." aria-describedby="durasipaket">
               <option value="">Please select</option>
               <?php foreach ($durasi_paket as $durasi ) { ?>
-              <option value="<?=$durasi->id_durasi?>"><?=$durasi->durasi_paket?></option>
+              <option value="<?=$durasi->id_durasi?>" <?php echo $durasi->id_durasi? "selected" : "";?>><?=$durasi->durasi_paket?></option>
               <?php }?>
             </select>
           <small id="durasipaket" class="text-muted">Pilih Durasi Paket.</small>
@@ -76,7 +76,7 @@
             <select name="nama_barang" id="nama_barang" class="form-control mb-3" placeholder="Masukkan Barang . ." aria-describedby="barang">
               <option value="">Please select</option>
               <?php foreach ($barang as $barang ) { ?>
-              <option value="<?=$barang->id_barang?>"><?=$barang->nama_barang?></option>
+              <option value="<?=$barang->id_barang?>" <?php echo $barang->id_barang? "selected" : "";?>><?=$barang->nama_barang?></option>
               <?php }?>
             </select>
           <small id="barang" class="text-muted">Barang.</small>
@@ -90,9 +90,9 @@
           </select>
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-ijo">Tambah</button>
+      <div class="form-group text-center">
+        <button class="btn btn-primary px-2 mr-1" type="submit">Simpan</button>
+        <button class="btn btn-secondary" onclick="window.history.back()"><i class="fas fa-arrow-left"></i></button>
       </div>
     </form>
 
