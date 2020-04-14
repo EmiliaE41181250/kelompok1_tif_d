@@ -93,7 +93,7 @@ class PrimsLib {
                 );
                 echo $ci->load->view('admin/templates/header', array(), TRUE);
                 echo $ci->load->view('admin/templates/sidebar', array(), TRUE);
-                echo $ci->load->view('admin/promo/index', $error, TRUE);
+                echo $ci->load->view('admin/paket/v_paket', $error, TRUE);
                 echo $ci->load->view('admin/templates/footer', array(), TRUE);
                 exit;
             }

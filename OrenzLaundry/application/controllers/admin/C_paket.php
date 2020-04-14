@@ -12,7 +12,12 @@ class C_paket extends CI_Controller {
 
         function index(){
             // ini adalah variabel array $data yang memiliki index user, berguna untuk menyimpan data 
-            $data['paket'] = $this->m_data_paket->tampil_data()->result();
+            $data['jenis_paket'] = $this->m_data_paket->getAll('jenis_paket')->result();
+            $data['isi_paket'] = $this->m_data_paket->getAll('isi_paket')->result();
+            $data['durasi_paket'] = $this->m_data_paket->getAll('durasi_paket')->result();
+            $data['barang'] = $this->m_data_paket->getAll('barang')->result();
+            $data['paket'] = $this->m_data_paket->tampil_data('paket')->result();
+
             $this->load->view('templates/header');
             $this->load->view('templates/sidebar');
             $this->load->view('admin/paket/v_paket', $data);
@@ -25,7 +30,7 @@ class C_paket extends CI_Controller {
           $data['paket'] = $this->m_data_paket->edit($where, 'paket')->result();
           $this->load->view('templates/header');
           $this->load->view('templates/sidebar');
-          $this->load->view('admin/C_paket/edit', $data);
+          $this->load->view('admin/paket/edit', $data);
           $this->load->view('templates/footer');
         }
       

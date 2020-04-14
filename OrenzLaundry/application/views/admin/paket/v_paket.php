@@ -54,9 +54,9 @@
             <td class="text-center">
                 <?php echo anchor('admin/C_paket/' . $pk->id_paket, '
                 <div class="btn btn-info btn-sm mr-2 pr-3 pl-3"><i class="fa fa-info"></i></div>')?>
-                <?php echo anchor('admin/C_paket/edit/' . $pk->id_paket, '
+                <?php echo anchor('admin/paket/edit/' . $pk->id_paket, '
                 <div class="btn btn-primary btn-sm mr-2"><i class="fa fa-edit"></i></div>')?>
-                <?php echo anchor('admin/C_paket/destroy/' . $pk->id_paket, '
+                <?php echo anchor('admin/paket/destroy/' . $pk->id_paket, '
                 <div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></div>')?>
                 
               </td>
@@ -87,18 +87,20 @@
         <div class="form-group">
           <label for="nama_jenis_paket">Jenis Paket</label>
             <select name="nama_jenis_paket" id="nama_jenis_paket" class="form-control mb-3" placeholder="Masukkan Jenis Paket . ." aria-describedby="jenispaket">
-              <option value="JP001">Reguler</option>
-              <option value="exspres">Exspres</option>
-              <option value="satuan">Satuan</option>
+              <option value=""> Please select </option>
+              <?php foreach ($jenis_paket as $paket ) { ?>
+              <option value="<?=$paket->id_jenis_paket?>"><?=$paket->nama_jenis_paket?></option>
+              <?php }?>
             </select>
           <small id="jenispaket" class="text-muted">Pilih Jenis Paket yang Anda Perlukan.</small>
         </div>
         <div class="form-group">
           <label for="nama_isi_paket">Isi Paket</label>
             <select name="nama_isi_paket" id="nama_isi_paket" class="form-control mb-3" placeholder="Masukkan Isi Paket . ." aria-describedby="isipaket">
-              <option value="IP001">CKS (Cuci, Kering, Setrika)</option>
-              <option value="ck">CK (Cuci, Kering)</option>
-              <option value="s">S (Setrika)</option>
+              <option value="">Please select</option>
+              <?php foreach ($isi_paket as $isi ) { ?>
+              <option value="<?=$isi->id_isi_paket?>"><?=$isi->nama_isi_paket?></option>
+              <?php }?>
             </select>
           <small id="isipaket" class="text-muted">Pilih isi Paket yang Anda Perlukan.</small>
         </div>
@@ -111,32 +113,34 @@
           <label for="gambar">Gambar</label>
           <div class="custom-file mb-2">
               <input type="file" class="custom-file-input" name="gambar" id="gambar">
-              <label class="custom-file-label" for="gambar_promo">Masukkan Gambar berukuran 753 x 258 . .</label>
+              <label class="custom-file-label" for="gambar">Masukkan Gambar berukuran 753 x 258 . .</label>
           </div>
-          <small id="gambarPromo" class="form-text text-muted">Pilihlah File gambar banner promo berukuran 753 x 258. Max 3 MB. Format (JPG/PNG)</small>
+          <small id="gambarr" class="form-text text-muted">Pilihlah File gambar banner promo berukuran 753 x 258. Max 3 MB. Format (JPG/PNG)</small>
         </div>
         <div class="form-group">
           <label for="durasi_paket">Durasi Paket</label>
             <select name="durasi_paket" id="durasi_paket" class="form-control mb-3" placeholder="Masukkan Durasi Paket . ." aria-describedby="durasipaket">
-              <option value="D001">3 Hari</option>
-              <option value="7hari">7 Hari</option>
-              <option value="1hari">1 Hari</option>
+              <option value="">Please select</option>
+              <?php foreach ($durasi_paket as $durasi ) { ?>
+              <option value="<?=$durasi->id_durasi?>"><?=$durasi->durasi_paket?></option>
+              <?php }?>
             </select>
           <small id="durasipaket" class="text-muted">Pilih Durasi Paket.</small>
         </div>
         <div class="form-group">
           <label for="nama_barang">Barang</label>
             <select name="nama_barang" id="nama_barang" class="form-control mb-3" placeholder="Masukkan Barang . ." aria-describedby="barang">
-              <option value="B001">Baju</option>
-              <option value="#"></option>
-              <option value="#"></option>
+              <option value="">Please select</option>
+              <?php foreach ($barang as $barang ) { ?>
+              <option value="<?=$barang->id_barang?>"><?=$barang->nama_barang?></option>
+              <?php }?>
             </select>
           <small id="barang" class="text-muted">Barang.</small>
         </div>
         <div class="form-group w-50">
           <label for="status">Status Paket</label>
           <select class="form-control" name="status" id="status">
-            <option>Pilih Status Paket :</option>
+            <option value="">Pilih Status Paket :</option>
             <option value="Aktif">Aktif</option>
             <option value="Draft">Draft</option>
           </select>
