@@ -7,17 +7,154 @@ class C_paket extends CI_Controller {
         parent::__construct();	
             // ini adalah function untuk memuat model bernama m_data
         $this->load->model('m_data_paket');
-        // 
-            $this->load->helper('url');
+        $this->load->library('primslib');
         }
 
         function index(){
             // ini adalah variabel array $data yang memiliki index user, berguna untuk menyimpan data 
             $data['paket'] = $this->m_data_paket->tampil_data()->result();
-
             $this->load->view('templates/header');
             $this->load->view('templates/sidebar');
             $this->load->view('admin/paket/v_paket', $data);
             $this->load->view('templates/footer');
+        }
+
+        public function edit($id)
+        {
+          $where = array('id_paket' => $id);
+          $data['paket'] = $this->m_data_paket->edit($where, 'paket')->result();
+          $this->load->view('templates/header');
+          $this->load->view('templates/sidebar');
+          $this->load->view('admin/C_paket/edit', $data);
+          $this->load->view('templates/footer');
+        }
+      
+        public function tambah()
+        {
+          // memeriksa apakah ada id pada database
+          $row_id = $this->m_data_paket->getId()->num_rows();
+          // mengambil 1 baris data terakhir
+          $old_id = $this->m_data_paket->getId()->row();
+      
+          if($row_id>0){
+            // melakukan auto number dari id terakhir
+          $id = $this->primslib->autonumber($old_id->id_paket, 3, 12);
+          }else{
+            // generate id pertama kali jika tidak ada data sama sekali di dalam database
+          $id = 'PKT000000000001';
+          }
+      
+          $created_by = "admin";
+          $created_at = date('Y-m-d H:i:s');
+          $gambar = null;
+          // menjalankan perintah untuk mengupload gambar
+          if ($_FILES['gambar']['name'] != null) {
+            $gambar = $_FILES['gambar']['name'];
+            $gambar = $this->primslib->upload_file1('gambar', $gambar, 'jpg|jpeg|png', '3024');
+          }
+      
+          // merekam data yang dikirim melalui form
+          $data = array(
+            'id_paket' => $id,
+            'nama_paket' => $this->input->post('nama_paket'),
+            'id_jenis_paket' => $this->input->post('nama_jenis_paket'),
+            'id_isi_paket' => $this->input->post('nama_isi_paket'),
+            'harga' => $this->input->post('harga'),
+            'gambar' => $gambar,
+            'id_durasi' => $this->input->post('durasi_paket'),
+            'id_barang' => $this->input->post('nama_barang'),
+            'status' => $this->input->post('status')
+          );
+      
+          // menjalankan fungsi insert pada model_promo untuk menambah data ke database
+          $this->m_data_paket->insert($data, 'paket');
+          // mengirim pesan berhasil dihapus
+          $this->session->set_flashdata('pesan', '
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Selamat!</strong> Anda berhasil menambahkan data.
+            <button type="button" class="close py-auto" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          ');
+          // mengarahkan ke halaman tabel promo
+          redirect('admin/C_paket');
+        }
+      
+        public function update()
+        {
+          // merekam id sebagai parameter where saat update
+          $where = array('id_promo' => $this->input->post('id_promo'));
+          // menentukan siapa dan kapan baris data ini diperbarui
+          $updated_by = "admin";
+          $updated_at = date('Y-m-d H:i:s');
+          $gambar_promo = null;
+          // memeriksa apakah admin mengganti gambar atau tidak
+          if ($_FILES['gambar_promo']['name'] != null) {
+            // jika memilih gambar
+            $gambar_promo = $_FILES['gambar_promo']['name'];
+            $gambar_promo = $this->primslib->upload_file('gambar_promo', $gambar_promo, 'jpg|jpeg|png', '3024');
+      
+            $data = array(
+              'judul_promo' => $this->input->post('judul_promo'),
+              'deskripsi' => $this->input->post('deskripsi', true),
+              'syarat_ketentuan' => $this->input->post('syarat_ketentuan', true),
+              'jumlah' => $this->input->post('jumlah'),
+              'awal' => $this->input->post('awal'),
+              'akhir' => $this->input->post('akhir'),
+              'gambar' => $gambar_promo,
+              'status' => $this->input->post('status'),
+              'updated_by' => $updated_by,
+              'updated_at' => $updated_at
+            );
+          }else{
+            // jika tidak memilih gambar
+            $data = array(
+              'judul_promo' => $this->input->post('judul_promo'),
+              'deskripsi' => $this->input->post('deskripsi', true),
+              'syarat_ketentuan' => $this->input->post('syarat_ketentuan', true),
+              'jumlah' => $this->input->post('jumlah'),
+              'awal' => $this->input->post('awal'),
+              'akhir' => $this->input->post('akhir'),
+              'status' => $this->input->post('status'),
+              'updated_by' => $updated_by,
+              'updated_at' => $updated_at
+            );
+          }
+      
+          // menjalankan method update pada model promo
+          $this->model_promo->update($where, $data, 'promo');
+      
+          // mengirim pesan berhasil update data
+          $this->session->set_flashdata('pesan', '
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Anda <strong>berhasil</strong> mengubah data.
+            <button type="button" class="close py-auto" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          ');
+          // mengarahkan ke halaman tabel promo
+          redirect('admin/promo');
+        }
+      
+        // method yang berfungsi menghapus data
+        public function destroy($id)
+        {
+          // deklarasi $where by id
+          $where = array('id_promo' => $id);
+          // menjalankan fungsi delete pada model_promo
+          $this->model_promo->delete($where, 'promo');
+          // mengirim pesan berhasil dihapus
+          $this->session->set_flashdata('pesan', '
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Anda <strong>berhasil</strong> menghapus data.
+            <button type="button" class="close py-auto" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          ');
+          // mengarahkan ke halaman tabel promo
+          redirect('admin/promo');
         }
     }

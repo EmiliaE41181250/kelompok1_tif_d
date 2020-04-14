@@ -72,4 +72,36 @@ class PrimsLib {
         }
     
     }
+
+    function upload_file1($file, $name, $format, $size){
+        $ci =& get_instance();
+        if ($name != '') {
+            $config['upload_path'] = './assets/files/' . $file;
+            $config['allowed_types'] = $format;
+            $config['max_size'] = $size;
+            // $config['max_width']  = '2048';
+            // $config['max_height']  = '2048';
+            $config['encrypt_name'] = TRUE;
+            
+            $ci->load->library('upload', $config);
+            
+            if (!$ci->upload->do_upload($file))
+            {
+                $error = array('error' => $ci->upload->display_errors(),
+                                'paket' => $ci->m_data_paket->getAll('paket')->result(),
+                                'custom' => $ci->lang->line('Pengunggahan file' . $file . 'Gagal!')
+                );
+                echo $ci->load->view('admin/templates/header', array(), TRUE);
+                echo $ci->load->view('admin/templates/sidebar', array(), TRUE);
+                echo $ci->load->view('admin/promo/index', $error, TRUE);
+                echo $ci->load->view('admin/templates/footer', array(), TRUE);
+                exit;
+            }
+            else
+            {
+                return $file = $ci->upload->data('file_name');
+            }
+        }
+    
+    }
 }
