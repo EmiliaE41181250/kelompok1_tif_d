@@ -28,7 +28,6 @@
         <table class="table table-bordered bg-white" id="dataTable" width="100%" cellspacing="0">
           <thead>
           <tr>
-            <th>No</th>
             <th>Id Paket</th>
             <th>Nama Paket</th>
             <th>Nama Barang</th>
@@ -46,50 +45,14 @@
         </thead>
         <tbody>
         <?php 
-        $no = 1;
-        foreach ($detail as $pk ) {
-        $id = $pk['id_paket'];
-            ?>
+        foreach ($detail as $pk ) {?>
           <tr>
-            <td><?=$no++;?></td>
-            <td><?=$id;?></td>
+            <td><?=$pk['id_paket']?></td>
             <td><?=$pk['nama_paket']?></td>
-            <td>
-                <?php if ($pk['id_barang'] == 'IB000000000001') {
-                    echo 'Baju';
-                }elseif ($pk['id_barang'] == 'IB000000000002') {
-                    echo 'Boneka';
-                }else {
-                    echo 'Selimut';
-                }?>
-            </td>
-            <td>
-                <?php if ($pk['id_jenis_paket'] == 'JP000000000001') {
-                    echo 'Regular';
-                }elseif ($pk['id_jenis_paket'] == 'JP000000000002') {
-                    echo 'Express';
-                }else {
-                    echo 'Satuan';
-                }?>
-            </td>
-            <td>
-                <?php if ($pk['id_isi_paket'] == 'IP000000000001') {
-                    echo 'CKS(Cuci, Kering, Setrika)';
-                }elseif ($pk['id_isi_paket'] == 'IP000000000002') {
-                    echo 'CK(Cuci, Kering)';
-                }else {
-                    echo 'S(Setrika)';
-                }?>
-            </td>
-            <td>
-                <?php if ($pk['id_durasi'] == 'ID000000000001') {
-                    echo '2 hari';
-                }elseif ($pk['id_durasi'] == 'ID000000000002') {
-                    echo '3 hari';
-                }else {
-                    echo '7 hari';
-                }?>
-            </td>
+            <td><?=$pk['id_barang']?></td>
+            <td><?=$pk['id_jenis_paket']?></td>
+            <td><?=$pk['id_isi_paket']?></td>
+            <td><?=$pk['id_durasi']?></td>
             <td><?=$pk['harga']?></td>
             <td class="text-center">
             <?php if ($pk['status'] == 'Aktif') {
