@@ -42,4 +42,9 @@ class M_data_paket extends CI_Model{
     $this->db->where($where);
     $this->db->update($table, $data);
   }
+
+  public function ambilsemua()             
+    {
+        return $this->db->get('paket');
+    }
 }

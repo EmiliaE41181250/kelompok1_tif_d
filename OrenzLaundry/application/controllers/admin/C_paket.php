@@ -111,9 +111,7 @@ class C_paket extends CI_Controller {
           redirect('admin/C_paket');
         }
 
-        public function detail($id_paket){
-          $where = array('id_paket'=>$id_paket);    //membuat array dari variabel id_kk memasukkan ke dalam variabel $where
-          $data['id_paket'] = $id_paket;
+        public function detail(){
           $data['jenis_paket'] = $this->m_data_paket->getAll('jenis_paket')->result();
           $data['isi_paket'] = $this->m_data_paket->getAll('isi_paket')->result();
           $data['durasi_paket'] = $this->m_data_paket->getAll('durasi_paket')->result();
@@ -199,5 +197,7 @@ class C_paket extends CI_Controller {
           // mengarahkan ke halaman tabel promo
           redirect('admin/C_paket');
         }
+
+        
 
     }
