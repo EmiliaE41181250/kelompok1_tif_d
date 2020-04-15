@@ -7,6 +7,7 @@ class C_paket extends CI_Controller {
         parent::__construct();	
             // ini adalah function untuk memuat model bernama m_data
         $this->load->model('m_data_paket');
+        $this->load->model('m_data_jenispaket');
         $this->load->library('primslib');
         }
 
@@ -31,9 +32,8 @@ class C_paket extends CI_Controller {
           $data['isi_paket'] = $this->m_data_paket->getAll('isi_paket')->result();
           $data['durasi_paket'] = $this->m_data_paket->getAll('durasi_paket')->result();
           $data['barang'] = $this->m_data_paket->getAll('barang')->result();
-          $data['paket'] = $this->m_data_paket->tampil_data('paket')->result();
-
           $data['paket'] = $this->m_data_paket->edit($where, 'paket')->result();
+          
           $this->load->view('templates/header');
           $this->load->view('templates/sidebar');
           $this->load->view('admin/paket/v_edit', $data);
@@ -57,11 +57,30 @@ class C_paket extends CI_Controller {
       
           $created_by = "admin";
           $created_at = date('Y-m-d H:i:s');
-          $gambar_promo = null;
+          $gambar_paket = $_FILES['gambar'];
           // menjalankan perintah untuk mengupload gambar
-          if ($_FILES['gambar']['name'] != null) {
-            $gambar_promo = $_FILES['gambar']['name'];
-            $gambar_promo = $this->primslib->upload_image('gambar', $gambar_promo, 'jpg|jpeg|png', '3024');
+          // if ($_FILES['gambar']['name'] != null) {
+          //   $gambar_promo = $_FILES['gambar']['name'];
+          //   $gambar_promo = $this->primslib->upload_image('gambar', $gambar_promo, 'jpg|jpeg|png', '3024');
+          // }
+
+          if($gambar_paket){
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size']='2048';
+            $config['upload_path']='./assets/files/gambar_paket/';
+
+            $this->load->library('upload', $config);
+            if ($gambar_paket == '') {
+              $gambar_paket = null;
+            }else {
+              if (!$this->upload->do_upload('gambar')) {
+                $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">
+                Gagal menambah foto!
+              </div>');
+              }else {
+                $gambar_paket = $this->upload->data('file_name');
+              }
+            }
           }
       
           // merekam data yang dikirim melalui form
@@ -71,7 +90,7 @@ class C_paket extends CI_Controller {
             'id_jenis_paket' => $this->input->post('nama_jenis_paket'),
             'id_isi_paket' => $this->input->post('nama_isi_paket'),
             'harga' => $this->input->post('harga'),
-            'gambar' => $gambar_promo,
+            'gambar' => $gambar_paket,
             'id_durasi' => $this->input->post('durasi_paket'),
             'id_barang' => $this->input->post('nama_barang'),
             'status' => $this->input->post('status')
@@ -90,6 +109,20 @@ class C_paket extends CI_Controller {
           ');
           // mengarahkan ke halaman tabel paket
           redirect('admin/C_paket');
+        }
+
+        public function detail(){
+          $data['jenis_paket'] = $this->m_data_paket->getAll('jenis_paket')->result();
+          $data['isi_paket'] = $this->m_data_paket->getAll('isi_paket')->result();
+          $data['durasi_paket'] = $this->m_data_paket->getAll('durasi_paket')->result();
+          $data['barang'] = $this->m_data_paket->getAll('barang')->result();
+          $data['paket'] = $this->m_data_paket->tampil_data('paket')->result();
+          $data['detail'] = $this->m_data_paket->get_table();
+
+          $this->load->view('templates/header');
+          $this->load->view('templates/sidebar');
+          $this->load->view('admin/paket/v_detailpaket', $data);
+          $this->load->view('templates/footer');
         }
       
         public function update()

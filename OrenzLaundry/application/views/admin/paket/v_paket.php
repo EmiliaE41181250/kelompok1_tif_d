@@ -52,7 +52,7 @@
                 <?php }?>
             </td>
             <td class="text-center">
-                <?php echo anchor('admin/C_paket/' . $pk->id_paket, '
+                <?php echo anchor('admin/C_paket/detail/' . $pk->id_paket, '
                 <div class="btn btn-info btn-sm mr-2 pr-3 pl-3"><i class="fa fa-info"></i></div>')?>
                 <?php echo anchor('admin/C_paket/edit/' . $pk->id_paket, '
                 <div class="btn btn-primary btn-sm mr-2"><i class="fa fa-edit"></i></div>')?>
@@ -88,8 +88,8 @@
           <label for="nama_jenis_paket">Jenis Paket</label>
             <select name="nama_jenis_paket" id="nama_jenis_paket" class="form-control mb-3" placeholder="Masukkan Jenis Paket . ." aria-describedby="jenispaket">
               <option value=""> Please select </option>
-              <?php foreach ($jenis_paket as $paket ) { ?>
-              <option value="<?=$paket->id_jenis_paket?>"><?=$paket->nama_jenis_paket?></option>
+              <?php foreach ($jenis_paket as $jpaket ) { ?>
+              <option value="<?=$jpaket->id_jenis_paket?>"><?=$jpaket->nama_jenis_paket?></option>
               <?php }?>
             </select>
           <small id="jenispaket" class="text-muted">Pilih Jenis Paket yang Anda Perlukan.</small>

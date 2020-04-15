@@ -17,6 +17,11 @@ class M_data_jenispaket extends CI_Model
         return $this->db->get($table);
     }
 
+    public function getEdit($where, $table)
+    {
+    return $this->db->get_where($table, $where);
+    }
+
     public function getId()
     {
         return $this->db->query("SELECT * FROM jenis_paket ORDER BY id_jenis_paket DESC LIMIT 1");
