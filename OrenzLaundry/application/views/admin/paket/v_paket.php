@@ -39,7 +39,8 @@
         <tbody>
         <?php 
         $no = 1;
-        foreach ($paket as $pk ) { ?>
+        foreach ($paket as $pk ) { 
+        //$jenis = $this->db->query("SELECT nama_jenis_paket FROM jenis_paket WHERE id_jenis_paket = '$pk->id_jenis_paket'")->row();?>
           <tr>
             <td><?=$no++?></td>
             <td><?=$pk->nama_paket?></td>
