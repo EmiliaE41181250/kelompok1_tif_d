@@ -43,8 +43,9 @@ class M_data_paket extends CI_Model{
     $this->db->update($table, $data);
   }
 
-  public function ambilsemua()             
-    {
-        return $this->db->get('paket');
-    }
+  public function detail_data($id = NULL){
+    $query = $this->db->get_where('paket', array('id_paket' => $id))->result();
+    return $query;
+  }
+
 }

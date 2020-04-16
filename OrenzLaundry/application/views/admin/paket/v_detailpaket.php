@@ -45,29 +45,31 @@
         </thead>
         <tbody>
         <?php 
-        foreach ($detail as $pk ) {?>
+        foreach ($detail as $dt ) { 
+          $br = $this->db->query("SELECT nama_barang FROM barang WHERE id_barang = '$dt->id_barang'")->row();?>
           <tr>
-            <td><?=$pk['id_paket']?></td>
-            <td><?=$pk['nama_paket']?></td>
-            <td><?=$pk['id_barang']?></td>
-            <td><?=$pk['id_jenis_paket']?></td>
-            <td><?=$pk['id_isi_paket']?></td>
-            <td><?=$pk['id_durasi']?></td>
-            <td><?=$pk['harga']?></td>
+            <td><?=$detail->id_paket?></td>
+            <td><?=$detail->nama_paket?></td>
+            <td><?=$br->id_barang?></td>
+            <td><?=$detail->id_jenis_paket?></td>
+            <td><?=$detail->id_isi_paket?></td>
+            <td><?=$detail->id_durasi?></td>
+            <td><?=$detail->harga?></td>
             <td class="text-center">
-            <?php if ($pk['status'] == 'Aktif') {
-                    echo '<span class="badge badge-pill px-4 badge-warning">Aktif</span>';
-                }else {
-                    echo '<span class="badge badge-pill px-4 badge-secondary">Draft</span>';
-                }?>
+                <?php if($detail->status == "Aktif"){?>
+                <span class="badge badge-pill px-4 badge-warning"><?=$detail->status?></span>
+                <?php }else{ ?>
+                <span class="badge badge-pill px-4 badge-secondary"><?=$detail->status?></span>
+                <?php }?>
             </td>
-            <td><?=$pk['gambar']?></td>
-            <td><?=$pk['created_by']?></td>
-            <td><?=$pk['created_at']?></td>
-            <td><?=$pk['updated_by']?></td>
-            <td><?=$pk['updated_at']?></td>
+            <td><?=$detail->gambar?></td>
+            <td><?=$detail->created_by?></td>
+            <td><?=$detail->created_at?></td>
+            <td><?=$detail->updated_by?></td>
+            <td><?=$detail->updated_at?></td>
           </tr>
-        <?php } ?>
+          <button class="btn btn-secondary" onclick="window.history.back()"><i class="fas fa-arrow-left"></i></button>
+          <?php } ?>
         </tbody>
       </table>
     </div>

@@ -7,7 +7,6 @@ class C_paket extends CI_Controller {
         parent::__construct();	
             // ini adalah function untuk memuat model bernama m_data
         $this->load->model('m_data_paket');
-        $this->load->model('m_data_jenispaket');
         $this->load->library('primslib');
         }
 
@@ -111,14 +110,11 @@ class C_paket extends CI_Controller {
           redirect('admin/C_paket');
         }
 
-        public function detail(){
-          $data['jenis_paket'] = $this->m_data_paket->getAll('jenis_paket')->result();
-          $data['isi_paket'] = $this->m_data_paket->getAll('isi_paket')->result();
-          $data['durasi_paket'] = $this->m_data_paket->getAll('durasi_paket')->result();
-          $data['barang'] = $this->m_data_paket->getAll('barang')->result();
-          $data['paket'] = $this->m_data_paket->tampil_data('paket')->result();
-          $data['detail'] = $this->m_data_paket->get_table();
-
+        public function detail($id){
+          $this->load->model('m_data_paket');
+          $detail = $this->m_data_paket->detail_data($id);
+          $data['detail'] = $detail;
+          
           $this->load->view('templates/header');
           $this->load->view('templates/sidebar');
           $this->load->view('admin/paket/v_detailpaket', $data);
