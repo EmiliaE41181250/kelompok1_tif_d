@@ -54,7 +54,8 @@
           <small id="jumlahharga" class="text-muted">Jumlah Harga</small>
         </div>
         <div class="form-group">
-          <label for="gambar">Gambar</label>
+          <label for="gambar">Gambar</label><br>                          
+          <img src="<?=base_url()?>assets/files/gambar_paket/<?=$pk->gambar?>" alt="Gambar <?=$pk->nama_paket?>" class="w-50 img-fluid img-rounded img-responsive mb-3">
           <div class="custom-file mb-2">
               <input type="file" class="custom-file-input" name="gambar" id="gambar">
               <label class="custom-file-label" for="gambar">Masukkan Gambar berukuran 753 x 258 . .</label>
