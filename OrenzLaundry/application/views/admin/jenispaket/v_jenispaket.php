@@ -40,17 +40,10 @@
                     foreach ($jenis_paket as $jp) { ?>
                         <tr>
                             <td><?= $no++ ?></td>
-                            <td><?= $jp->nama_jenispaket ?></td>
+                            <td><?= $jp->nama_jenis_paket ?></td>
+
                             <td class="text-center">
-                                <?php if ($jp->status == "Aktif") { ?>
-                                    <span class="badge badge-pill px-4 badge-warning"><?= $jp->status ?></span>
-                                <?php } else { ?>
-                                    <span class="badge badge-pill px-4 badge-secondary"><?= $jp->status ?></span>
-                                <?php } ?>
-                            </td>
-                            <td class="text-center">
-                                <?php echo anchor('admin/C_jenispaket/' . $jp->id_jenis_paket, '
-                <div class="btn btn-info btn-sm mr-2 pr-3 pl-3"><i class="fa fa-info"></i></div>') ?>
+
                                 <?php echo anchor('admin/C_jenispaket/edit/' . $jp->id_jenis_paket, '
                 <div class="btn btn-primary btn-sm mr-2"><i class="fa fa-edit"></i></div>') ?>
                                 <?php echo anchor('admin/C_jenispaket/destroy/' . $jp->id_jenis_paket, '
@@ -77,9 +70,9 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="nama_jenispaket">Jenis Paket</label>
-                        <input type="text" name="nama_jenispaket" id="nama_jenispaket" class="form-control" placeholder="Masukkan Nama Jenis Paket . ." aria-describedby="namajenispaket" maxlength="100">
-                        <small id="namapaket" class="text-muted">Masukkan Nama jenis Paket tidak lebih dari 100 Karakter</small>
+                        <label for="nama_jenis_paket">Jenis Paket</label>
+                        <input type="text" name="nama_jenis_paket" id="nama_jenis_paket" class="form-control" placeholder="Masukkan Nama Jenis Paket . ." aria-describedby="namajenispaket" maxlength="100">
+                        <small id="namajenispaket" class="text-muted">Masukkan Nama jenis Paket tidak lebih dari 100 Karakter</small>
                     </div>
 
                     <div class="modal-footer">
