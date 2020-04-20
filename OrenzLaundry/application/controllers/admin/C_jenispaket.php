@@ -28,7 +28,7 @@ class C_jenispaket extends CI_Controller
     $data['jenis_paket'] = $this->m_data_jenispaket->edit($where, 'jenis_paket')->result();
     $this->load->view('templates/header');
     $this->load->view('templates/sidebar');
-    $this->load->view('admin/C_jenispaket/edit', $data);
+    $this->load->view('admin/jenispaket/v_edit_jp', $data);
     $this->load->view('templates/footer');
   }
 
