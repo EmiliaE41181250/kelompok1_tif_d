@@ -90,8 +90,8 @@ class C_jenispaket extends CI_Controller
 
     );
 
-    // menjalankan method update pada model promo
-    $this->m_data_jenispaket-- > update($where, $data, 'jenis_paket');
+    // menjalankan method update pada m_data_jenis_paket
+    $this->m_data_jenispaket->update($where, $data, 'jenis_paket');
 
     // mengirim pesan berhasil update data
     $this->session->set_flashdata('pesan', '
@@ -102,7 +102,7 @@ class C_jenispaket extends CI_Controller
       </button>
     </div>
     ');
-    // mengarahkan ke halaman tabel promo
+    // mengarahkan ke halaman tabel jenis paket
     redirect('admin/C_jenispaket');
   }
 
@@ -111,8 +111,8 @@ class C_jenispaket extends CI_Controller
   {
     // deklarasi $where by id
     $where = array('id_jenis_paket' => $id);
-    // menjalankan fungsi delete pada model_promo
-    $this->m_data_jenispaket-- > delete($where, 'jenis_paket');
+    // menjalankan fungsi delete pada m_data_jenis_paket
+    $this->m_data_jenispaket->delete($where, 'jenis_paket');
     // mengirim pesan berhasil dihapus
     $this->session->set_flashdata('pesan', '
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
