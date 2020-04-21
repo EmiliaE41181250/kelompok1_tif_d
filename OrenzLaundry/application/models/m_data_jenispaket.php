@@ -7,6 +7,14 @@ class M_data_jenispaket extends CI_Model
     {
         return $this->db->get('jenis_paket');
     }
+
+    public function get_table()
+    {
+        $sql = $this->db->get('jenis_paket');
+
+        return $sql->result_array();
+    }
+
     public function edit($where, $table)
     {
         return $this->db->get_where($table, $where);
@@ -17,11 +25,6 @@ class M_data_jenispaket extends CI_Model
         return $this->db->get($table);
     }
 
-    public function getEdit($where, $table)
-    {
-    return $this->db->get_where($table, $where);
-    }
-
     public function getId()
     {
         return $this->db->query("SELECT * FROM jenis_paket ORDER BY id_jenis_paket DESC LIMIT 1");
@@ -30,5 +33,16 @@ class M_data_jenispaket extends CI_Model
     public function insert($data, $table)
     {
         $this->db->insert($table, $data);
+    }
+
+    public function delete($where, $table)
+    {
+        $this->db->delete($table, $where);
+    }
+
+    public function update($where, $data, $table)
+    {
+        $this->db->where($where);
+        $this->db->update($table, $data);
     }
 }
