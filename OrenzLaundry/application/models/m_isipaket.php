@@ -12,35 +12,30 @@ class M_isipaket extends CI_Model{
       return $sql->result_array();
     }
 
-    public function edit($where, $table)
-    {
-      return $this->db->get_where($table, $where);
+    function edit_data($where,$table){
+      return $this->db->get_where($table,$where);
     }
 
-    public function getAll($table)
-    {
-      return $this->db->get($table);
+    // public function getAll($table)
+    // {
+    //   return $this->db->get($table);
+    // }
+
+    // public function getId()
+    // {
+    //   return $this->db->query("SELECT * FROM paket ORDER BY id_isi_paket DESC LIMIT 1");
+    // }
+
+    function insert($data,$table){
+      $this->db->insert($table,$data);
+  }
+
+  function delete($where,$table){
+		$this->db->where($where);
+		$this->db->delete($table);
     }
-
-    public function getId()
-    {
-      return $this->db->query("SELECT * FROM paket ORDER BY id_isi_paket DESC LIMIT 1");
+  
+    function update($where,$data,$table){
+      $this->db->where($where);
+      $this->db->update($table,$data);
     }
-
-    public function insert($data, $table)
-  {
-    $this->db->insert($table, $data);
-  }
-
-  public function delete($where, $table)
-  {
-    $this->db->delete($table, $where);
-  }
-
-  public function update($where, $data, $table)
-  {
-    $this->db->where($where);
-    $this->db->update($table, $data);
-  }
-
-}
