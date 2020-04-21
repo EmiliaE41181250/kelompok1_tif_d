@@ -72,7 +72,7 @@
         <h6 class="collapse-header">Master:</h6>
         <a class="collapse-item" href="<?= base_url('admin/C_paket') ?>">Paket</a>
         <a class="collapse-item" href="<?= base_url('admin/C_jenispaket') ?>">Jenis Paket</a>
-        <a class="collapse-item" href="<?= base_url('admin/isi_paket') ?>">Isi Paket</a>
+        <a class="collapse-item" href="<?= base_url('admin/C_isipaket') ?>">Isi Paket</a>
         <a class="collapse-item" href="<?= base_url('admin/durasi_paket') ?>">Durasi Paket</a>
         <div class="collapse-divider"></div>
         <h6 class="collapse-header">Akun:</h6>
