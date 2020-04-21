@@ -53,7 +53,7 @@
                                 <?php } ?>
                             </td>
                             <td class="text-center">
-                            <?php echo anchor('admin/C_isipaket/edit_data/' . $ip->id_isi_paket, '
+                            <?php echo anchor('admin/C_isipaket/edit/' . $ip->id_isi_paket, '
                 <div class="btn btn-primary btn-sm mr-2"><i class="fa fa-edit"></i></div>') ?>
                                 <?php echo anchor('admin/C_isipaket/destroy/' . $ip->id_isi_paket, '
                 <div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></div>') ?>

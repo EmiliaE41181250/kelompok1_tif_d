@@ -19,9 +19,9 @@ class C_isipaket extends CI_Controller {
             $this->load->view('templates/footer');
         }
 
-        public function edit_data($id)
+        public function edit($id)
         {
-        $data['isi_paket'] = $this->m_isipaket->edit_data()->result();
+        $data['isi_paket'] = $this->m_isipaket->edit()->result();
           $this->load->view('templates/header');
           $this->load->view('templates/sidebar');
           $this->load->view('admin/isipaket/v_edit_ip', $data);
