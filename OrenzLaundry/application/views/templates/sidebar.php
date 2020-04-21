@@ -74,6 +74,7 @@
         <a class="collapse-item" href="<?= base_url('admin/C_jenispaket') ?>">Jenis Paket</a>
         <a class="collapse-item" href="<?= base_url('admin/C_isipaket') ?>">Isi Paket</a>
         <a class="collapse-item" href="<?= base_url('admin/durasi_paket') ?>">Durasi Paket</a>
+        <a class="collapse-item" href="<?= base_url('admin/C_barang') ?>">Barang</a>
         <div class="collapse-divider"></div>
         <h6 class="collapse-header">Akun:</h6>
         <a class="collapse-item" href="<?= base_url('admin/customer') ?>">Customer</a>
