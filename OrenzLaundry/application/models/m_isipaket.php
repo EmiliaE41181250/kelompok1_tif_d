@@ -15,8 +15,9 @@ class M_isipaket extends CI_Model
         return $sql->result_array();
     }
 
-    public function edit($where, $table){
-        return $this->db->get_where($table,  $where);
+    public function edit($where, $table)
+    {
+        return $this->db->get_where($table, $where);
     }
 
     public function getAll($table)
