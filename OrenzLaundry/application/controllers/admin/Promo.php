@@ -34,6 +34,17 @@ class Promo extends CI_Controller
     $this->load->view('templates/footer');
   }
 
+  // menampilkan detail data promo
+  public function detail($id)
+  {
+    $where = array('id_promo' => $id);
+    $data['promo'] = $this->model_promo->getEdit($where, 'promo')->result();
+    $this->load->view('templates/header');
+    $this->load->view('templates/sidebar');
+    $this->load->view('admin/promo/detail', $data);
+    $this->load->view('templates/footer');
+  }
+
   public function tambah()
   {
     // memeriksa apakah ada id pada database
@@ -163,5 +174,24 @@ class Promo extends CI_Controller
     ');
     // mengarahkan ke halaman tabel promo
     redirect('admin/promo');
+  }
+
+  // method untuk melakukan print PDF
+  public function pdf()
+  {
+    $this->load->library('dompdf_gen');
+
+    $data['promo'] = $this->model_promo->getAll('promo')->result();
+
+    $this->load->view('admin/promo/laporan_pdf', $data);
+
+    $paper_size = 'A4';
+    $oriantation = 'landscape';
+    $html = $this->output->get_output();
+    $this->dompdf->set_paper($paper_size, $oriantation);
+
+    $this->dompdf->load_html($html);
+    $this->dompdf->render();
+    $this->dompdf->stream("laporan_promo_".date('Y-m-d_H-i-s').".pdf", array('Attachment' => 0));
   }
 }
