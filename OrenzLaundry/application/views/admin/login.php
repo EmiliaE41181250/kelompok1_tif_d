@@ -9,7 +9,7 @@
 			background-image: linear-gradient(to bottom right, #fcbf30 , #5dcf40);
 		}
 		.user_card {
-			height: 500px;
+			height: 450px;
 			width: 350px;
 			margin-top: auto;
 			margin-bottom: auto;
@@ -93,7 +93,7 @@
 			<div class="user_card">
 				<div class="d-flex justify-content-center">
 					<div class="brand_logo_container">
-						<img src="assets/admin/img/LaundryRegis.png" class="brand_logo" alt="Logo">
+						<i><img src="assets/admin/img/LaundryRegis.png" class="brand_logo" alt="Logo"></i>
 					</div>
 				</div>
 				<div class="d-flex justify-content-center form_container">
@@ -135,7 +135,7 @@
 					</form>
 				</div>
 					<div class="d-flex justify-content-center links">
-						<a href="#">Forgot your password?</a>
+						<a href="#">Lupa Password?</a>
 					</div>
 				</div>
 			</div>
