@@ -40,20 +40,20 @@ class Forgot_model extends CI_Model
             return $this->status('Email tidak terdaftar');
         }
 
-        // $queryVerifikasi    = $this->db->where('id_user', strtolower($query->id_user))->order_by('created_at', 'desc')->get('verifikasi')->row();
-        // if ($queryVerifikasi) {
-        //     $exp_time = date("Y-m-d H:i:s", strtotime($queryVerifikasi->created_at . " +2 minutes"));
-        //     if ($exp_time > date("Y-m-d H:i:s")) return status('Hanya boleh mengirim 1 permintaan dalam 2 menit');
-        // }
+        $queryVerifikasi    = $this->db->where('id_user', strtolower($query->id_user))->order_by('created_at', 'desc')->get('verifikasi')->row();
+        if ($queryVerifikasi) {
+            $exp_time = date("Y-m-d H:i:s", strtotime($queryVerifikasi->created_at . " +2 minutes"));
+            if ($exp_time > date("Y-m-d H:i:s")) return status('Hanya boleh mengirim 1 permintaan dalam 2 menit');
+        }
 
         $kode = $this->sendMail($request->email);
-        // if (!$kode) return status('Gagal mengirim ke email');
+        if (!$kode) return status('Gagal mengirim ke email');
 
-        // $verifikasi = [
-        //     'id_user' => $query->id_user,
-        //     'kode_verifikasi' => $kode
-        // ];
-        // $this->$this->db->insert('verifikasi', $verifikasi);
+        $verifikasi = [
+            'id_user' => $query->id_user,
+            'kode_verifikasi' => $kode
+        ];
+        $this->$this->db->insert('verifikasi', $verifikasi);
 
         return $this->status('Kode verifikasi berhasil dikirim, silahkan cek email anda.', true);
     }
