@@ -78,7 +78,7 @@
         <div class="collapse-divider"></div>
         <h6 class="collapse-header">Akun:</h6>
         <a class="collapse-item" href="<?= base_url('admin/customer') ?>">Customer</a>
-        <a class="collapse-item" href="<?= base_url('admin/saya') ?>">Saya</a>
+        <a class="collapse-item" href="<?= base_url('admin/C_saya') ?>">Saya</a>
       </div>
     </div>
   </li>
