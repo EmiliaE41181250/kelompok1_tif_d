@@ -16,7 +16,7 @@
 
     <div class="row">
         <div class="col-6">
-            <button class="btn btn-sm btn-ijo mb-2" data-toggle="modal" data-target="#tambah_barang"><i class="fas fa-plus fa-sm mr-2"></i>Tambah Barang</button>
+            <button class="btn btn-sm btn-ijo mb-2" data-toggle="modal" data-target="#tambah_barang"><i class="fas fa-plus fa-sm mr-2"></i>Tambah Isi Paket</button>
         </div>
         <div class="col-6 text-right">
             <a class="btn btn-sm btn-warning mb-2" href="<?= base_url() ?>admin/v_isipaket"><i class="fas fa-file-pdf fa-sm mr-2"></i>Cetak Pdf</a>
@@ -30,7 +30,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama Barang</th>
+                        <th>Nama Isi Paket</th>
                         <th>Status</th>
                         <th>Aksi</th>
                     </tr>
@@ -50,10 +50,12 @@
                                 <?php }?>
                             </td>
                             <td class="text-center">
-                                <?php echo anchor('admin/C_isipaket/edit/' . $ip->id_isi_paket, '
-                                <div class="btn btn-primary btn-sm mr-2"><i class="fa fa-edit"></i></div>') ?>
-                                <?php echo anchor('admin/C_isipaket/destroy/' . $ip->id_isi_paket, '
-                                <div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></div>') ?>
+                            <a href="<?=base_url('admin/C_isipaket/detail/' . $ip->id_isi_paket)?>" 
+                            class="btn btn-info btn-sm"><i class="px-1 fa fa-info"></i></a>
+                            <a href="<?=base_url('admin/C_isipaket/edit/' . $ip->id_isi_paket)?>" 
+                            class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                            <a onclick="return confirm('Apakah anda yakin ingin menghapus item ini ?');" href="<?=base_url('admin/C_isipaket/destroy/' . $ip->id_isi_paket)?>" 
+                            class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
 
                             </td>
                         </tr>
@@ -113,3 +115,5 @@
 
 
 <!-- End of Page Wrapper -->
+
+
