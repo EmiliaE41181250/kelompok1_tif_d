@@ -63,7 +63,7 @@
 
   <!-- Nav Item - Pages Collapse Menu -->
   <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" ar ia-expanded="true" aria-controls="collapsePages">
       <i class="fas fa-fw fa-folder"></i>
       <span>Master</span>
     </a>
@@ -77,7 +77,7 @@
         <a class="collapse-item" href="<?= base_url('admin/C_barang') ?>">Barang</a>
         <div class="collapse-divider"></div>
         <h6 class="collapse-header">Akun:</h6>
-        <a class="collapse-item" href="<?= base_url('admin/customer') ?>">Customer</a>
+        <a class="collapse-item" href="<?= base_url('admin/User') ?>">Customer</a>
         <a class="collapse-item" href="<?= base_url('admin/C_saya') ?>">Saya</a>
       </div>
     </div>
@@ -261,7 +261,7 @@
           </a>
           <!-- Dropdown - User Information -->
           <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-            <a class="dropdown-item" href="#">
+            <a class="dropdown-item" href="http://localhost/kelompok1_tif_d/OrenzLaundry/admin/C_saya">
               <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
               Profile
             </a>

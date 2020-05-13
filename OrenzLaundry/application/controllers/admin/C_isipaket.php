@@ -150,7 +150,7 @@ class C_isipaket extends CI_Controller
     // deklarasi $where by id
     $where = array('id_isi_paket' => $id);
     // menjalankan fungsi delete pada model_promo
-    $this->model_promo->delete($where, 'isi_paket');
+    $this->m_isipaket->delete($where, 'isi_paket');
     // mengirim pesan berhasil dihapus
     $this->session->set_flashdata('pesan', '
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
