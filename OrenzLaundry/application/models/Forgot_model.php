@@ -40,20 +40,21 @@ class Forgot_model extends CI_Model
             return $this->status('Email tidak terdaftar');
         }
 
-        $queryVerifikasi    = $this->db->where('id_user', strtolower($query->id_user))->order_by('created_at', 'desc')->get('verifikasi')->row();
-        if ($queryVerifikasi) {
-            $exp_time = date("Y-m-d H:i:s", strtotime($queryVerifikasi->created_at . " +2 minutes"));
-            if ($exp_time > date("Y-m-d H:i:s")) return status('Hanya boleh mengirim 1 permintaan dalam 2 menit');
-        }
+        // $queryVerifikasi    = $this->db->where('id_user', strtolower($query->id_user))->order_by('created_at', 'desc')->get('verifikasi')->row();
+        // if ($queryVerifikasi) {
+        //     $exp_time = date("Y-m-d H:i:s", strtotime($queryVerifikasi->created_at . " +2 minutes"));
+        //     if ($exp_time > date("Y-m-d H:i:s")) return status('Hanya boleh mengirim 1 permintaan dalam 2 menit');
+        // }
 
         $kode = $this->sendMail($request->email);
-        if (!$kode) return status('Gagal mengirim ke email');
+        if (!$kode) return $this->status('Gagal mengirim ke email');
+        
 
-        $verifikasi = [
-            'id_user' => $query->id_user,
-            'kode_verifikasi' => $kode
-        ];
-        $this->$this->db->insert('verifikasi', $verifikasi);
+        // $verifikasi = [
+        //     'id_user' => $query->id_user,
+        //     'kode_verifikasi' => $kode
+        // ];
+        // $this->$this->db->insert('verifikasi', $verifikasi);
 
         return $this->status('Kode verifikasi berhasil dikirim, silahkan cek email anda.', true);
     }
@@ -65,7 +66,7 @@ class Forgot_model extends CI_Model
             'smtp_host' => 'smtp.sendgrid.net',
             'smtp_port' => 587,
             'smtp_user' => 'apikey',
-            'smtp_pass' => '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',
+            'smtp_pass' => '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',
             'mailtype' => 'html',
             'charset' => 'utf-8',
             'newline' => '\r\n'
@@ -79,6 +80,22 @@ class Forgot_model extends CI_Model
         if ($this->email->send()) return $kode;
         return false;
         // var_dump($this->email->print_debugger());
+        // $config = [
+        //     'mailtype'  => 'html',
+        //     'charset'   => 'utf-8',
+        //     'protocol'  => 'smtp',
+        //     'smtp_host' => 'smtp.gmail.com',
+        //     'smtp_user' => 'orenzlaundry456@gmail.com',  // Email gmail
+        //     'smtp_pass'   => 'OrenzLaundry123',  // Password gmail
+        //     'smtp_crypto' => 'ssl',
+        //     'smtp_port'   => 465,
+        //     'crlf'    => "\r\n",
+        //     'newline' => "\r\n"
+        // ];
+
+        // Load library email dan konfigurasinya
+       
+       
     }
 }
 
