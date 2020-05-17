@@ -37,39 +37,76 @@ class Send_gmail extends REST_Controller {
             $this->response($response);
         }
 
-        // if ($response['data']!=null) {
-        //     $get_user = $this->db->query("SELECT * FROM user WHERE email = '$search' OR username = '$search'")->row();
-        //     $email = $get_user->email;
-        //     $this->load->library('configemail');
-        //     $config = $this->configemail->config_email();
-        //     // Load library email dan konfigurasinya
-        //     $this->load->library('email', $config);
-        //     // Email dan nama pengirim
-        //     $this->email->from('admin@orenzlaundry.com', 'Orenz Laundry');
-        //     // Email penerima
-        //     $this->email->to($email); // Ganti dengan email tujuan
-        //     // Lampiran email, isi dengan url/path file
-        //     // $this->email->attach('https://masrud.com/content/images/20181215150137-codeigniter-smtp-gmail.png');
-        //     // Subject email
-        //     $subject = 'Lupa Password | Orenz Laundry';
-        //     $this->email->subject($subject);
-        //     // Isi email
-        //     $nama_user = $get_user->nama_user;
-        //     $kode_token = $get_user->token;
-        //     $pesan = 'Wah kehilangan atau lupa password pasti menjengkelkan, namun tenang kami akan membantu!<br> 
-        //         Silahkan masukkan TOKEN dibawah ini pada kolom verifikasi token, dengan begitu anda dapat melakukan reset password dan membuat password baru!.';
-        //     $message = '';
-        //     $this->load->library('EmailtoUser');
-        //     $message = $this->emailtouser->verifikasiakun($subject, $nama_user, $pesan, $kode_token, $email);
-        //     $this->email->message($message);
-        //     // Tampilkan pesan sukses atau error
-        //     $this->email->send();
-        // } else {
-        //     $response['status']=502;
-		// 	$response['error']=true;
-		// 	$response['message']='Gagal mendapatkan email atau username';
-		// 	$this->response($response);
-        // }
+        if ($response['data']!=null) {
+            $get_user = $this->db->query("SELECT * FROM user WHERE email = '$search' OR username = '$search'")->row();
+            $email = $get_user->email;
+            $this->load->library('configemail');
+            $config = $this->configemail->config_email();
+            // Load library email dan konfigurasinya
+            $this->load->library('email', $config);
+            // Email dan nama pengirim
+            $this->email->from('admin@orenzlaundry.com', 'Orenz Laundry');
+            // Email penerima
+            $this->email->to($email); // Ganti dengan email tujuan
+            // Lampiran email, isi dengan url/path file
+            // $this->email->attach('https://masrud.com/content/images/20181215150137-codeigniter-smtp-gmail.png');
+            // Subject email
+            $subject = 'Lupa Password | Orenz Laundry';
+            $this->email->subject($subject);
+            // Isi email
+            $nama_user = $get_user->nama_user;
+            $kode_token = $get_user->token;
+            $pesan = 'Wah kehilangan atau lupa password pasti menjengkelkan, namun tenang kami akan membantu!<br> 
+                Silahkan masukkan TOKEN dibawah ini pada kolom verifikasi token, dengan begitu anda dapat melakukan reset password dan membuat password baru!.';
+            $message = '';
+            $this->load->library('EmailtoUser');
+            $message = $this->emailtouser->verifikasiakun($subject, $nama_user, $pesan, $kode_token, $email);
+            $this->email->message($message);
+            // Tampilkan pesan sukses atau error
+            $this->email->send();
+        } else {
+            $response['status']=502;
+			$response['error']=true;
+			$response['message']='Gagal mendapatkan email atau username';
+			$this->response($response);
+        }
+    }
+
+    public function resendemail_post()
+    {
+        $email = $this->post('email');
+        $response = $this->m_login->resend_email($email);
+
+        $this->response($response);
+
+        if($response){
+        $get_user = $this->db->query("SELECT * FROM user WHERE email = '$email'")->row();
+        $this->load->library('configemail');
+        $config = $this->configemail->config_email();
+        // Load library email dan konfigurasinya
+        $this->load->library('email', $config);
+        // Email dan nama pengirim
+        $this->email->from('admin@orenzlaundry.com', 'Orenz Laundry');
+        // Email penerima
+        $this->email->to($email); // Ganti dengan email tujuan
+        // Lampiran email, isi dengan url/path file
+        // $this->email->attach('https://masrud.com/content/images/20181215150137-codeigniter-smtp-gmail.png');
+        // Subject email
+        $subject = 'Lupa Password | Orenz Laundry';
+        $this->email->subject($subject);
+        // Isi email
+        $nama_user = $get_user->nama_user;
+        $kode_token = $get_user->token;
+        $pesan = 'Wah kehilangan atau lupa password pasti menjengkelkan, namun tenang kami akan membantu!<br> 
+            Silahkan masukkan TOKEN dibawah ini pada kolom verifikasi token, dengan begitu anda dapat melakukan reset password dan membuat password baru!.';
+        $message = '';
+        $this->load->library('EmailtoUser');
+        $message = $this->emailtouser->verifikasiakun($subject, $nama_user, $pesan, $kode_token, $email);
+        $this->email->message($message);
+        // Tampilkan pesan sukses atau error
+        $this->email->send();
+
+        }
     }
 
     public function checktoken_post()
@@ -81,6 +118,19 @@ class Send_gmail extends REST_Controller {
             $response['status']=502;
             $response['error']=true;
             $response['message']='Kode yang anda masukkan tidak cocok!';
+            $this->response($response);
+        }
+    }
+
+    public function getUserById_post()
+    {
+        $response = $this->m_lupas->getUserById($this->post('id_user'));
+        if ($response['data']!=null) {
+            $this->response($response);
+        }else{
+            $response['status']=502;
+            $response['error']=true;
+            $response['message']='Pengguna tidak ditemukan!';
             $this->response($response);
         }
     }

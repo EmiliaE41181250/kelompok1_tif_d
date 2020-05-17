@@ -13,6 +13,17 @@ class M_lupas extends CI_Model
     $response['message']='success';
     return $response;
   }
+
+  function getUserById($id)
+	{
+    $this->db->where('id_user', $id);
+		$data = $this->db->get("user")->result();
+    $response['status']=200;
+    $response['error']=false;
+    $response['data']=$data;
+    $response['message']='success';
+    return $response;
+  }
   
   function getToken($email, $token)
 	{
@@ -37,10 +48,10 @@ class M_lupas extends CI_Model
     return $response;
   }
   
-  function putPassword($email, $password){
+  function putPassword($id, $password){
 
 		$where = array(
-			"email"=>$email
+			"id_user"=>$id
 		);
 
 		$set = array(
