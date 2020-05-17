@@ -45,7 +45,14 @@ class VerifAkun extends REST_Controller {
   public function matchcode_post()
   {
     $response = $this->m_login->matching($this->post('token'), $this->post('email'));
-    $this->response($response);
+    if ($response['data']!=null) {
+        $this->response($response);
+    }else{
+        $response['status']=502;
+        $response['error']=true;
+        $response['message']='Kode yang anda masukkan tidak cocok!';
+        $this->response($response);
+    }
   }
 
   public function updatestatus_put()
