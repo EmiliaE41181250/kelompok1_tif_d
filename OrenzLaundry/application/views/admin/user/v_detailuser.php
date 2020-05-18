@@ -56,7 +56,7 @@
                                 <td>Status</td>
                                 <td>:</td>
                                 <td>
-                                    <?php if ($usr->status == "Aktif") { ?>
+                                    <?php if ($usr->status == "1") { ?>
                                         <span class="badge badge-pill px-4 badge-warning"><?= $usr->status ?></span>
                                     <?php } else { ?>
                                         <span class="badge badge-pill px-4 badge-secondary"><?= $usr->status ?></span>

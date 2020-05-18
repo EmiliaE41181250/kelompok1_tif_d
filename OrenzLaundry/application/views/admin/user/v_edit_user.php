@@ -52,8 +52,8 @@
                             <label for="status">Status</label>
                             <select class="form-control" name="status" id="status" required>
                                 <option>Pilih Status :</option>
-                                <option value="Aktif" <?= $usr->status == "Aktif" ? "selected" : "" ?>>Aktif</option>
-                                <option value="Draft" <?= $usr->status == "Draft" ? "selected" : "" ?>>Draft</option>
+                                <option value="1" <?= $usr->status == "1" ? "selected" : "" ?>>1</option>
+                                <option value="0" <?= $usr->status == "0" ? "selected" : "" ?>>0</option>
                             </select>
                         </div>
 
