@@ -47,7 +47,7 @@
                             <td><?= $usr->no_hp ?></td>
                             <td><?= $usr->email ?></td>
                             <td class="text-center">
-                                <?php if ($usr->status == "Aktif") { ?>
+                                <?php if ($usr->status == "1") { ?>
                                     <span class="badge badge-pill px-4 badge-warning"><?= $usr->status ?></span>
                                 <?php } else { ?>
                                     <span class="badge badge-pill px-4 badge-secondary"><?= $usr->status ?></span>
@@ -119,8 +119,8 @@
                         <label for="status">Status</label>
                         <select class="form-control" name="status" id="status" required>
                             <option>Pilih Status:</option>
-                            <option value="Aktif">Aktif</option>
-                            <option value="Draft">Draft</option>
+                            <option value="1">1</option>
+                            <option value="0">0</option>
                         </select>
                     </div>
                 </div>
