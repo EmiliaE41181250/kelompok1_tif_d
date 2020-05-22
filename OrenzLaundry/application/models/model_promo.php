@@ -8,6 +8,28 @@ class Model_promo extends CI_Model
     return $this->db->get($table);
   }
 
+  public function getAllmobile()
+  {
+    $this->db->where("status", "Aktif");
+		$data = $this->db->get("promo")->result();
+    $response['status']=200;
+    $response['error']=false;
+    $response['data']=$data;
+    $response['message']='success';
+    return $response;
+  }
+
+  public function getIdbyNamemobile($id)
+  {
+    $this->db->where("id_promo", $id);
+		$data = $this->db->get("promo")->result();
+    $response['status']=200;
+    $response['error']=false;
+    $response['data']=$data;
+    $response['message']='success';
+    return $response;
+  }
+
   // Mengambil 1 baris data === SELECT * FROM $table WHERE $where
   public function getEdit($where, $table)
   {
