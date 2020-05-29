@@ -14,7 +14,6 @@
         </div>
     </div>
 
-
     <?php echo $this->session->flashdata('pesan'); ?>
     <div class="row card shadow">
         <div class="col card-body table-responsive">
@@ -30,17 +29,22 @@
                 <tbody>
                     <?php
                     $no = 1;
-                    foreach ($transaksi as $trs) {
-                        $pk = $this->db->query("SELECT nama_paket FROM paket WHERE id_paket = '$trs->id_transaksi'")->row(); ?>
+                    foreach ($transaksi as $trs)
+                        foreach ($detail_transaksi as $dtt) {
+                            $usr = $this->db->query("SELECT nama_user FROM user WHERE id_user = '$trs->id_user'")->row();
+                            $pk = $this->db->query("SELECT nama_paket FROM paket WHERE id_paket = '$dtt->id_paket'")->row(); ?>
+
                         <tr>
                             <td><?= $no++ ?></td>
-                            <td><?= $trs->id_user ?></td>
+                            <td><?= $usr->nama_user ?></td>
                             <td><?= $pk->nama_paket ?></td>
+
                             <td class="text-center">
                                 <?php echo anchor('admin/notifikasi/detail/' . $trs->id_transaksi, '
                 <div class="btn btn-info btn-sm mr-2 pr-3 pl-3"><i class="fa fa-info"></i></div>') ?>
                             </td>
                         </tr>
+
                     <?php } ?>
                 </tbody>
             </table>
