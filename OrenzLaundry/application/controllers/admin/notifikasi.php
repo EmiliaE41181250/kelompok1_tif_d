@@ -36,35 +36,4 @@ class notifikasi extends CI_Controller
         $this->load->view('admin/notif/v_detailnotif', $data);
         $this->load->view('templates/footer');
     }
-    public function update()
-    {
-        // merekam id sebagai parameter where saat update
-        $where = array('id_transaksi' => $this->input->post('id_transaksi'));
-        // menentukan siapa dan kapan baris data ini diperbarui
-        $updated_by = "admin";
-        $updated_at = date('Y-m-d H:i:s');
-
-        //masukkan data yg akan di update ke dalam variabel data
-        $data = array(
-            'id_user' => $this->input->post('id_user'),
-            'total_harga' => $this->input->post('total_harga'),
-            'tgl_transaksi' => $this->input->post('tgl_transaksi'),
-            'tgl_antar' => $this->input->post('tgl_antar'),
-            'tgl_jemput' => $this->input->post('tgl_jemput'),
-            'status' => $this->input->post('status'),
-            'id_paket' => $this->input->post('id_paket'),
-            'berat' => $this->input->post('berat'),
-            'sub_total' => $this->input->post('sub_total'),
-            'updated_by' => $updated_by,
-            'updated_at' => $updated_at
-
-        );
-
-        // menjalankan method update pada m_data_jenis_paket
-        $this->m_notif->update($where, $data, 'transaksi');
-        $this->m_notif->update($where, $data, 'detail_transaksi');
-
-        // mengarahkan ke halaman tabel jenis paket
-        redirect('admin/notifikasi');
-    }
 }

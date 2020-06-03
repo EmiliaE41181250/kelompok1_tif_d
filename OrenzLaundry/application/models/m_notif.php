@@ -21,12 +21,6 @@ class M_notif extends CI_Model
         return $this->db->get($table);
     }
 
-    public function update($where, $data, $table)
-    {
-        $this->db->where($where);
-        $this->db->update($table, $data);
-    }
-
     public function detail_data($id = NULL)
     {
         $query = $this->db->get_where('transaksi', array('id_transaksi' => $id))->result();

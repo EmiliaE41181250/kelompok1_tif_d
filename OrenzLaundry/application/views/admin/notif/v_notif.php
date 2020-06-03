@@ -29,16 +29,19 @@
                 <tbody>
                     <?php
                     $no = 1;
-                    foreach ($transaksi as $trs)
-                        foreach ($detail_transaksi as $dtt) {
-                            $usr = $this->db->query("SELECT nama_user FROM user WHERE id_user = '$trs->id_user'")->row();
-                            $pk = $this->db->query("SELECT nama_paket FROM paket WHERE id_paket = '$dtt->id_paket'")->row(); ?>
+                    foreach ($transaksi as $trs) {
+                        $usr = $this->db->query("SELECT nama_user FROM user WHERE id_user = '$trs->id_user'")->row(); ?>
 
                         <tr>
                             <td><?= $no++ ?></td>
                             <td><?= $usr->nama_user ?></td>
-                            <td><?= $pk->nama_paket ?></td>
 
+                            <?php foreach ($detail_transaksi as $dtt) {
+                                    $dtt = $this->db->query("SELECT id_paket FROM detail_transaksi WHERE id_transaksi = '$trs->id_transaksi'")->row();
+                                    $pk = $this->db->query("SELECT nama_paket FROM paket WHERE id_paket = '$dtt->id_paket'")->row(); ?>
+                            <?php } ?>
+
+                            <td><?= $pk->nama_paket ?></td>
                             <td class="text-center">
                                 <?php echo anchor('admin/notifikasi/detail/' . $trs->id_transaksi, '
                 <div class="btn btn-info btn-sm mr-2 pr-3 pl-3"><i class="fa fa-info"></i></div>') ?>
@@ -46,6 +49,7 @@
                         </tr>
 
                     <?php } ?>
+
                 </tbody>
             </table>
         </div>
