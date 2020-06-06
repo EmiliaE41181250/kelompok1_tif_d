@@ -35,10 +35,11 @@ class C_isipaket extends CI_Controller
   }
 
   // menampilkan detail data promo
-  public function detail()
+  public function detail($id)
   {
     $where = array('id_isi_paket');
-    $data['isi_paket'] = $this->m_isipaket->getEdit($where, 'isi_paket')->result();
+    $detail = $this->m_isipaket->detail_data($id);
+    $data['detail'] = $this->m_isipaket->detail_data($id);
     $this->load->view('templates/header');
     $this->load->view('templates/sidebar');
     $this->load->view('admin/isipaket/detail', $data);

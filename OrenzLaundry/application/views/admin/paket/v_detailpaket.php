@@ -46,7 +46,7 @@
           $br = $this->db->query("SELECT nama_barang FROM barang WHERE id_barang = '$dt->id_barang'")->row();
           $jp = $this->db->query("SELECT nama_jenis_paket FROM jenis_paket WHERE id_jenis_paket = '$dt->id_jenis_paket'")->row();
           $ip = $this->db->query("SELECT nama_isi_paket FROM isi_paket WHERE id_isi_paket = '$dt->id_isi_paket'")->row();
-           $dr = $this->db->query("SELECT durasi_paket FROM durasi_paket WHERE id_durasi = '$dt->id_durasi'")->row();?>
+          $dr = $this->db->query("SELECT durasi_paket FROM durasi_paket WHERE id_durasi = '$dt->id_durasi'")->row();?>
           <tr>
             <td><?=$dt->id_paket?></td>
             <td><?=$dt->nama_paket?></td>
