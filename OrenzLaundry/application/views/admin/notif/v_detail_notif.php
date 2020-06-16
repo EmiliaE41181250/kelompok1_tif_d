@@ -4,10 +4,10 @@
     <div class="block-header">
         <div class="row">
             <div class="col-12">
-                <h2 class="font-weight-bolder">Detail Data Paket</h2>
+                <h2 class="font-weight-bolder">Detail Data Notifikasi</h2>
                 <ul class="breadcrumb bg-transparent ml-n3 mt-n4 mb-0">
                     <li class="breadcrumb-item"><a href="<?=base_url()?>admin/dashboard"><i class="fa fa-home"></i> OrenzLaundry</a></li>
-                    <li class="breadcrumb-item active">Detail Paket</li>
+                    <li class="breadcrumb-item active">Detail Notifikasi</li>
                 </ul>
             </div>
         </div>
@@ -19,11 +19,11 @@
       </div>
     </div>
     
+    <?php echo $this->session->flashdata('pesan');?>
     <div class="container-fluid">
-  <form action="transaksi_query.php" method="post">
   <div class="card m-5 shadow">
     <div class="card-header text-center text-light bg-primary">
-      <h3 class="d-inline">Pesanan Anda</h3>
+      <h3 class="d-inline">Notifikasi Anda</h3>
       <a class="mt-2 mr-2 btn btn-light float-right ml-auto" href="nota/nota_pesanan.php?id_pesanan=<?=$id_pesanan?>"><i class="fas fa-fw fa-print"></i></a>
     </div>
     <div class="card-body py-4 px-5 ">
