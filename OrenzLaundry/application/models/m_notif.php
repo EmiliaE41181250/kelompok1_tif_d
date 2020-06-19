@@ -26,4 +26,40 @@ class M_notif extends CI_Model
         $query = $this->db->get_where('transaksi', array('id_transaksi' => $id))->result();
         return $query;
     }
+
+    public function getAllmobile()
+    {
+        $data = $this->db->get("waktujemput")->result();
+        $response['status']=200;
+        $response['error']=false;
+        $response['data']=$data;
+        $response['message']='success';
+        return $response;
+    }
+
+    function getNamaPaketMobile($id_paket)
+    {
+        $data = $this->db->query("SELECT jenis_paket.nama_jenis_paket FROM jenis_paket, paket 
+        WHERE jenis_paket.id_jenis_paket = paket.id_jenis_paket AND paket.id_paket = '$id_paket'")->result();
+        $response['status']=200;
+        $response['error']=false;
+        $response['data']=$data;
+        $response['message']='success';
+        return $response;
+    }
+
+    public function insertTrs($dataTrs, $dataDetail)
+    {
+        $response['dataTrs']=$this->db->insert("transaksi", $dataTrs);
+        $response['dataDetail']=$this->db->insert("detail_transaksi", $dataDetail);
+        $response['status']=200;
+        $response['error']=false;
+        $response['message']='success';
+        return $response;
+    }
+
+    public function getId()
+    {
+        return $this->db->query("SELECT * FROM transaksi ORDER BY id_transaksi DESC LIMIT 1");
+    }
 }

@@ -27,7 +27,7 @@ class Example extends CI_Controller
          * -----------------------------------------------------------------
          * set payload as null if no custom data is passing in the notification
          */
-        $payload = array('intent' => 'promo');
+        
         $this->fcm->setPayload($payload);
 
         /**

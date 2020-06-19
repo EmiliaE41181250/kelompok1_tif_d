@@ -78,6 +78,7 @@ class Promo extends CI_Controller
       'jumlah' => $this->input->post('jumlah'),
       'awal' => $this->input->post('awal'),
       'akhir' => $this->input->post('akhir'),
+      'kode' => $this->input->post('kode_promo'),
       'gambar' => $gambar_promo,
       'status' => $this->input->post('status'),
       'created_by' => $created_by,
@@ -120,6 +121,7 @@ class Promo extends CI_Controller
         'jumlah' => $this->input->post('jumlah'),
         'awal' => $this->input->post('awal'),
         'akhir' => $this->input->post('akhir'),
+        'kode' => $this->input->post('kode_promo'),
         'gambar' => $gambar_promo,
         'status' => $this->input->post('status'),
         'updated_by' => $updated_by,
@@ -134,6 +136,7 @@ class Promo extends CI_Controller
         'jumlah' => $this->input->post('jumlah'),
         'awal' => $this->input->post('awal'),
         'akhir' => $this->input->post('akhir'),
+        'kode' => $this->input->post('kode_promo'),
         'status' => $this->input->post('status'),
         'updated_by' => $updated_by,
         'updated_at' => $updated_at
