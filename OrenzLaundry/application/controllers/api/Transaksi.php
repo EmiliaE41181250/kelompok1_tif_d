@@ -72,7 +72,7 @@ class Transaksi extends REST_Controller {
     $tglJemput = $this->post("tgl_jemput")." 00:00:00";
     $waktu = $this->post("waktu_jemput");
     $status = "0";
-    $catatan = "contoh catatan belum diatur";
+    $catatan = "";
     
     $dataTrs = array("id_transaksi" => $id,
                       "id_user" => $id_user,
