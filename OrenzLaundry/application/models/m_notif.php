@@ -48,6 +48,27 @@ class M_notif extends CI_Model
         return $response;
     }
 
+    public function batalPesananMobile($id)
+    {
+        $data = $this->db->query("UPDATE transaksi SET status = 6 WHERE id_transaksi = '$id' ");
+        $response['status']=200;
+        $response['error']=false;
+        $response['data']=$data;
+        $response['message']='Pesanan berhasil dibatalkan!';
+        return $response;
+    }
+
+    public function updateantartrsmobile($data, $where)
+    {
+        $this->db->where($where);
+        $data = $this->db->update("transaksi", $data);
+        $response['status']=200;
+        $response['error']=false;
+        $response['data']=$data;
+        $response['message']='Berhasil melakukan input lokasi antar.';
+        return $response;
+    }
+
     public function insertTrs($dataTrs, $dataDetail)
     {
         $response['dataTrs']=$this->db->insert("transaksi", $dataTrs);

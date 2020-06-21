@@ -46,6 +46,60 @@ class Transaksi extends REST_Controller {
     }
   }
 
+  function batalPesanan_post()
+  {
+    $id = $this->post('id');
+    $response = $this->m_notif->batalPesananMobile($id);
+    if ($response['data']==true) {
+      $this->response($response);
+    }else{
+        $response['status']=502;
+        $response['error']=true;
+        $response['message']='Gagal membatalkan pesanan';
+        $this->response($response);
+    }
+  }
+
+  public function updateantartrsmobile_put()
+  {
+    $id_transaksi = $this->put('id_transaksi');
+    $id_user = $this->put('id_user');
+    $alamat = $this->put("alamat");
+    $lat = $this->put("lat");
+    $lang = $this->put("lang");
+    $tglJemput = $this->put("tgl_antar")." 00:00:00";
+    $waktu = $this->put("waktu_antar");
+
+    $where = array('id_transaksi' => $id_transaksi);
+
+    $dataTrs = array(
+                      "id_waktu" => $waktu,
+                      "tgl_antar" => $tglJemput,
+                      "alamat_antar" => $alamat . ',' . $lat . ',' . $lang,
+                      "updated_by" => $id_user,
+                      "updated_at" => date("Y-m-d H:i:s")
+    );
+
+    $response = $this->m_notif->updateantartrsmobile($dataTrs, $where);
+    if ($response['data']==true) {
+      $this->response($response);
+
+      // kirim notif ke HP
+      $datatoken = $this->db->get_where('user', array('id_user' => $id_user));
+      $tokenM = $datatoken->row()->device_token;
+      $title = "Transaksi anda berhasil dilakukan!";
+      $message = "Tunggu sebentar, kami akan menjemput cucian ke lokasi anda sesuai jadwal!";
+      $payload = array('intent' => 'notifikasi');
+      $firebase = $this->primslib->SendNotification($tokenM, $title, $message, $payload);
+      $response['firebase']=$firebase;
+    }else{
+        $response['status']=502;
+        $response['error']=true;
+        $response['message']='Gagal melakukan input lokasi antar.';
+        $this->response($response);
+    }
+  }
+
   function insertTrsMobile_post()
   {
     // memeriksa apakah ada id pada database
