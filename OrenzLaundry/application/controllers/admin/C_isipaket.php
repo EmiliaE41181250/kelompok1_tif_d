@@ -8,9 +8,9 @@ class C_isipaket extends CI_Controller
     parent::__construct();
     $this->load->model('m_isipaket');
     $this->load->library('primslib');
-    // if ($this->session->userdata('role_id') == '') {
-    //   redirect('admin/auth/login/');
-    // }
+    if ($this->session->userdata('nama') == '') {
+      redirect('admin/login/');
+    }
   }
 
   // Menampilkan tabel Promo

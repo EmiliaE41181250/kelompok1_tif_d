@@ -10,6 +10,9 @@ class C_jenispaket extends CI_Controller
     // ini adalah function untuk memuat model bernama m_data
     $this->load->model('m_data_jenispaket');
     $this->load->library('primslib');
+    if ($this->session->userdata('nama') == '') {
+      redirect('admin/login/');
+    }
   }
 
   function index()
