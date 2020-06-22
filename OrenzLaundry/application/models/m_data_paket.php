@@ -60,4 +60,16 @@ class M_data_paket extends CI_Model{
     return $response;
   }
 
+  public function getAllPaketRegulerMobile()
+  {
+    $data = $this->db->query("SELECT paket.id_paket, paket.harga, isi_paket.nama_isi_paket 
+    FROM paket, isi_paket WHERE paket.id_isi_paket = isi_paket.id_isi_paket 
+    AND paket.status = 'Aktif' AND paket.id_jenis_paket = 'JPK000000000001'")->result();
+    $response['status']=200;
+    $response['error']=false;
+    $response['data']=$data;
+    $response['message']='success';
+    return $response;
+  }
+
 }
