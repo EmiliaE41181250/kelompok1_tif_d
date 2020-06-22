@@ -20,8 +20,8 @@
     </div>
     
     <?php echo $this->session->flashdata('pesan');?>
-    <div class="container-fluid">
-  <div class="card m-5 shadow">
+    <div class="">
+    <div class="card shadow">
     <div class="card-header text-center text-light bg-primary">
     </div>
     <div class="card-body py-4 px-5 ">

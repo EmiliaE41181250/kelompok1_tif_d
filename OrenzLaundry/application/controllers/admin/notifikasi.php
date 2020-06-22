@@ -33,7 +33,7 @@ class notifikasi extends CI_Controller
         $this->load->model('m_notif');
         $detail = $this->db->get_where('detail_transaksi', array('id_transaksi' => $id))->result();
         $data['detail'] = $detail;
-        $data['transaksi'] = $this->m_notif->tampil_data('transaksi')->result();
+        $data['transaksi'] = $this->m_notif->detail_data($id);
 
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');

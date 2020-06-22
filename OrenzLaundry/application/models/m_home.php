@@ -2,6 +2,13 @@
 
 class M_Home extends CI_Model 
 {
+  public function empty_response(){
+    $response['status']=502;
+    $response['error']=true;
+    $response['message']='Field tidak boleh kosong';
+    return $response;
+  }
+
   public function getId()
   {
     return $this->db->query("SELECT * FROM user ORDER BY id_user DESC LIMIT 1");
