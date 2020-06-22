@@ -111,14 +111,6 @@
           <small id="jumlahharga" class="text-muted">Jumlah Harga</small>
         </div>
         <div class="form-group">
-          <label for="gambar">Gambar</label>
-          <div class="custom-file mb-2">
-              <input type="file" class="custom-file-input" name="gambar" id="gambar">
-              <label class="custom-file-label" for="gambar">Masukkan Gambar berukuran 753 x 258 . .</label>
-          </div>
-          <small id="gambar" class="form-text text-muted">Pilihlah File gambar berukuran 753 x 258. Max 3 MB. Format (JPG/PNG)</small>
-        </div>
-        <div class="form-group">
           <label for="durasi_paket">Durasi Paket</label>
             <select name="durasi_paket" id="durasi_paket" class="form-control mb-3" placeholder="Masukkan Durasi Paket . ." aria-describedby="durasipaket">
               <option value="">Please select</option>
