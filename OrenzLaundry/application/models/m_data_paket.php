@@ -48,4 +48,16 @@ class M_data_paket extends CI_Model{
     return $query;
   }
 
+  public function getAllPaketSatuanMobile()
+  {
+		$data = $this->db->query("SELECT paket.id_paket, paket.harga, barang.nama_barang 
+    FROM paket, barang WHERE paket.id_barang = barang.id_barang AND paket.status = 'Aktif' 
+    AND paket.id_jenis_paket = 'JPK000000000003'")->result();
+    $response['status']=200;
+    $response['error']=false;
+    $response['data']=$data;
+    $response['message']='success';
+    return $response;
+  }
+
 }
