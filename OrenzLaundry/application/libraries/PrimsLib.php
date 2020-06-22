@@ -104,4 +104,54 @@ class PrimsLib {
         }
     
     }
+
+    public function SendNotification($tokenM, $titleM, $messageM, $payloadM)
+    {
+        $ci =& get_instance();
+        $token = $tokenM;
+
+        if($messageM == ''){
+            $message = "Pada bulan Ramadhan 2020 ini kami mengadakan promosi Ramadhan diskon hingga 30% lohh!";
+        }else{
+            $message = $messageM;
+        }
+
+        if($titleM == ''){
+            $title = "Pada bulan Ramadhan 2020 ini kami mengadakan promosi Ramadhan diskon hingga 30% lohh!";
+        }else{
+            $title = $titleM;
+        }
+
+        $ci->load->library('fcm');
+        $ci->fcm->setTitle($title);
+        $ci->fcm->setMessage($message);
+
+        /**
+         * set to true if the notificaton is used to invoke a function
+         * in the background
+         */
+        $ci->fcm->setIsBackground(false);
+
+        /**
+         * payload is userd to send additional data in the notification
+         * This is purticularly useful for invoking functions in background
+         * -----------------------------------------------------------------
+         * set payload as null if no custom data is passing in the notification
+         */
+        $ci->fcm->setPayload($payloadM);
+
+        /**
+         * Send images in the notification
+         */
+        $ci->fcm->setImage('https://firebase.google.com/_static/9f55fd91be/images/firebase/lockup.png');
+
+        /**
+         * Get the compiled notification data as an array
+         */
+        $json = $ci->fcm->getPush();
+
+        $p = $ci->fcm->send($token, $json);
+
+        return $p;
+    }
 }

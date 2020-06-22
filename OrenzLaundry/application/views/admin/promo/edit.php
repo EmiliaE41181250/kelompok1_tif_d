@@ -58,6 +58,11 @@
               </div>
               <small id="gambarPromo" class="form-text text-muted">Pilihlah File gambar banner promo berukuran 753 x 258. Max 3 MB. Format (JPG/PNG)</small>
             </div>
+            <div class="form-group">
+              <label for="kode_promo">Kode Promo</label>
+              <input type="text" name="kode_promo" id="kode_promo" class="form-control" placeholder="Masukkan Kode Promo . ." aria-describedby="KodePromo" maxlength="50" value="<?=$prm->kode?>" required>
+              <small id="KodePromo" class="text-muted">Masukkan Kode Promo tidak lebih dari 50 Karakter</small>
+            </div>
             <div class="form-group w-50">
               <label for="status">Status Promo</label>
               <select class="form-control" name="status" id="status" required>

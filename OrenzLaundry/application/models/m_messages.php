@@ -80,7 +80,17 @@ class M_Messages extends CI_Model
     $response['status']=200;
     $response['error']=false;
     $response['data']=$data;
-    $response['message']='success';
+    $response['message']='Berhasil menghapus notifikasi!';
+    return $response;
+  }
+
+  public function updateKonfirmasiProses($id)
+  {
+    $data = $this->db->query("UPDATE transaksi SET status = 3 WHERE id_transaksi = '$id' ");
+    $response['status']=200;
+    $response['error']=false;
+    $response['data']=$data;
+    $response['message']='Anda berhasil melakukan konfirmasi pesanan ! \n Cucian anda akan segera di proses..';
     return $response;
   }
 }

@@ -97,7 +97,21 @@ class Messages extends REST_Controller {
     }else{
         $response['status']=502;
         $response['error']=true;
-        $response['message']='Data pesan tidak ditemukan!';
+        $response['message']='Gagal menghapus notifikasi!';
+        $this->response($response);
+    }
+  }
+
+  public function updateKonfirmasiProses_put()
+  {
+    $id = $this->put('id');
+    $response = $this->m_messages->updateKonfirmasiProses($id);
+    if ($response['data']==true) {
+      $this->response($response);
+    }else{
+        $response['status']=502;
+        $response['error']=true;
+        $response['message']='Anda gagal melakukan update !';
         $this->response($response);
     }
   }

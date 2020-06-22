@@ -44,4 +44,18 @@ class Promosi extends REST_Controller {
     }
   }
 
+  function getPromoTokenMobile_post()
+  {
+    $token = $this->post("token");
+    $response = $this->model_promo->getPromoTokenMobile($token);
+    if ($response['data']!=null) {
+      $this->response($response);
+    }else{
+        $response['status']=502;
+        $response['error']=true;
+        $response['message']='Data promosi tidak ditemukan!';
+        $this->response($response);
+    }
+  }
+
 }

@@ -45,6 +45,24 @@ class Home extends REST_Controller {
     }
   }
 
+  public function updatetokendevice_put()
+  {
+    $id_user = $this->put('id_user');
+    $device_token = $this->put('device_token');
+
+    $data = array('device_token' => $device_token);
+    $where = array('id_user' => $id_user);
+    $response = $this->m_home->update_tokendevice($data, $where);
+    if ($response['data']==true) {
+      $this->response($response);
+    }else{
+        $response['status']=502;
+        $response['error']=true;
+        $response['message']='Gagal memperbarui token device tidak ditemukan!';
+        $this->response($response);
+    }
+  }
+
   public function login_post()
   {
     $response = $this->m_home->auth_login($this->post('email'),$this->post('password'));
@@ -64,12 +82,19 @@ class Home extends REST_Controller {
       // generate id pertama kali jika tidak ada data sama sekali di dalam database
     $id = 'USR000000000001';
     }
+
     $response = $this->m_home->add_login(
         $id,
         $this->input->post('nama'),
         $this->input->post('email'),
-        password_hash($this->post('password'), PASSWORD_DEFAULT)
+        password_hash($this->post('password'), PASSWORD_DEFAULT),
+        $this->input->post('token_device')
       );
+      
+    $datatoken = $this->db->get_where('user',array('email' => $this->input->post('email')));
+    $tokenM = $datatoken->row()->device_token;
+    $firebase = $this->primslib->SendNotification($tokenM, '', '', '');
+    $response['firebase']=$firebase;
     $this->response($response);
   }
 

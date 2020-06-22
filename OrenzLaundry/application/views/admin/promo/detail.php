@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row justify-content-center py-3">
-    <div class="col-md-8 card p-0">
+    <div class="col-md-8 card p-0 shadow mb-4">
       <div class="card-header pb-0">
         <h2 class="font-weight-bolder mb-0">Detail Data Promo</h2>
         <ul class="breadcrumb bg-transparent ml-n3 mt-n3 mb-0">
@@ -66,12 +66,16 @@
               <tr>
                 <td>Dibuat Oleh</td>
                 <td>:</td>
+                <?php if($prm->created_by != null){?>
                 <td><span class="font-weight-bolder"><?=$prm->created_by?></span>, pada <span class="font-italic text-success"><?=$prm->created_at?></span></td>
+                <?php }?>
               </tr>
               <tr>
                 <td>Terakhir diubah oleh</td>
                 <td>:</td>
+                <?php if($prm->updated_by != null){?>
                 <td><span class="font-weight-bolder"><?=$prm->updated_by?></span>, pada <span class="font-italic text-warning"><?=$prm->updated_at?></span></td>
+                <?php }?>
               </tr>
             </tbody>
           </table>
