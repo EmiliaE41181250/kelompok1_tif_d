@@ -10,6 +10,9 @@ class notifikasi extends CI_Controller
         // ini adalah function untuk memuat model bernama m_data
         $this->load->model('m_notif');
         $this->load->library('primslib');
+        if ($this->session->userdata('nama') == '') {
+            redirect('admin/login/');
+        }
     }
 
     function index()
