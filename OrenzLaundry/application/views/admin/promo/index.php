@@ -31,6 +31,7 @@
               <th>DISKON</th>
               <th>AWAL</th>
               <th>AKHIR</th>
+              <th>KODE</th>
               <th>STATUS</th>
               <th>AKSI</th>
             </tr>
@@ -46,6 +47,7 @@
               <td><?=$prm->jumlah?>%</td>
               <td><?=substr($prm->awal, 0, 10)?></td>
               <td><?=substr($prm->akhir, 0, 10)?></td>
+              <td><?=$prm->kode?></td>
               <td class="text-center">
                 <?php if($prm->status == "Aktif"){?>
                 <span class="badge badge-pill px-4 badge-warning"><?=$prm->status?></span>
@@ -84,7 +86,7 @@
       <div class="modal-body">
         <div class="form-group">
           <label for="judul_promo">Judul Promo</label>
-          <input type="text" name="judul_promo" id="judul_promo" class="form-control" placeholder="Masukkan Judul Pomo . ." aria-describedby="JudulPromo" maxlength="100" required>
+          <input type="text" name="judul_promo" id="judul_promo" class="form-control" placeholder="Masukkan Judul Promo . ." aria-describedby="JudulPromo" maxlength="100" required>
           <small id="JudulPromo" class="text-muted">Masukkan Judul Promo tidak lebih dari 100 Karakter</small>
         </div>
         <div class="form-group">
@@ -94,7 +96,7 @@
         </div>
         <div class="form-group">
           <label for="">Syarat & Ketentuan</label>
-          <textarea type="text" name="syarat_ketentuan" id="editor1" class="form-control" placeholder="Masukkan Syarat & Ketentuan" aria-describedby="helpId" required><?=$prm->syarat_ketentuan?></textarea>
+          <textarea type="text" name="syarat_ketentuan" id="editor1" class="form-control" placeholder="Masukkan Syarat & Ketentuan" aria-describedby="helpId" required></textarea>
         </div>
         <div class="form-group">
           <label for="jumlah">Jumlah Diskon</label><br>
@@ -121,7 +123,12 @@
               <input type="file" class="custom-file-input" name="gambar_promo" id="gambar_promo" required>
               <label class="custom-file-label" for="gambar_promo">Masukkan Gambar berukuran 753 x 258 . .</label>
           </div>
-          <small id="gambarPromo" class="form-text text-muted">Pilihlah File gambar banner promo berukuran 753 x 258. Max 3 MB. Format (JPG/PNG)</small>
+          <small id="gambarPromo" class="form-text text-muted">Pilihlah File gambar banner promo berukuran 710 x 285. Max 3 MB. Format (JPG/PNG)</small>
+        </div>
+        <div class="form-group">
+          <label for="kode_promo">Kode Promo</label>
+          <input type="text" name="kode_promo" id="kode_promo" class="form-control" placeholder="Masukkan Kode Promo . ." aria-describedby="KodePromo" maxlength="50" required>
+          <small id="KodePromo" class="text-muted">Masukkan Kode Promo tidak lebih dari 50 Karakter</small>
         </div>
         <div class="form-group w-50">
           <label for="status">Status Promo</label>

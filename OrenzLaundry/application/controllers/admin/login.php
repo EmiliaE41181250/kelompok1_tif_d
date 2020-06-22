@@ -12,11 +12,15 @@ class Login extends CI_Controller{
 	function __construct(){
 		parent::__construct();		
 		$this->load->model('m_login');
-
 	}
 
 //fungsi index untuk menampilkan view bernama v_login yang merupakan from untuk mengiputkan data saat login 
 	function index(){
+		
+		if ($this->session->userdata('nama') != '') {
+      redirect('admin/');
+		}
+		
 		$this->load->view('admin/login');
 	}
 
@@ -44,11 +48,18 @@ class Login extends CI_Controller{
 
 			$this->session->set_userdata($data_session);
 
-			redirect(base_url("index.php/admin/dashboard"));
+			redirect(base_url("admin/"));
 
 // jika ternyata username dan passowrd yang diinputkan tidak tersedia maka akan tampil pemberiatahuan password dan username salah
 		}else{
-			echo "Username dan password salah !";
+			$this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show text-center mx-4" role="alert">
+          <button type="button" class="close pt-4" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+          </button>
+          Username atau Password Anda Salah.
+        </div>');
+        redirect('admin/login');
 		}
 	}
 
@@ -56,6 +67,6 @@ class Login extends CI_Controller{
 //fungsi logout berfungsi untuk mengapus semua sesion sehingga proses login berhenti/selesai
 	function logout(){
 		$this->session->sess_destroy(); //menghentikan semua sesion
-		redirect(base_url('login')); // diarahkan ke form login
+		redirect(base_url('admin/login')); // diarahkan ke form login
 	}
 }

@@ -7,6 +7,16 @@ class M_Home extends CI_Model
     return $this->db->query("SELECT * FROM user ORDER BY id_user DESC LIMIT 1");
   }
 
+  public function update_tokendevice($data, $where) 
+  {
+    $this->db->where($where);
+    $response['data']=$this->db->update("user", $data);
+    $response['status']=200;
+    $response['error']=false;
+    $response['message']='Berhasil memperbarui token.';
+    return $response;
+  }
+
   public function getAllpromosi()
   {
     $this->db->where("status", "Aktif");
@@ -52,7 +62,9 @@ class M_Home extends CI_Model
     return $response;
   }
 
-  public function add_login($id, $nama,$email,$password){
+  public function add_login($id, $nama,$email, $password, $device){
+
+    $random_token = rand(1000,9999);
 
     if(empty($nama) || empty($email) || empty($password)){
       return $this->empty_response();
@@ -61,7 +73,9 @@ class M_Home extends CI_Model
         "id_user" => $id,
         "nama_user"=>$nama,
         "email"=>$email,
-        "password"=>$password
+        "password"=>$password,
+        "token" => $random_token,
+        "device_token" => $device
       );
 
       $this->db->where('email',$email);
@@ -71,11 +85,11 @@ class M_Home extends CI_Model
           if($insert){
             $response['status']=200;
             $response['error']=false;
-            $response['message']='Data login berhasil ditambahkan.';
+            $response['message']='Registrasi berhasil!';
           }else{
             $response['status']=502;
             $response['error']=true;
-            $response['message']='Data login gagal ditambahkan.';
+            $response['message']='Registrasi gagal!';
           }
       } else {
           $response['status']=502;

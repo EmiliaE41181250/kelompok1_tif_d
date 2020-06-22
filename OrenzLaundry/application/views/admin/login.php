@@ -28,22 +28,22 @@
 		.brand_logo_container {
 			position: absolute;
 			height: 170px;
-			width: 170px;
+			width: 180px;
 			top: -75px;
-			border-radius: 50%;
-			background-color: #5dcf40 !important;
-			background-image: linear-gradient(to bottom right, #5dcf40, #fcbf30);
+			border-radius: 20%;
+			background-color: #fff !important;
+			background-image: linear-gradient(to bottom right, #f1f1f1, #dedede);
 			padding: 10px;
 			text-align: center;
 		}
 		.brand_logo {
 			height: 150px;
-			width: 150px;
-			border-radius: 50%;
+			width: 160px;
+			border-radius: 20%;
 			
 		}
 		.form_container {
-			margin-top: 100px;
+			margin-top: 10px;
 		}
 		.login_btn {
 			width: 100%;
@@ -93,26 +93,19 @@
 	<div class="container h-100">
 		<div class="d-flex justify-content-center h-100">
 			<div class="user_card">
-				<div class="d-flex justify-content-center">
-					<div class="brand_logo_container">
+				<div class="d-flex justify-content-center mb-4">
+					<div class="brand_logo_container mb-4">
 						<i><img src = "<?= base_url('assets/admin/img/LaundryRegis.png')?>" class="brand_logo" alt="Logo"></i>
 					</div>
 				</div>
+				<div>
+					<div class="d-flex justify-content-center mt-4 ">
+						<?php echo $this->session->flashdata('pesan');?>
+					</div>
+				</div>
+				<?= $this->session->userdata('nama');?>
 				<div class="d-flex justify-content-center form_container">
-				<!-- <div class="kotak_login">
-	<form action="<?php echo base_url('index.php/admin/login/aksi_login'); ?>" method="post">		
-		<label>Username</label>
-		<input type="text" name="username" class="form_login" placeholder="Username atau email ..">
- 
-		<label>Password</label>
-		<input type="password" name="password" class="form_login" placeholder="Password ..">
- 
-		<input type="submit" class="tombol_login" value="LOGIN">
- 
-		<br/>
-		<br/>
-	</form> -->
-	<form action="<?php echo base_url('index.php/admin/login/aksi_login'); ?>" method="post">
+					<form action="<?php echo base_url('index.php/admin/login/aksi_login'); ?>" method="post">
 						<div class="input-group mb-3">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -131,12 +124,21 @@
 				   </div>
 					</form>
 				</div>
-					<div class="d-flex justify-content-center links">
-						<a href="#">Lupa Password?</a>
-					</div>
+					
 				</div>
 			</div>
 		</div>
 	</div>
 </body>
 </html>
+
+<!-- Bootstrap core JavaScript-->
+  
+<script src="<?=base_url()?>assets/admin/vendor/jquery/jquery.min.js"></script>
+  <script src="<?=base_url()?>assets/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="<?=base_url()?>assets/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="<?=base_url()?>assets/admin/js/sb-admin-2.js"></script>
