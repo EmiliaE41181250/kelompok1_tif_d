@@ -93,7 +93,7 @@
         <h6 class="collapse-header">Laporan Transaksi:</h6>
         <a class="collapse-item" href="login.html">Tahunan</a>
         <a class="collapse-item" href="register.html">Bulanan</a>
-        <a class="collapse-item" href="forgot-password.html">Rentang Hari</a>
+        <a class="collapse-item" href="<?= base_url('admin/laporan_rentang_hari') ?>">Rentang Hari</a>
       </div>
     </div>
   </li>
@@ -254,32 +254,37 @@
         <div class="topbar-divider d-none d-sm-block"></div>
 
         <!-- Nav Item - User Information -->
-        <li class="nav-item dropdown no-arrow">
-          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin Orenz</span>
-            <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
-          </a>
-          <!-- Dropdown - User Information -->
-          <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-            <a class="dropdown-item" href="http://localhost/kelompok1_tif_d/OrenzLaundry/admin/C_saya">
-              <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-              Profile
-            </a>
-            <a class="dropdown-item" href="#">
-              <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-              Settings
-            </a>
-            <a class="dropdown-item" href="#">
-              <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-              Activity Log
-            </a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-              <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-              Logout
+        <li class="nav-header">
+          <div class="dropdown profile-element">
+            <span>
+              <a onclick="gotohome('app/dashboard', 'Dashboard', 'Dashboard')">
+                <?php if ($this->session->userdata('foto') == NULL) : ?>
+                  <img src="<?= base_url('img/user.png'); ?>" class="img-circle" width="60" height="60" alt="Foto User">
+                <?php else : ?>
+                  <img alt="Foto User" class="img-circle" width="60" height="60" src="<?= base_url() ?>foto/<?= $this->session->userdata('foto'); ?>" />
+                <?php endif ?>
+              </a>
+            </span>
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+              <span class="clear">
+                <span class="block m-t-xs">
+                  <strong class="font-bold"><?= $this->session->userdata('nama'); ?></strong>
+                </span>
+                <span class="text-muted text-xs block"><?= $this->session->userdata('level'); ?><b class="caret"></b></span>
+                <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                  <li><a onclick="dashboard()"><i class="fa fa-dashboard"></i>&nbsp;Dashboard</a></li>
+                  <li><a onclick="my_profil()"><i class="fa fa-user"></i>&nbsp;Profile</a></li>
+                  <li><a onclick="ganti_password()"><i class="fa fa-refresh"></i>&nbsp;Ganti Password</a></li>
+                  <li class="divider"></li>
+                  <li>
+                    <a onclick="location.href='<?= base_url('users/logout') ?>'">
+                      <i class="fa fa-sign-out"></i> Log out
+                    </a>
+                  </li>
+                </ul>
+              </span>
             </a>
           </div>
-        </li>
 
       </ul>
 

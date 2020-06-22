@@ -15,7 +15,7 @@
 
     <div class="row">
       <div class="col-12 text-right">
-        <a class="btn btn-sm btn-warning mb-2" href="<?=base_url()?>admin/C_paket"><i class="fas fa-file-pdf fa-sm mr-2"></i>Cetak Pdf</a>
+        <a class="btn btn-sm btn-warning mb-2" href="<?=base_url()?>admin/notifikasi"><i class="fas fa-file-pdf fa-sm mr-2"></i>Cetak Pdf</a>
       </div>
     </div>
     
@@ -23,18 +23,15 @@
     <div class="container-fluid">
   <div class="card m-5 shadow">
     <div class="card-header text-center text-light bg-primary">
-      <a class="mt-2 mr-2 btn btn-light float-right ml-auto" href="nota/nota_pesanan.php?id_pesanan=<?=$id_pesanan?>"><i class="fas fa-fw fa-print"></i></a>
     </div>
     <div class="card-body py-4 px-5 ">
       <table class="w-100 table text-center py-0 m-0">
         <tbody>
         <?php
-        foreach ($detail as $dn ) {
-          $ik = $this->db->query("SELECT nama_paket FROM paket WHERE id_paket = '$dn->id_paket'")->row();
-          $bt = $this->db->query("SELECT berat FROM detail_transaksi = '$dn->berat'")->row();?>
+        foreach ($transaksi as $trs) {  ?>
           <tr>
-            <td class="text-left"><strong>ID TRS : </strong><?=$dn->id_transaksi?></td>
-            <td colspan="3" class="text-right"><?=$dn->tgl_transaksi?></td>
+            <td class="text-left"><strong>ID TRS : </strong><?=$trs->id_transaksi?></td>
+            <td colspan="3" class="text-right"><?=$trs->tgl_transaksi?></td>
           <tr>
         </tbody>
       </table>
@@ -44,50 +41,61 @@
             <th>Paket</th>
             <th>Berat(kg)</th>
             <th>Harga(Rp)</th>
-            <th>Subtotal(Rp)</th
+            <th>Subtotal(Rp)</th>
           </tr>
+          
         </thead>
         <tbody>
-        <tr>
+        <?php
+        foreach ($detail as $dn ) {
+          $ik = $this->db->query("SELECT nama_paket, harga FROM paket WHERE id_paket = '$dn->id_paket'")->row();?>
+          <tr>
             <!-- NAMA PRODUK, WARNA, UKURAN, BAHAN -->
-            <td style="width: 30%;"><p><?php echo "$nama_produk / $jenis_warna / $nama_bahan / $jenis_ukuran";?></p></td>
-            <td><?= $status_desain?><br><?=$upload_desain?></td>
-            <td><?= $ket_pembayaran?></td>
-            <td><?= number_format($quantity, 0,".",".")?></td>
-            <td>Rp. <?=number_format($sub_total, 0,".",".")?>,-</td>
+            <td style="width: 30%;"><p><?=$ik->nama_paket?></p></td>
+            <td><?=$dn->berat?></td>
+            <td><?=$ik->harga?></td>
+            <td><?=$dn->sub_total?></td>
           </tr>
-          <?php }?>
+
+        <?php }?>
+          
           <tr class="font-weight-bolder">
             <td class="border-0"> </td>
             <td class="text-right ">Total Harga : </td>
-            <td colspan="3" class="text-right " >Rp. <?=number_format($total_harga, 0,".",".")?>,-</td>
+            <td colspan="3" class="text-right "><?=$trs->total_harga?></td>
           <tr>
           <tr class="font-weight-bolder">
             <td class="border-0"> </td>
-            <td class="text-right ">Status Pesanan : </td>
-            <td colspan="3" class="text-right " ><?=$ket_status?></td>
+            <td class="text-right ">Diskon : </td>
+            <?php $promo = $this->db->query("SELECT jumlah FROM promo WHERE id_promo = '$trs->id_promo'")->row();?>
+            <td colspan="3" class="text-right " ><?=$promo->jumlah?>%</td>
           <tr>
           <tr class="font-weight-bolder">
             <td class="border-0"> </td>
-            <td class="text-right ">Lama Pengerjaan : </td>
-            <td colspan="3" class="text-right " ><?=$antrian?> Jam</td>
-          <tr>
-          <tr class="font-weight-bolder">
-            <td class="border-0"> </td>
-            <td class="text-right ">Bukti TF : </td>
+            <td class="text-right ">Status : </td>
             <td colspan="3" class="text-right " >
-            <?php 
-            if($bukti_tf != null){ ?>
-            <img src="pictures/bukti_transfer/<?=$bukti_tf?>" alt="" class="img-fluid">
-            <?php }else{ 
-            echo "<a href='verif_pembayaran.php?id_pesanan=$id_pesanan&id_bank=$id_bank' class='btn btn-primary px-2'>Upload Bukti TF</a>";
-            } ?>
+                <?php if($trs->status == "Aktif"){?>
+                <span class="badge badge-pill px-4 badge-warning"><?=$trs->status?></span>
+                <?php }else{ ?>
+                <span class="badge badge-pill px-4 badge-secondary"><?=$trs->status?></span>
+                <?php }?>
             </td>
           <tr>
+          <tr class="font-weight-bolder">
+            <td class="border-0"> </td>
+            <td class="text-right ">Tanggal Jemput : </td>
+            <td colspan="3" class="text-right " ><?=$trs->tgl_jemput?></td>
+          </tr>
+          <tr>
+          <tr class="font-weight-bolder">
+            <td class="border-0"> </td>
+            <td class="text-right ">Tanggal Antar : </td>
+            <td colspan="3" class="text-right " ><?=$trs->tgl_antar?></td>
+          </tr>
+          <?php }?>
         </tbody>
       </table>
       </div>
     </div>
   </div>
-</div>
-
+ </div>

@@ -15,7 +15,6 @@ class M_notif extends CI_Model
         return $sql->result_array();
     }
 
-
     public function getAll($table)
     {
         return $this->db->get($table);
