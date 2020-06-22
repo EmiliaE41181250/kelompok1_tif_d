@@ -12,7 +12,7 @@
             </div>
         </div>
     </div>
-
+    <button class="btn btn-secondary" onclick="window.history.back()"><i class="fas fa-arrow-left"></i></button>
     <div class="row">
       <div class="col-12 text-right">
         <a class="btn btn-sm btn-warning mb-2" href="<?=base_url()?>admin/notifikasi"><i class="fas fa-file-pdf fa-sm mr-2"></i>Cetak Pdf</a>
