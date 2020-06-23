@@ -72,4 +72,17 @@ class M_data_paket extends CI_Model{
     return $response;
   }
 
+  public function getAllPaketExpresMobile()
+  {
+    $data = $this->db->query("SELECT paket.id_paket, isi_paket.nama_isi_paket, durasi_paket.durasi_paket, 
+    paket.harga FROM paket, durasi_paket, isi_paket WHERE paket.id_isi_paket = isi_paket.id_isi_paket 
+    AND paket.id_durasi = durasi_paket.id_durasi AND paket.id_jenis_paket = 'JPK000000000002'
+    AND paket.status = 'Aktif'")->result();
+    $response['status']=200;
+    $response['error']=false;
+    $response['data']=$data;
+    $response['message']='success';
+    return $response;
+  }
+
 }
