@@ -10,7 +10,7 @@ class M_History  extends CI_Model
         AND paket.id_paket = detail_transaksi.id_paket
         AND transaksi.id_user = '$user'
         AND transaksi.notif_user = 0
-        AND (transaksi.status <> 5 OR transaksi.status <> 6) 
+        AND (transaksi.status = 5 OR transaksi.status = 6) 
         GROUP BY id_transaksi")->result();
         $response['status']=200;
         $response['error']=false;
@@ -28,7 +28,7 @@ class M_History  extends CI_Model
         AND paket.id_paket = detail_transaksi.id_paket
         AND transaksi.id_user = '$user'
         AND transaksi.notif_user = 0
-        AND (transaksi.status = 5 OR transaksi.status = 6) 
+        AND (transaksi.status <> 5 OR transaksi.status <> 6) 
         GROUP BY id_transaksi")->result();
         $response['status']=200;
         $response['error']=false;
