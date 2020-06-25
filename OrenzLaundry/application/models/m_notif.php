@@ -15,13 +15,12 @@ class M_notif extends CI_Model
         return $sql->result_array();
     }
 
-
     public function getAll($table)
     {
         return $this->db->get($table);
     }
 
-    public function detail_data($id = NULL)
+    public function detail_data($id)
     {
         $query = $this->db->get_where('transaksi', array('id_transaksi' => $id))->result();
         return $query;

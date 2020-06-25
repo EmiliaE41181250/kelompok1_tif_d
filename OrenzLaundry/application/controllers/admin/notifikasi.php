@@ -10,6 +10,9 @@ class notifikasi extends CI_Controller
         // ini adalah function untuk memuat model bernama m_data
         $this->load->model('m_notif');
         $this->load->library('primslib');
+        if ($this->session->userdata('nama') == '') {
+            redirect('admin/login/');
+        }
     }
 
     function index()
@@ -28,12 +31,13 @@ class notifikasi extends CI_Controller
     public function detail($id)
     {
         $this->load->model('m_notif');
-        $detail = $this->m_notif->detail_data($id);
+        $detail = $this->db->get_where('detail_transaksi', array('id_transaksi' => $id))->result();
         $data['detail'] = $detail;
+        $data['transaksi'] = $this->m_notif->detail_data($id);
 
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
-        $this->load->view('admin/notif/v_detailnotif', $data);
+        $this->load->view('admin/notif/v_detail_notif', $data);
         $this->load->view('templates/footer');
     }
 }

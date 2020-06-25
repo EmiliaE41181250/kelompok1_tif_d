@@ -48,4 +48,41 @@ class M_data_paket extends CI_Model{
     return $query;
   }
 
+  public function getAllPaketSatuanMobile()
+  {
+		$data = $this->db->query("SELECT paket.id_paket, paket.harga, barang.nama_barang 
+    FROM paket, barang WHERE paket.id_barang = barang.id_barang AND paket.status = 'Aktif' 
+    AND paket.id_jenis_paket = 'JPK000000000003'")->result();
+    $response['status']=200;
+    $response['error']=false;
+    $response['data']=$data;
+    $response['message']='success';
+    return $response;
+  }
+
+  public function getAllPaketRegulerMobile()
+  {
+    $data = $this->db->query("SELECT paket.id_paket, paket.harga, isi_paket.nama_isi_paket 
+    FROM paket, isi_paket WHERE paket.id_isi_paket = isi_paket.id_isi_paket 
+    AND paket.status = 'Aktif' AND paket.id_jenis_paket = 'JPK000000000001'")->result();
+    $response['status']=200;
+    $response['error']=false;
+    $response['data']=$data;
+    $response['message']='success';
+    return $response;
+  }
+
+  public function getAllPaketExpresMobile()
+  {
+    $data = $this->db->query("SELECT paket.id_paket, isi_paket.nama_isi_paket, durasi_paket.durasi_paket, 
+    paket.harga FROM paket, durasi_paket, isi_paket WHERE paket.id_isi_paket = isi_paket.id_isi_paket 
+    AND paket.id_durasi = durasi_paket.id_durasi AND paket.id_jenis_paket = 'JPK000000000002'
+    AND paket.status = 'Aktif'")->result();
+    $response['status']=200;
+    $response['error']=false;
+    $response['data']=$data;
+    $response['message']='success';
+    return $response;
+  }
+
 }

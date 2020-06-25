@@ -8,9 +8,9 @@ class Promo extends CI_Controller
     parent::__construct();
     $this->load->model('model_promo');
     $this->load->library('primslib');
-    // if ($this->session->userdata('role_id') == '') {
-    //   redirect('admin/auth/login/');
-    // }
+    if ($this->session->userdata('nama') == '') {
+      redirect('admin/login/');
+    }
   }
 
   // Menampilkan tabel Promo
@@ -112,7 +112,37 @@ class Promo extends CI_Controller
     if ($_FILES['gambar_promo']['name'] != null) {
       // jika memilih gambar
       $gambar_promo = $_FILES['gambar_promo']['name'];
-      $gambar_promo = $this->primslib->upload_file('gambar_promo', $gambar_promo, 'jpg|jpeg|png', '3024');
+
+      if ($gambar_promo != '') {
+          $config['upload_path'] = './assets/files/gambar_promo/';
+          $config['allowed_types'] = 'jpg|jpeg|png';
+          $config['max_size'] = '3024';
+          $config['overwrite'] = true;
+          $config['file_name'] = $this->db->get_where('promo', array('id_promo' => $this->input->post('id_promo')))->row()->gambar;
+          // $config['max_width']  = '2048';
+          // $config['max_height']  = '2048';
+          // $config['encrypt_name'] = TRUE;
+          
+          $this->load->library('upload', $config);
+          
+          if (!$this->upload->do_upload('gambar_promo'))
+          {
+              $error = array('error' => $this->upload->display_errors(),
+                              'promo' => $this->model_promo->getAll('promo')->result(),
+                              'custom' => $this->lang->line('Pengunggahan file gambar promo Gagal!')
+              );
+              echo $this->load->view('admin/templates/header', array(), TRUE);
+              echo $this->load->view('admin/templates/sidebar', array(), TRUE);
+              echo $this->load->view('admin/promo/index', $error, TRUE);
+              echo $this->load->view('admin/templates/footer', array(), TRUE);
+              exit;
+          }
+          else
+          {
+              $gambar_promo = $this->upload->data('file_name');
+          }
+
+        }
 
       $data = array(
         'judul_promo' => $this->input->post('judul_promo'),
@@ -164,6 +194,11 @@ class Promo extends CI_Controller
   {
     // deklarasi $where by id
     $where = array('id_promo' => $id);
+    
+    $promo = $this->db->get_where('promo', $where)->row()->gambar;
+    $filename = explode(".", $promo)[0];
+    array_map('unlink', glob(FCPATH."assets/files/gambar_promo/$filename.*"));
+    
     // menjalankan fungsi delete pada model_promo
     $this->model_promo->delete($where, 'promo');
     // mengirim pesan berhasil dihapus

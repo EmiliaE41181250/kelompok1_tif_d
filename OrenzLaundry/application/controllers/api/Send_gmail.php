@@ -137,7 +137,7 @@ class Send_gmail extends REST_Controller {
 
     public function resetpassword_put()
     {
-        $password = password_hash($this->post('password'), PASSWORD_DEFAULT);
+        $password = password_hash($this->put('password'), PASSWORD_DEFAULT);
         $response = $this->m_lupas->putPassword($this->put('id_user'), $password);
         $this->response($response);
     }

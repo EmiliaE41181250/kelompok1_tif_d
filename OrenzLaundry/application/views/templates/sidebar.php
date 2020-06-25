@@ -75,6 +75,7 @@
         <a class="collapse-item" href="<?= base_url('admin/C_isipaket') ?>">Isi Paket</a>
         <a class="collapse-item" href="<?= base_url('admin/durasi_paket') ?>">Durasi Paket</a>
         <a class="collapse-item" href="<?= base_url('admin/C_barang') ?>">Barang</a>
+        <a class="collapse-item" href="<?= base_url('admin/C_waktu') ?>">Waktu</a>
         <div class="collapse-divider"></div>
         <h6 class="collapse-header">Akun:</h6>
         <a class="collapse-item" href="<?= base_url('admin/User') ?>">Customer</a>
@@ -93,7 +94,7 @@
         <h6 class="collapse-header">Laporan Transaksi:</h6>
         <a class="collapse-item" href="login.html">Tahunan</a>
         <a class="collapse-item" href="register.html">Bulanan</a>
-        <a class="collapse-item" href="forgot-password.html">Rentang Hari</a>
+        <a class="collapse-item" href="<?= base_url('admin/laporan_rentang_hari') ?>">Rentang Hari</a>
       </div>
     </div>
   </li>
@@ -255,36 +256,36 @@
 
         <!-- Nav Item - User Information -->
         <li class="nav-header">
-						<div class="dropdown profile-element">
-							<span>
-								<a onclick="gotohome('app/dashboard', 'Dashboard', 'Dashboard')">
-									<?php if ($this->session->userdata('foto') == NULL) : ?>
-										<img src="<?= base_url('img/user.png'); ?>" class="img-circle" width="60" height="60" alt="Foto User">
-									<?php else : ?>
-										<img alt="Foto User" class="img-circle" width="60" height="60" src="<?= base_url() ?>foto/<?= $this->session->userdata('foto'); ?>" />
-									<?php endif ?>
-								</a>
-							</span>
-							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-								<span class="clear">
-									<span class="block m-t-xs">
-										<strong class="font-bold"><?= $this->session->userdata('nama'); ?></strong>
-									</span>
-									<span class="text-muted text-xs block"><?= $this->session->userdata('level'); ?><b class="caret"></b></span>
-									<ul class="dropdown-menu animated fadeInRight m-t-xs">
-										<li><a onclick="dashboard()"><i class="fa fa-dashboard"></i>&nbsp;Dashboard</a></li>
-										<li><a onclick="my_profil()"><i class="fa fa-user"></i>&nbsp;Profile</a></li>
-										<li><a onclick="ganti_password()"><i class="fa fa-refresh"></i>&nbsp;Ganti Password</a></li>
-										<li class="divider"></li>
-										<li>
-											<a onclick="location.href='<?= base_url('users/logout') ?>'">
-												<i class="fa fa-sign-out"></i> Log out
-											</a>
-										</li>
-									</ul>
-								</span>
-							</a>
-						</div>
+          <div class="dropdown profile-element">
+            <span>
+              <a onclick="gotohome('app/dashboard', 'Dashboard', 'Dashboard')">
+                <?php if ($this->session->userdata('foto') == NULL) : ?>
+                  <img src="<?= base_url('img/user.png'); ?>" class="img-circle" width="60" height="60" alt="Foto User">
+                <?php else : ?>
+                  <img alt="Foto User" class="img-circle" width="60" height="60" src="<?= base_url() ?>foto/<?= $this->session->userdata('foto'); ?>" />
+                <?php endif ?>
+              </a>
+            </span>
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+              <span class="clear">
+                <span class="block m-t-xs">
+                  <strong class="font-bold"><?= $this->session->userdata('nama'); ?></strong>
+                </span>
+                <span class="text-muted text-xs block"><?= $this->session->userdata('level'); ?><b class="caret"></b></span>
+                <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                  <li><a onclick="dashboard()"><i class="fa fa-dashboard"></i>&nbsp;Dashboard</a></li>
+                  <li><a onclick="my_profil()"><i class="fa fa-user"></i>&nbsp;Profile</a></li>
+                  <li><a onclick="ganti_password()"><i class="fa fa-refresh"></i>&nbsp;Ganti Password</a></li>
+                  <li class="divider"></li>
+                  <li>
+                    <a onclick="location.href='<?= base_url('users/logout') ?>'">
+                      <i class="fa fa-sign-out"></i> Log out
+                    </a>
+                  </li>
+                </ul>
+              </span>
+            </a>
+          </div>
 
       </ul>
 
