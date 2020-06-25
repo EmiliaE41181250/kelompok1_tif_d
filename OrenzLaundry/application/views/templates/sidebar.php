@@ -29,7 +29,7 @@
 
   <!-- Nav Item - Pages Collapse Menu -->
   <li class="nav-item">
-    <a class="nav-link" href="<?= base_url('admin/transaksi') ?>">
+    <a class="nav-link" href="<?= base_url('admin/C_transaksi') ?>">
       <i class="fas fa-fw fa-chart-area"></i>
       <span>Transaksi</span></a>
   </li>
