@@ -1,6 +1,6 @@
 <?php
 //  berfungsi untuk melayani segala query CRUD database
-class M_data_jenispaket extends CI_Model
+class M_durasipaket extends CI_Model
 {
     // function untuk mengambil keseluruhan baris data dari tabel user
     public function tampil_data()
@@ -27,7 +27,7 @@ class M_data_jenispaket extends CI_Model
 
     public function getId()
     {
-        return $this->db->query("SELECT * FROM durasi_paket ORDER BY id_durasi_paket DESC LIMIT 1");
+        return $this->db->query("SELECT * FROM durasi_paket ORDER BY id_durasi DESC LIMIT 1");
     }
 
     public function insert($data, $table)

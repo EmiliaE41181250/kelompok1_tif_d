@@ -8,7 +8,7 @@ class C_durasipaket extends CI_Controller
   {
     parent::__construct();
     // ini adalah function untuk memuat model bernama m_data
-    $this->load->model('m_data_durasipaket');
+    $this->load->model('m_durasipaket');
     $this->load->library('primslib');
     if ($this->session->userdata('nama') == '') {
       redirect('admin/login/');
@@ -18,7 +18,7 @@ class C_durasipaket extends CI_Controller
   function index()
   {
     // ini adalah variabel array $data yang memiliki index user, berguna untuk menyimpan data 
-    $data['jenis_paket'] = $this->m_durasipaket->tampil_data()->result();
+    $data['durasi_paket'] = $this->m_durasipaket->tampil_data()->result();
     $this->load->view('templates/header');
     $this->load->view('templates/sidebar');
     $this->load->view('admin/durasipaket/v_durasipaket', $data);
@@ -27,11 +27,11 @@ class C_durasipaket extends CI_Controller
 
   public function edit($id)
   {
-    $where = array('id_durasi_paket' => $id);
+    $where = array('id_durasi' => $id);
     $data['durasi_paket'] = $this->m_durasipaket->edit($where, 'durasi_paket')->result();
     $this->load->view('templates/header');
     $this->load->view('templates/sidebar');
-    $this->load->view('admin/durasipaket/v_edit_dp', $data);
+    $this->load->view('admin/durasipaket/v_edit', $data);
     $this->load->view('templates/footer');
   }
 
@@ -44,7 +44,7 @@ class C_durasipaket extends CI_Controller
 
     if ($row_id > 0) {
       // melakukan auto number dari id terakhir
-      $id = $this->primslib->autonumber($old_id->id_durasi_paket, 3, 12);
+      $id = $this->primslib->autonumber($old_id->id_durasi, 3, 12);
     } else {
       // generate id pertama kali jika tidak ada data sama sekali di dalam database
       $id = 'DPK000000000001';
@@ -56,8 +56,9 @@ class C_durasipaket extends CI_Controller
 
     // merekam data yang dikirim melalui form
     $data = array(
-      'id_durasi_paket' => $id,
+      'id_durasi' => $id,
       'durasi_paket' => $this->input->post('durasi_paket'),
+      'status' => $this->input->post('status'),
       'created_by' => $created_by,
       'created_at' => $created_at
     );
@@ -80,7 +81,7 @@ class C_durasipaket extends CI_Controller
   public function update()
   {
     // merekam id sebagai parameter where saat update
-    $where = array('id_durasi_paket' => $this->input->post('id_durasi_paket'));
+    $where = array('id_durasi' => $this->input->post('id_durasi'));
     // menentukan siapa dan kapan baris data ini diperbarui
     $updated_by = "admin";
     $updated_at = date('Y-m-d H:i:s');
@@ -88,6 +89,7 @@ class C_durasipaket extends CI_Controller
     //masukkan data yg akan di update ke dalam variabel data
     $data = array(
       'durasi_paket' => $this->input->post('durasi_paket'),
+      'status' => $this->input->post('status'),
       'updated_by' => $updated_by,
       'updated_at' => $updated_at
 
@@ -113,7 +115,7 @@ class C_durasipaket extends CI_Controller
   public function destroy($id)
   {
     // deklarasi $where by id
-    $where = array('id_durasi_paket' => $id);
+    $where = array('id_durasi' => $id);
     // menjalankan fungsi delete pada m_durasi_paket
     $this->m_durasipaket->delete($where, 'durasi_paket');
     // mengirim pesan berhasil dihapus

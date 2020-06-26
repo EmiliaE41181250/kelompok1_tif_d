@@ -59,31 +59,31 @@ class C_paket extends CI_Controller {
       
           $created_by = "admin";
           $created_at = date('Y-m-d H:i:s');
-          $gambar_paket = $_FILES['gambar'];
+          //$gambar_paket = $_FILES['gambar'];
           // menjalankan perintah untuk mengupload gambar
           // if ($_FILES['gambar']['name'] != null) {
           //   $gambar_promo = $_FILES['gambar']['name'];
           //   $gambar_promo = $this->primslib->upload_image('gambar', $gambar_promo, 'jpg|jpeg|png', '3024');
           // }
 
-          if($gambar_paket){
-            $config['allowed_types'] = 'gif|jpg|png';
-            $config['max_size']='2048';
-            $config['upload_path']='./assets/files/gambar_paket/';
+          // if($gambar_paket){
+          //   $config['allowed_types'] = 'gif|jpg|png';
+          //   $config['max_size']='2048';
+          //   $config['upload_path']='./assets/files/gambar_paket/';
 
-            $this->load->library('upload', $config);
-            if ($gambar_paket == '') {
-              $gambar_paket = null;
-            }else {
-              if (!$this->upload->do_upload('gambar')) {
-                $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">
-                Gagal menambah foto!
-              </div>');
-              }else {
-                $gambar_paket = $this->upload->data('file_name');
-              }
-            }
-          }
+          //   $this->load->library('upload', $config);
+          //   if ($gambar_paket == '') {
+          //     $gambar_paket = null;
+          //   }else {
+          //     if (!$this->upload->do_upload('gambar')) {
+          //       $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">
+          //       Gagal menambah foto!
+          //     </div>');
+          //     }else {
+          //       $gambar_paket = $this->upload->data('file_name');
+          //     }
+          //   }
+          // }
       
           // merekam data yang dikirim melalui form
           $data = array(
@@ -92,7 +92,7 @@ class C_paket extends CI_Controller {
             'id_jenis_paket' => $this->input->post('nama_jenis_paket'),
             'id_isi_paket' => $this->input->post('nama_isi_paket'),
             'harga' => $this->input->post('harga'),
-            'gambar' => $gambar_paket,
+            // 'gambar' => $gambar_paket,
             'id_durasi' => $this->input->post('durasi_paket'),
             'id_barang' => $this->input->post('nama_barang'),
             'status' => $this->input->post('status')

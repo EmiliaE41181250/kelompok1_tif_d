@@ -73,7 +73,7 @@
         <a class="collapse-item" href="<?= base_url('admin/C_paket') ?>">Paket</a>
         <a class="collapse-item" href="<?= base_url('admin/C_jenispaket') ?>">Jenis Paket</a>
         <a class="collapse-item" href="<?= base_url('admin/C_isipaket') ?>">Isi Paket</a>
-        <a class="collapse-item" href="<?= base_url('admin/durasi_paket') ?>">Durasi Paket</a>
+        <a class="collapse-item" href="<?= base_url('admin/C_durasipaket') ?>">Durasi Paket</a>
         <a class="collapse-item" href="<?= base_url('admin/C_barang') ?>">Barang</a>
         <a class="collapse-item" href="<?= base_url('admin/C_waktu') ?>">Waktu</a>
         <div class="collapse-divider"></div>
@@ -256,11 +256,11 @@
 
         <!-- Nav Item - User Information -->
         <li class="nav-header">
-          <div class="dropdown profile-element">
+          <div class="dropdown profile-element mt-3">
             <span>
               <a onclick="gotohome('app/dashboard', 'Dashboard', 'Dashboard')">
-                <?php if ($this->session->userdata('foto') == NULL) : ?>
-                  <img src="<?= base_url('img/user.png'); ?>" class="img-circle" width="60" height="60" alt="Foto User">
+                <?php if ($this->session->userdata('foto') == '') : ?>
+                  <img src="<?= base_url('assets/files/gambar_customer/USR000000000002.jpeg'); ?>" class="img-circle mr-2" width="40" height="40" alt="Foto User">
                 <?php else : ?>
                   <img alt="Foto User" class="img-circle" width="60" height="60" src="<?= base_url() ?>foto/<?= $this->session->userdata('foto'); ?>" />
                 <?php endif ?>

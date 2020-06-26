@@ -40,7 +40,7 @@
         <?php 
         $no = 1;
         foreach ($paket as $pk ) { 
-        //$jenis = $this->db->query("SELECT nama_jenis_paket FROM jenis_paket WHERE id_jenis_paket = '$pk->id_jenis_paket'")->row();?>
+        //$jenis = $this->db->query("select required nama_jenis_paket FROM jenis_paket WHERE id_jenis_paket = '$pk->id_jenis_paket'")->row();?>
           <tr>
             <td><?=$no++?></td>
             <td><?=$pk->nama_paket?></td>
@@ -82,13 +82,13 @@
       <div class="modal-body">
         <div class="form-group">
           <label for="nama_paket">Nama Paket</label>
-          <input type="text" name="nama_paket" id="nama_paket" class="form-control" placeholder="Masukkan Nama Paket . ." aria-describedby="namapaket" maxlength="100">
+          <input required type="text" name="nama_paket" id="nama_paket" class="form-control" placeholder="Masukkan Nama Paket . ." aria-describedby="namapaket" maxlength="100">
           <small id="namapaket" class="text-muted">Masukkan Nama Paket tidak lebih dari 100 Karakter</small>
         </div>
         <div class="form-group">
           <label for="nama_jenis_paket">Jenis Paket</label>
-            <select name="nama_jenis_paket" id="nama_jenis_paket" class="form-control mb-3" placeholder="Masukkan Jenis Paket . ." aria-describedby="jenispaket">
-              <option value=""> Please select </option>
+            <select required name="nama_jenis_paket" id="nama_jenis_paket" class="form-control mb-3" placeholder="Masukkan Jenis Paket . ." aria-describedby="jenispaket">
+              <option value=""> Please select required </option>
               <?php foreach ($jenis_paket as $jpaket ) { ?>
               <option value="<?=$jpaket->id_jenis_paket?>"><?=$jpaket->nama_jenis_paket?></option>
               <?php }?>
@@ -97,7 +97,7 @@
         </div>
         <div class="form-group">
           <label for="nama_isi_paket">Isi Paket</label>
-            <select name="nama_isi_paket" id="nama_isi_paket" class="form-control mb-3" placeholder="Masukkan Isi Paket . ." aria-describedby="isipaket">
+            <select required name="nama_isi_paket" id="nama_isi_paket" class="form-control mb-3" placeholder="Masukkan Isi Paket . ." aria-describedby="isipaket">
               <option value="">Please select</option>
               <?php foreach ($isi_paket as $isi ) { ?>
               <option value="<?=$isi->id_isi_paket?>"><?=$isi->nama_isi_paket?></option>
@@ -107,12 +107,12 @@
         </div>
         <div class="form-group">
           <label for="harga">Harga Paket</label><br>
-          <input type="text" name="harga" id="harga" class="form-control d-inline w-25" placeholder="Harga . ." aria-describedby="jumlahharga">
+          <input required type="text" name="harga" id="harga" class="form-control d-inline w-25" placeholder="Harga . ." aria-describedby="jumlahharga">
           <small id="jumlahharga" class="text-muted">Jumlah Harga</small>
         </div>
         <div class="form-group">
           <label for="durasi_paket">Durasi Paket</label>
-            <select name="durasi_paket" id="durasi_paket" class="form-control mb-3" placeholder="Masukkan Durasi Paket . ." aria-describedby="durasipaket">
+            <select required name="durasi_paket" id="durasi_paket" class="form-control mb-3" placeholder="Masukkan Durasi Paket . ." aria-describedby="durasipaket">
               <option value="">Please select</option>
               <?php foreach ($durasi_paket as $durasi ) { ?>
               <option value="<?=$durasi->id_durasi?>"><?=$durasi->durasi_paket?></option>
@@ -122,7 +122,7 @@
         </div>
         <div class="form-group">
           <label for="nama_barang">Barang</label>
-            <select name="nama_barang" id="nama_barang" class="form-control mb-3" placeholder="Masukkan Barang . ." aria-describedby="barang">
+            <select required name="nama_barang" id="nama_barang" class="form-control mb-3" placeholder="Masukkan Barang . ." aria-describedby="barang">
               <option value="">Please select</option>
               <?php foreach ($barang as $barang ) { ?>
               <option value="<?=$barang->id_barang?>"><?=$barang->nama_barang?></option>
@@ -132,7 +132,7 @@
         </div>
         <div class="form-group w-50">
           <label for="status">Status Paket</label>
-          <select class="form-control" name="status" id="status">
+          <select required class="form-control" name="status" id="status">
             <option value="">Pilih Status Paket :</option>
             <option value="Aktif">Aktif</option>
             <option value="Draft">Draft</option>

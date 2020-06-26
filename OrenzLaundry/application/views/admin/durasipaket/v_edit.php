@@ -5,16 +5,16 @@
         <h2 class="font-weight-bolder mb-0">Edit Durasi Paket</h2>
         <ul class="breadcrumb bg-transparent ml-n3 mt-n3 mb-0">
             <li class="breadcrumb-item"><a href="<?=base_url()?>admin/dashboard"><i class="fa fa-home"></i> OrenzLaundry</a></li>
-            <li class="breadcrumb-item"><a href="<?=base_url()?>admin/C_paket"></i>Durasi Paket</a></li>
+            <li class="breadcrumb-item"><a href="<?=base_url()?>admin/C_durasipaket"></i>Durasi Paket</a></li>
             <li class="breadcrumb-item active">Edit Durasi Paket</li>
         </ul>
       </div>
       <div class="card-body">
 
-      <?php foreach ($paket as $pk) { ?>
+      <?php foreach ($durasi_paket as $ip) { ?>
 
-    <form action="<?= base_url() . 'admin/C_paket/update'; ?>" method="post" enctype="multipart/form-data">
-    <input type="hidden" name="id_durasipaket" value="<?=$pk->id_durasipaket?>">
+    <form action="<?= base_url() . 'admin/C_durasipaket/update'; ?>" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="id_durasi" value="<?=$ip->id_durasi?>">
 
       <div class="modal-header">
         <h5 class="modal-title font-weight-bolder text-ijo">Tambah Durasi Paket</h5>
@@ -24,15 +24,17 @@
       </div>
       <div class="modal-body">
         <div class="form-group">
-          <label for="nama_paket">Durasi</label>
-          <input value="<?=$pk->durasi_paket?>" type="text" name="durasi_paket" id="durasi_paket" class="form-control" placeholder="Masukkan Durasi paket . ." aria-describedby="durasipaket" maxlength="100">
+          <label for="durasi_paket">Durasi</label>
+          <input value="<?=$ip->durasi_paket?>" type="text" name="durasi_paket" id="durasi_paket" class="form-control" placeholder="Masukkan Durasi paket . ." aria-describedby="durasipaket" maxlength="100">
           <small id="durasi_paket" class="text-muted">Masukkan Durasi Paket</small>
         </div>
-        <div class="form-group">
-          <label for="nama_paket">status durasi</label>
-          <input value="<?=$pk->status_durasi?>" type="text" name="status
-          _durasi" id="durasi_paket" class="form-control" placeholder="Masukkan status durasi . ." aria-describedby="statusdurasi" maxlength="100">
-          <small id="durasi" class="text-muted">Masukkan Durasi Paket</small>
+        <div class="form-group w-50">
+          <label for="status">Status Durasi</label>
+          <select class="form-control" name="status" id="status">
+            <option value="">Pilih Status Paket :</option>
+            <option value="Aktif" <?=$ip->status == "Aktif" ? "selected" : ""?>>Aktif</option>
+            <option value="Draft" <?=$ip->status == "Draft" ? "selected" : ""?>>Draft</option>
+          </select>
         </div>
           
       <div class="form-group text-center">
