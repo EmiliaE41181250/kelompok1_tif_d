@@ -20,6 +20,8 @@
   <!-- Custom styles for this page -->
   <link href="<?=base_url()?>assets/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
   
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" rel="stylesheet"/>
+  
   <script src="<?=base_url()?>assets/ckeditor/ckeditor.js"></script>
 
 </head>

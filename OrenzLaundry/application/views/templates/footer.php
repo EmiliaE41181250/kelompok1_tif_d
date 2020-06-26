@@ -58,10 +58,29 @@
 
   <!-- Page level custom scripts -->
   <script src="<?=base_url()?>assets/admin/js/demo/datatables-demo.js"></script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
 
   <!-- Page level custom scripts -->
   <script src="<?=base_url()?>assets/admin/js/demo/chart-area-demo.js"></script>
   <script src="<?=base_url()?>assets/admin/js/demo/chart-pie-demo.js"></script>
+
+  
+  <script>
+    $("#monthpicker").datepicker({
+      format: "yyyy-mm",
+      startView: "months", 
+      minViewMode: "months"
+    });
+  </script>
+
+<script>
+    $("#yearpicker").datepicker({
+      format: "yyyy",
+      startView: "yearss", 
+      minViewMode: "yearss"
+    });
+  </script>
   
 </body>
 
