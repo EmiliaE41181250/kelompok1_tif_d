@@ -109,6 +109,7 @@
             </table>
           </div>
           <div class="col-md-4 col-sm-12">
+            <h5 class="text-center">10 Customer Favorit</h5 >
             <table class="table table-bordered bg-white" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr class="text-center">
