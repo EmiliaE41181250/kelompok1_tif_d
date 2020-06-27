@@ -30,6 +30,10 @@ class C_transaksi extends CI_Controller {
     public function edit($id)
     {
       $where = array('id_transaksi' => $id);
+      $set = array('notif_admin' => 1);
+
+      $this->db->where($where);
+      $this->db->update('transaksi', $set);
       $data['user'] = $this->m_transaksi->getAll('user')->result();
       $data['promo'] = $this->m_transaksi->getAll('promo')->result();
       $data['admin'] = $this->m_transaksi->getAll('admin')->result();

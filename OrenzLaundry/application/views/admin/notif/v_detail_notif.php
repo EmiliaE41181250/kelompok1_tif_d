@@ -3,32 +3,33 @@
 <!-- Page Heading -->
     <div class="block-header">
         <div class="row">
-            <div class="col-12">
-                <h2 class="font-weight-bolder">Detail Data Notifikasi</h2>
+            <div class="col-md-6 col-sm-12">
+                <h2 class="font-weight-bolder">Detail Transaksi</h2>
                 <ul class="breadcrumb bg-transparent ml-n3 mt-n4 mb-0">
                     <li class="breadcrumb-item"><a href="<?=base_url()?>admin/dashboard"><i class="fa fa-home"></i> OrenzLaundry</a></li>
-                    <li class="breadcrumb-item active">Detail Notifikasi</li>
+                    <li class="breadcrumb-item active">Detail Transaksi</li>
                 </ul>
             </div>
+            <div class="col-md-6 col-sm-12">
+              <?php foreach ($transaksi as $trs) {  ?>
+              <div class="row">
+                <div class="col-12 text-right pt-4">
+                  <a class="btn btn-sm btn-primary mb-2" href="<?=base_url()?>admin/c_transaksi/edit/<?=$trs->id_transaksi?>"><i class="fas fa-edit fa-sm mr-2"></i>Edit Transaksi</a>
+                  <a class="btn btn-sm btn-warning mb-2" href="<?=base_url()?>admin/notifikasi/cetak_nota"><i class="fas fa-file-pdf fa-sm mr-2"></i>Cetak Pdf</a>
+                </div>
+              </div>
+            </div>
         </div>
-    </div>
-    <button class="btn btn-secondary" onclick="window.history.back()"><i class="fas fa-arrow-left"></i></button>
-    <div class="row">
-      <div class="col-12 text-right">
-        <a class="btn btn-sm btn-warning mb-2" href="<?=base_url()?>admin/notifikasi"><i class="fas fa-file-pdf fa-sm mr-2"></i>Cetak Pdf</a>
-      </div>
     </div>
     
     <?php echo $this->session->flashdata('pesan');?>
     <div class="">
     <div class="card shadow">
-    <div class="card-header text-center text-light bg-primary">
+    <div class="card-header text-center text-light bg-warning">
     </div>
     <div class="card-body py-4 px-5 ">
       <table class="w-100 table text-center py-0 m-0">
         <tbody>
-        <?php
-        foreach ($transaksi as $trs) {  ?>
           <tr>
             <td class="text-left"><strong>ID TRS : </strong><?=$trs->id_transaksi?></td>
             <td colspan="3" class="text-right"><?=$trs->tgl_transaksi?></td>
