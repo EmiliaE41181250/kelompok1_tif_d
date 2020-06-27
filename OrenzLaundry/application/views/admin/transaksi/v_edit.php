@@ -2,17 +2,31 @@
   <div class="row justify-content-center py-3">
     <div class="col-md-12 card p-0">
       <div class="card-header pb-0">
-        <h2 class="font-weight-bolder mb-0">Edit Data Transaksi</h2>
-        <ul class="breadcrumb bg-transparent ml-n3 mt-n3 mb-0">
-            <li class="breadcrumb-item"><a href="<?=base_url()?>admin/dashboard"><i class="fa fa-home"></i> OrenzLaundry</a></li>
-            <li class="breadcrumb-item"><a href="<?=base_url()?>admin/C_transaksi"></i> Transaksi</a></li>
-            <li class="breadcrumb-item active">Edit Transaksi</li>
-        </ul>
+      <div class="block-header">
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <h2 class="font-weight-bolder">Detail Transaksi</h2>
+                <ul class="breadcrumb bg-transparent ml-n3 mt-n4 mb-0">
+                    <li class="breadcrumb-item"><a href="<?=base_url()?>admin/dashboard"><i class="fa fa-home"></i> OrenzLaundry</a></li>
+                    <li class="breadcrumb-item active">Detail Transaksi</li>
+                </ul>
+            </div>
+            <div class="col-md-6 col-sm-12">
+              <?php foreach ($transaksi as $trs) {  ?>
+              <div class="row">
+                <div class="col-12 text-right pt-4">
+                  <a class="btn btn-sm btn-ijo mb-2" href="<?=base_url()?>admin/notifikasi/detail/<?=$trs->id_transaksi?>"><i class="fas fa-clipboard-list fa-sm mr-2"></i>Detail Transaksi</a>
+                  <a class="btn btn-sm btn-warning mb-2" href="<?=base_url()?>admin/notifikasi/cetak_nota"><i class="fas fa-file-pdf fa-sm mr-2"></i>Cetak Pdf</a>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
       </div>
       <div class="card-body">
       <?php echo $this->session->flashdata('pesan_trs');?>
 
-      <?php foreach ($transaksi as $trs) { ?>
+      
 
     <form action="<?= base_url() . 'admin/C_transaksi/update_status'; ?>" method="post" enctype="multipart/form-data">
     <div class="row">
