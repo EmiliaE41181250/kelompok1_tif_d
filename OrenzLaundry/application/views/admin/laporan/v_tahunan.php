@@ -44,7 +44,7 @@
 
                 <?php
                     foreach ($data_tahunan as $data) {
-                        $tgl_transaksi[] = substr($data->tgl_transaksi, 0, 10);
+                        $tgl_transaksi[] = substr($data->tgl_transaksi, 0, 7);
                         $total_harga[] = (float) $data->total_harga;
                     }
                     ?>
@@ -82,30 +82,56 @@
                         <a href="<?= base_url() . 'admin/laporan_rentang_hari/print_pdf_bulanan/' ?>" class="btn btn-sm btn-warning mb-2"><i class="fas fa-file-pdf fa-sm mr-2"></i>Cetak Pdf</a>
                     </div>
                 </div>
-                <table class="table table-bordered bg-white" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr class="text-center">
-                            <th>No</th>
-                            <th>Tanggal Transaksi</th>
-                            <th>Total Haraga</th>
-                            <th>Total Berat (kg)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                            $no = 1;
-                            foreach ($data_tahunan as $dt) {
-                                //$jenis = $this->db->query("SELECT nama_jenis_paket FROM jenis_paket WHERE id_jenis_paket = '$pk->id_jenis_paket'")->row();
-                                ?>
-                            <tr>
-                                <td class="text-center"><?= $no++ ?></td>
-                                <td class="text-center"><?= substr($dt->tgl_transaksi, 0, 10) ?></td>
-                                <td class="text-right">Rp. <?= number_format($dt->total_harga, 0, ",", ".") ?></td>
-                                <td class="text-right"><?= number_format((float) $dt->total_berat, 2, '.', '') ?></td>
-                            </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
+                <div class="row">
+                    <div class="col-md-8 col-sm-12">
+                        <table class="table table-bordered bg-white" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr class="text-center">
+                                    <th>No</th>
+                                    <th>Bulan</th>
+                                    <th>Total Haraga</th>
+                                    <th>Total Berat (kg)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    $no = 1;
+                                    foreach ($data_tahunan as $dt) {
+                                        //$jenis = $this->db->query("SELECT nama_jenis_paket FROM jenis_paket WHERE id_jenis_paket = '$pk->id_jenis_paket'")->row();
+                                        ?>
+                                    <tr>
+                                        <td class="text-center"><?= $no++ ?></td>
+                                        <td class="text-center"><?= date('yy M', strtotime(substr($dt->tgl_transaksi, 0, 7))) ?></td>
+                                        <td class="text-right">Rp. <?= number_format($dt->total_harga, 0, ",", ".") ?></td>
+                                        <td class="text-right"><?= number_format((float) $dt->total_berat, 2, '.', '') ?></td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <table class="table table-bordered bg-white" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr class="text-center">
+                                    <th>Nama User</th>
+                                    <th>Total Berat (kg)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    $no = 1;
+                                    foreach ($data_berat as $brt) {
+                                        //$jenis = $this->db->query("SELECT nama_jenis_paket FROM jenis_paket WHERE id_jenis_paket = '$pk->id_jenis_paket'")->row();
+                                        ?>
+                                    <tr>
+                                        <td class="text-center"><?= $brt->nama_user ?></td>
+                                        <td class="text-right"><?= number_format((float) $brt->total_berat, 2, '.', '') ?></td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
 </div>

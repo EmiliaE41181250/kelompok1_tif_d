@@ -77,8 +77,8 @@
   <script>
     $("#yearpicker").datepicker({
       format: "yyyy",
-      startView: "yearss", 
-      minViewMode: "yearss"
+      startView: "years", 
+      minViewMode: "years"
     });
   </script>
 

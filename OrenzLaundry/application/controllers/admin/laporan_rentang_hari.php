@@ -24,6 +24,13 @@ class laporan_rentang_hari extends CI_Controller
             FROM transaksi, vtotalberat 
             WHERE transaksi.id_transaksi = vtotalberat.id_transaksi AND
             transaksi.tgl_transaksi LIKE '%$hasil_cari%' GROUP BY day(transaksi.tgl_transaksi) ORDER BY tgl_transaksi ASC")->result();
+            $data['data_berat'] = $this->db->query("SELECT user.nama_user, SUM(vtotalberat.total_berat) as total_berat FROM user, transaksi, vtotalberat
+            WHERE transaksi.id_user = user.id_user
+            AND transaksi.id_transaksi = vtotalberat.id_transaksi
+            AND transaksi.tgl_transaksi LIKE '%$hasil_cari%'
+            GROUP BY user.nama_user
+            ORDER BY total_berat DESC
+            LIMIT 10")->result();
             $this->load->view('templates/header');
             $this->load->view('templates/sidebar');
             $this->load->view('admin/laporan/v_bulanan', $data);
@@ -52,7 +59,14 @@ class laporan_rentang_hari extends CI_Controller
             $data['data_tahunan'] = $this->db->query("SELECT transaksi.tgl_transaksi, SUM(transaksi.total_harga) as total_harga, SUM(vtotalberat.total_berat) as total_berat 
             FROM transaksi, vtotalberat 
             WHERE transaksi.id_transaksi = vtotalberat.id_transaksi AND
-            transaksi.tgl_transaksi LIKE '%$hasil_cari%' GROUP BY year(transaksi.tgl_transaksi) ORDER BY tgl_transaksi ASC")->result();
+            transaksi.tgl_transaksi LIKE '%$hasil_cari%' GROUP BY month(transaksi.tgl_transaksi) ORDER BY tgl_transaksi ASC")->result();
+            $data['data_berat'] = $this->db->query("SELECT user.nama_user, SUM(vtotalberat.total_berat) as total_berat FROM user, transaksi, vtotalberat
+            WHERE transaksi.id_user = user.id_user
+            AND transaksi.id_transaksi = vtotalberat.id_transaksi
+            AND transaksi.tgl_transaksi LIKE '%$hasil_cari%'
+            GROUP BY user.nama_user
+            ORDER BY total_berat DESC
+            LIMIT 10")->result();
             $this->load->view('templates/header');
             $this->load->view('templates/sidebar');
             $this->load->view('admin/laporan/v_tahunan', $data);
