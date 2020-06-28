@@ -353,7 +353,7 @@
   font-weight: 600;
   color: #fff;
   width: 202px;
-  background-color: #500ade;
+  background-color: #6dd11b;
   padding: 0 20px;
   -webkit-transition: all 0.3s ease-in;
   -moz-transition: all 0.3s ease-in;
@@ -363,8 +363,8 @@
     color: #fff;
     background-color: #333333; }
   .boxed-btn.gd-bg-1 {
-    background-image: -moz-linear-gradient(50deg, #5e2ced 0%, #9749f8 100%);
-    background-image: -webkit-linear-gradient(50deg, #5e2ced 0%, #9749f8 100%);
+    background-image: -moz-linear-gradient(50deg, #6dd11b 0%, #71f14b 100%);
+    background-image: -webkit-linear-gradient(50deg, #6dd11b 0%, #71f14b 100%);
     background-image: -ms-linear-gradient(50deg, #5e2ced 0%, #9749f8 100%); }
     .boxed-btn.gd-bg-1:hover {
       background-image: -moz-linear-gradient(50deg, #9749f8 0%, #5e2ced 100%);
@@ -1123,11 +1123,11 @@ ul {
     .navbar-area.white .nav-container .navbar-collapse .navbar-nav li.menu-item-has-children:before {
       color: rgba(255, 255, 255, 0.8); }
     .navbar-area.white .nav-container .navbar-collapse .navbar-nav li.current-menu-item a {
-      color: #fff; }
+      color: rgb(0, 0, 0); }
     .navbar-area.white .nav-container .navbar-collapse .navbar-nav li a {
-      color: rgba(255, 255, 255, 0.8); }
+      color: rgba(0, 0, 0, 0.8); }
       .navbar-area.white .nav-container .navbar-collapse .navbar-nav li a:hover {
-        color: #fff; }
+        color: rgb(255, 255, 255); }
   .navbar-area .nav-container .nav-right-content ul {
     margin: 0;
     padding: 0;
@@ -1359,10 +1359,11 @@ ul {
   .header-area .header-right-image {
     position: absolute;
     bottom: 0px;
-    right: 10%; }
-  .header-area.header-bg {
+    right: 10%;
+  margin-right: 5%; }
+  .header-area.header-lp {
     background-color: #fff;
-    background-image: url(../img/bg/header-bg.png);
+    background-image: url(../img/bg/header-lp.png);
     background-position: top right;
     background-repeat: no-repeat; }
   .header-area.header-bg-2 {
@@ -2306,16 +2307,16 @@ ul {
     -o-transition: all 0.3s ease-in;
     transition: all 0.3s ease-in; }
     .single-feature-list .icon.icon-bg-1 {
-      background-image: url(../img/icon-bg/01.png);
+      background-image: url(../img/icon-bg/bulat.png);
       background-repeat: no-repeat; }
     .single-feature-list .icon.icon-bg-2 {
-      background-image: url(../img/icon-bg/02.png);
+      background-image: url(../img/icon-bg/bulat.png);
       background-repeat: no-repeat; }
     .single-feature-list .icon.icon-bg-3 {
-      background-image: url(../img/icon-bg/03.png);
+      background-image: url(../img/icon-bg/bulat.png);
       background-repeat: no-repeat; }
     .single-feature-list .icon.icon-bg-4 {
-      background-image: url(../img/icon-bg/04.png);
+      background-image: url(../img/icon-bg/bulat.png);
       background-repeat: no-repeat; }
   .single-feature-list .content .title {
     font-size: 22px;
@@ -2640,7 +2641,7 @@ ul {
     -webkit-animation: fadeIn 10s linear 2s infinite;
     animation: fadeIn 10s linear 2s infinite; }
   .why-choose-area.why-choose-us-bg {
-    background-image: url(../img/bg/why-us-bg.jpg);
+    background-image: url(../img/bg/web-bg.png);
     background-size: cover;
     background-position: center; }
   .why-choose-area.dark-bg {
@@ -3572,8 +3573,8 @@ ul {
     Footer Area
 ---------------------------*/
 .footer-area {
-  background-image: -moz-linear-gradient(50deg, #5e2ced 0%, #9749f8 100%);
-  background-image: -webkit-linear-gradient(50deg, #5e2ced 0%, #9749f8 100%);
+  background-image: -moz-linear-gradient(50deg, #eed80e 0%, #f0e442 100%);
+  background-image: -webkit-linear-gradient(50deg, #eecc0e 0%, #f0e442 100%);
   background-image: -ms-linear-gradient(50deg, #5e2ced 0%, #9749f8 100%); }
   .footer-area.style-02 {
     background-image: unset;
