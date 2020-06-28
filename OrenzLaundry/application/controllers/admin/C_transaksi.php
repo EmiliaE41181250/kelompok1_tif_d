@@ -145,6 +145,35 @@ class C_transaksi extends CI_Controller {
       $set = array('status' => $this->input->post('status'));
       $this->m_transaksi->update($where, $set, 'transaksi');
 
+      if($this->input->post('status') == '4'){
+
+        $id_user = $this->db->get_where('transaksi', array('id_transaksi' => $this->input->post('id_transaksi')))->row()->id_user;
+
+        // kirim notif ke HP
+        $this->load->library('primslib');
+        $datatoken = $this->db->get_where('user', array('id_user' => $id_user));
+        $tokenM = $datatoken->row()->device_token;
+        $title = "Cucian siap diantarkan! Mohon tentukan lokasi.";
+        $message = "Cucian anda telah bersih nih! segera tentukan lokasi dan kami akan meluncur ketempat anda.";
+        $payload = array('intent' => 'notifikasi');
+        print_r($this->primslib->SendNotification($tokenM, $title, $message, $payload));
+        print_r($message);
+
+      }else if($this->input->post('status') == 2){
+
+        $id_user = $this->db->get_where('transaksi', array('id_transaksi' => $this->input->post('id_transaksi')))->row()->id_user;
+
+        // kirim notif ke HP
+        $this->load->library('primslib');
+        $datatoken = $this->db->get_where('user', array('id_user' => $id_user));
+        $tokenM = $datatoken->row()->device_token;
+        $title = "Sortir cucian selesai, mohon konfirmasi untuk melanjutkan.";
+        $message = "Kami telah melakukan sortir, detail transaksi telah diperbarui. Mungkin ada perubahan.. Cek dulu ya, semoga harganya cocok ";
+        $payload = array('intent' => 'notifikasi');
+        print_r($this->primslib->SendNotification($tokenM, $title, $message, $payload));
+        print_r($message);
+      }
+
       $this->session->set_flashdata('pesan_trs', '
       <div class="alert alert-success alert-dismissible fade show" role="alert">
         Anda <strong>berhasil</strong> mengubah data.
