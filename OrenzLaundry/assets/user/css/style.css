@@ -3573,8 +3573,8 @@ ul {
     Footer Area
 ---------------------------*/
 .footer-area {
-  background-image: -moz-linear-gradient(50deg, #eed80e 0%, #f0e442 100%);
-  background-image: -webkit-linear-gradient(50deg, #eecc0e 0%, #f0e442 100%);
+  background-image: -moz-linear-gradient(50deg, #f1ac0c 0%, #f3e851 100%);
+  background-image: -webkit-linear-gradient(50deg, #f1ac0c 0%, #f3e851 100%);
   background-image: -ms-linear-gradient(50deg, #5e2ced 0%, #9749f8 100%); }
   .footer-area.style-02 {
     background-image: unset;
