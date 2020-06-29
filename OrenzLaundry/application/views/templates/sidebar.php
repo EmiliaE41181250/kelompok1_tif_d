@@ -92,9 +92,9 @@
     <div id="collapseLaporan" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Laporan Transaksi:</h6>
-        <a class="collapse-item" href="<?= base_url('admin/laporan_rentang_hari/tahunan_report')?>">Tahunan</a>
-        <a class="collapse-item" href="<?= base_url('admin/laporan_rentang_hari/month_report')?>">Bulanan</a>
-        <a class="collapse-item" href="<?= base_url('admin/laporan_rentang_hari') ?>">Rentang Hari</a>
+        <a class="collapse-item" href="<?= base_url('admin/laporan_rentang_hari/tahunan_report') ?>">Tahunan</a>
+        <a class="collapse-item" href="<?= base_url('admin/laporan_rentang_hari/month_report') ?>">Bulanan</a>
+        <a class="collapse-item" href="<?= base_url('admin/laporan_rentang_hari/harian_report') ?>">Rentang Hari</a>
       </div>
     </div>
   </li>
@@ -172,7 +172,7 @@
                 </div>
               </a>
             </div>
-            <a class="dropdown-item text-center small text-gray-500" href="<?=base_url() . 'admin/notifikasi/'?>">Show All</a>
+            <a class="dropdown-item text-center small text-gray-500" href="<?= base_url() . 'admin/notifikasi/' ?>">Show All</a>
           </div>
         </li>
 

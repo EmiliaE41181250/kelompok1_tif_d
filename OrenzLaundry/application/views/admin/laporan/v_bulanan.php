@@ -1,57 +1,57 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
-    <!-- Page Heading -->
-    <div class="block-header">
-        <div class="row">
-            <div class="col-12">
-                <h2 class="font-weight-bolder">Laporan Transaksi</h2>
-                <ul class="breadcrumb bg-transparent ml-n3 mt-n4 mb-0">
-                    <li class="breadcrumb-item"><a href="<?= base_url() ?>admin/dashboard"><i class="fa fa-home"></i> OrenzLaundry</a></li>
-                    <li class="breadcrumb-item active">Bulanan</li>
-                </ul>
-            </div>
-        </div>
+  <!-- Page Heading -->
+  <div class="block-header">
+    <div class="row">
+      <div class="col-12">
+        <h2 class="font-weight-bolder">Laporan Transaksi</h2>
+        <ul class="breadcrumb bg-transparent ml-n3 mt-n4 mb-0">
+          <li class="breadcrumb-item"><a href="<?= base_url() ?>admin/dashboard"><i class="fa fa-home"></i> OrenzLaundry</a></li>
+          <li class="breadcrumb-item active">Bulanan</li>
+        </ul>
+      </div>
     </div>
+  </div>
 
-    <div class="card">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-lg-6 col-md-10">
-            <div class="form-group">
-              <label for="awal">Pilih Bulan :</label>
-              
-              <form action="<?= base_url() . "admin/laporan_rentang_hari/month_report"?>" method="post">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-lg-6 col-md-10">
+          <div class="form-group">
+            <label for="awal">Pilih Bulan :</label>
+
+            <form action="<?= base_url() . "admin/laporan_rentang_hari/month_report" ?>" method="post">
               <!-- <input type="text" name="awal" id="monthpicker" class="form-control mr-2" required> -->
               <div class="input-group mb-3">
-                  <input type="text" name="bulanan" id="monthpicker" required class="form-control" placeholder="Pilih Bulan . ." aria-label="Recipient's username" aria-describedby="button-addon2">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-warning" type="submit" id="button-addon2">Submit</button>
-                  </div>
+                <input type="text" name="bulanan" id="monthpicker" required class="form-control" placeholder="Pilih Bulan . ." aria-label="Recipient's username" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-warning" type="submit" id="button-addon2">Submit</button>
+                </div>
               </div>
-              
-              </form>
-            </div>
+
+            </form>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <?php if(isset($data_bulanan)){?>
+  <?php if (isset($data_bulanan)) { ?>
     <div class="card mt-3">
       <div class="card-body">
         <canvas id="canvas" width="1000" height="280"></canvas>
-        
+
         <?php
-        foreach ($data_bulanan as $data) {
+          foreach ($data_bulanan as $data) {
             $tgl_transaksi[] = substr($data->tgl_transaksi, 0, 10);
             $total_harga[] = (float) $data->total_harga;
-        }
-        ?>
+          }
+          ?>
 
-        <script src="<?=base_url()?>assets/admin/vendor/chart.js/Chart.min.js"></script>
+        <script src="<?= base_url() ?>assets/admin/vendor/chart.js/Chart.min.js"></script>
         <script>
-        // Set new default font family and font color to mimic Bootstrap's default styling
+          // Set new default font family and font color to mimic Bootstrap's default styling
           Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
           Chart.defaults.global.defaultFontColor = '#858796';
 
@@ -175,42 +175,43 @@
       </div>
     </div>
 
-      <div class="row card mt-3 mb-4 mx-1">
-        <div class="col card-body table-responsive">
-          <h2>Detail Transaksi</h2>
-          <div class="row">
+    <div class="row card mt-3 mb-4 mx-1">
+      <div class="col card-body table-responsive">
+        <h2>Detail Transaksi</h2>
+        <div class="row">
           <div class="col-6">
-            <a href="<?= base_url() . 'admin/laporan_rentang_hari/print_pdf_bulanan/'?>" class="btn btn-sm btn-warning mb-2"><i class="fas fa-file-pdf fa-sm mr-2"></i>Cetak Pdf</a>
+            <a href="<?= base_url() . 'admin/laporan_rentang_hari/print_pdf_bulanan/' ?>" class="btn btn-sm btn-warning mb-2"><i class="fas fa-file-pdf fa-sm mr-2"></i>Cetak Pdf</a>
           </div>
         </div>
         <div class="row">
           <div class="col-md-8 col-sm-12">
             <table class="table table-bordered bg-white" id="dataTable" width="100%" cellspacing="0">
               <thead>
-              <tr class="text-center">
-                <th>No</th>
-                <th>Tanggal Transaksi</th>
-                <th>Total Haraga</th>
-                <th>Total Berat (kg)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php 
-              $no = 1;
-              foreach ($data_bulanan as $dt ) { 
-              //$jenis = $this->db->query("SELECT nama_jenis_paket FROM jenis_paket WHERE id_jenis_paket = '$pk->id_jenis_paket'")->row();?>
-                <tr>
-                  <td class="text-center"><?=$no++?></td>
-                  <td class="text-center"><?=substr($dt->tgl_transaksi, 0, 10)?></td>
-                  <td class="text-right">Rp. <?=number_format($dt->total_harga, 0, ",", ".")?></td>
-                  <td class="text-right"><?=number_format((float)$dt->total_berat, 2, '.', '')?></td>
+                <tr class="text-center">
+                  <th>No</th>
+                  <th>Tanggal Transaksi</th>
+                  <th>Total Harga</th>
+                  <th>Total Berat (kg)</th>
                 </tr>
-              <?php } ?>
+              </thead>
+              <tbody>
+                <?php
+                  $no = 1;
+                  foreach ($data_bulanan as $dt) {
+                    //$jenis = $this->db->query("SELECT nama_jenis_paket FROM jenis_paket WHERE id_jenis_paket = '$pk->id_jenis_paket'")->row();
+                    ?>
+                  <tr>
+                    <td class="text-center"><?= $no++ ?></td>
+                    <td class="text-center"><?= substr($dt->tgl_transaksi, 0, 10) ?></td>
+                    <td class="text-right">Rp. <?= number_format($dt->total_harga, 0, ",", ".") ?></td>
+                    <td class="text-right"><?= number_format((float) $dt->total_berat, 2, '.', '') ?></td>
+                  </tr>
+                <?php } ?>
               </tbody>
             </table>
           </div>
           <div class="col-md-4 col-sm-12">
-            <h5 class="text-center">10 Customer Favorit</h5 >
+            <h5 class="text-center">10 Customer Favorit</h5>
             <table class="table table-bordered bg-white" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr class="text-center">
@@ -223,20 +224,20 @@
                   $no = 1;
                   foreach ($data_berat as $brt) { ?>
                   <tr>
-                      <td class="text-center"><?= $brt->nama_user ?></td>
-                      <td class="text-right"><?= number_format((float) $brt->total_berat, 2, '.', '') ?></td>
+                    <td class="text-center"><?= $brt->nama_user ?></td>
+                    <td class="text-right"><?= number_format((float) $brt->total_berat, 2, '.', '') ?></td>
                   </tr>
                 <?php } ?>
               </tbody>
             </table>
           </div>
         </div>
-          
-      </div>
-      </div>
-      </div>
+
       </div>
     </div>
-    <?php }?>
+</div>
+</div>
+</div>
+<?php } ?>
 
 </div>
