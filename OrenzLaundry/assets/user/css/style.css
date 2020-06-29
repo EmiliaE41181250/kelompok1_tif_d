@@ -214,7 +214,7 @@
   bottom: 30px;
   width: 50px;
   height: 50px;
-  background-color: #500ade;
+  background-color: #80c000;
   color: #fff;
   text-align: center;
   line-height: 50px;
@@ -983,7 +983,9 @@ html {
   font-family: "Poppins", sans-serif;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
-  overflow-x: hidden; }
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
 
 body {
   font-family: "Poppins", sans-serif;

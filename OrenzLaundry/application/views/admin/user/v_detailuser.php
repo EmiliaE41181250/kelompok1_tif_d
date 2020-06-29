@@ -53,6 +53,11 @@
                                 <td><?= $usr->email ?></td>
                             </tr>
                             <tr>
+                                <td>Saldo</td>
+                                <td>:</td>
+                                <td>Rp. <?= number_format($usr->saldo, 0, ",", ".") ?></td>
+                            </tr>
+                            <tr>
                                 <td>Status</td>
                                 <td>:</td>
                                 <td>

@@ -9,9 +9,9 @@
 			background-image: linear-gradient(to bottom right, #fcbf30 , #5dcf40);
 		}
 		.user_card {
-			height: 450px;
-			width: 350px;
-			margin-top: auto;
+			height: 70%;
+			width: 30%;
+			margin-top: 10%;
 			margin-bottom: auto;
 			background: #ffffff;
 			position: relative;

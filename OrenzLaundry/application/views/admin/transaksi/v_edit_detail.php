@@ -2,11 +2,11 @@
   <div class="row justify-content-center py-3">
     <div class="col-md-8 card p-0">
       <div class="card-header pb-0">
-        <h2 class="font-weight-bolder mb-0">Edit Data Promo</h2>
+        <h2 class="font-weight-bolder mb-0">Edit Data Detail Transaksi</h2>
         <ul class="breadcrumb bg-transparent ml-n3 mt-n3 mb-0">
             <li class="breadcrumb-item"><a href="<?=base_url()?>admin/dashboard"><i class="fa fa-home"></i> OrenzLaundry</a></li>
-            <li class="breadcrumb-item"><a href="<?=base_url()?>admin/promo"></i> Promo</a></li>
-            <li class="breadcrumb-item active">Edit Promo</li>
+            <li class="breadcrumb-item"><a href="<?=base_url()?>admin/c_transaksi"></i> Transaksi</a></li>
+            <li class="breadcrumb-item active">Edit Data Detail Transaksi</li>
         </ul>
       </div>
       <div class="card-body">
@@ -16,6 +16,8 @@
           <form action="<?=  base_url() . 'admin/c_transaksi/updatedetail'?>" method="post" enctype="multipart/form-data">
             <input type="hidden" name="id_transaksi" value="<?=$dt->id_transaksi?>">
             <input type="hidden" name="id_paket" value="<?=$dt->id_paket?>">
+            <?php foreach($paket as $pk){ if($pk->id_paket == $dt->id_paket){?>
+            <input type="hidden" id="harga" value="<?=$pk->harga?>"><?php }}?>
 
             <div class="form-group">
               <label for="nama_paket">Nama Paket</label>
@@ -34,7 +36,7 @@
 
             <div class="form-group">
               <label for="sub_total">Sub Total</label>
-              <input value="<?=$dt->sub_total?>" type="number" min="0" name="sub_total" id="sub_total" class="form-control w-50" placeholder="Masukkan Sub Total Harga . ." aria-describedby="SubTotal" required>
+              <input readonly value="<?=$dt->sub_total?>" type="number" min="0" name="sub_total" id="sub_total" class="form-control w-50" placeholder="Masukkan Sub Total Harga . ." aria-describedby="SubTotal" required>
             </div>
 
             <div class="form-group text-center">
@@ -49,7 +51,4 @@
   </div>
 
   <script>
-    $(function() {
-      $('.selectpicker').selectpicker();
-    });
   </script>

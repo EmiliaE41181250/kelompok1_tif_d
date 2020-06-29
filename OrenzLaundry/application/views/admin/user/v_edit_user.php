@@ -23,12 +23,12 @@
                         </div>
                         <div class="form-group">
                             <label for="alamat">Alamat</label>
-                            <input value="<?= $usr->alamat ?>" type="text" name="alamat" id="alamat" class="form-control" placeholder="Masukkan Alamat Customer . ." aria-describedby="Alamat" maxlength="100" required>
+                            <input value="<?= $usr->alamat ?>" type="text" name="alamat" id="alamat" class="form-control" placeholder="Masukkan Alamat Customer . ." aria-describedby="Alamat" maxlength="100">
                         </div>
 
                         <div class="form-group">
                             <label for="jenis_kelamin">Jenis Kelamin</label>
-                            <select class="form-control" name="jenis_kelamin" id="jenis_kelamin" required>
+                            <select class="form-control" name="jenis_kelamin" id="jenis_kelamin">
                                 <option>Jenis Kelamin :</option>
                                 <option value="Laki Laki" <?= $usr->jenis_kelamin == "Laki Laki" ? "selected" : "" ?>>Laki Laki</option>
                                 <option value="Perempuan" <?= $usr->jenis_kelamin == "Perempuan" ? "selected" : "" ?>>Perempuan</option>
@@ -36,16 +36,21 @@
                         </div>
                         <div class="form-group">
                             <label for="tgl_lahir">Tgl Lahir</label>
-                            <input value="<?= $usr->tgl_lahir ?>" type="date" name="tgl_lahir" id="tgl_lahir" class="form-control" required>
+                            <input value="<?= $usr->tgl_lahir ?>" type="date" name="tgl_lahir" id="tgl_lahir" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="no_hp">No. HP</label>
-                            <input value="<?= $usr->no_hp ?>" type="text" name="no_hp" id="alamat" class="form-control" placeholder="Masukkan No.HP Customer . ." aria-describedby="NoHp" maxlength="100" required>
+                            <input value="<?= $usr->no_hp ?>" type="text" name="no_hp" id="alamat" class="form-control" placeholder="Masukkan No.HP Customer . ." aria-describedby="NoHp" maxlength="100">
                         </div>
 
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input value="<?= $usr->email ?>" type="text" name="email" id="email" class="form-control" placeholder="Masukkan Alamat Email Customer . ." aria-describedby="Email" maxlength="100" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="saldo">Saldo</label>
+                            <input value="<?= $usr->saldo ?>" type="number" name="saldo" id="saldo" class="form-control" placeholder="Masukkan Saldo Customer . ." aria-describedby="Saldo" min="0">
                         </div>
 
                         <div class="form-group">

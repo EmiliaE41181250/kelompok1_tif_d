@@ -127,13 +127,15 @@ class Transaksi extends REST_Controller {
     $waktu = $this->post("waktu_jemput");
     $status = "0";
     $catatan = "";
+
+    $harga = $this->db->get_where('paket', array('id_paket' => $id_paket))->row()->harga;
     
     $dataTrs = array("id_transaksi" => $id,
                       "id_user" => $id_user,
                       "id_admin" => $id_admin,
                       "id_promo" => $id_promo,
                       "id_waktu" => $waktu,
-                      "total_harga" => 0,
+                      "total_harga" => $harga,
                       "tgl_transaksi" => $tgl_transaksi,
                       "tgl_jemput" => $tglJemput,
                       "alamat_jemput" => $alamat . ',' . $lat . ',' . $lang,
@@ -144,8 +146,8 @@ class Transaksi extends REST_Controller {
     $dataDetail = array(
       "id_transaksi" => $id,
       "id_paket" => $id_paket,
-      "sub_total" => 0,
-      "berat" => 0
+      "sub_total" => $harga,
+      "berat" => 1
     );
 
     $response = $this->m_notif->insertTrs($dataTrs, $dataDetail);

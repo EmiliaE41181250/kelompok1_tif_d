@@ -36,12 +36,13 @@ class Login extends CI_Controller{
 			);
 
 		//cek ketersediaan username dan pasword admin dengan fungsi cek login yang da di m_login
-		$cek = $this->m_login->cek_login("admin",$where)->num_rows();
+		$cek = $this->m_login->cek_login("admin",$where);
 
 		//jika hasil cek ternyata menyatakan username dan pasword tersedia maka dibuat sesion berisi username dan status login, kemudian akan di arahkan ke controller admin.
-		if($cek > 0){
+		if($cek->num_rows() > 0){
 
 			$data_session = array(
+				'id_admin' => $cek->row()->id_admin,
 				'nama' => $username,
 				'status' => "login"
 				);
@@ -63,6 +64,52 @@ class Login extends CI_Controller{
 		}
 	}
 
+	function reset_pass_view()
+	{
+		$this->load->view('templates/header');
+    $this->load->view('templates/sidebar');
+		$this->load->view('admin/reset_pass');
+		$this->load->view('templates/footer');
+	}
+
+	function reset_pass_logic()
+	{
+		$id_admin = $this->input->post('id_admin');
+		$password = $this->input->post('password');
+		$repassword = $this->input->post('repass');
+
+		if ($password == $repassword) {
+			$result = $this->m_login->reset_pass($password, $id_admin);
+
+			if ($result) {
+				redirect(base_url('admin/login/logout'));
+			}else{
+				$this->session->set_flashdata('pesan', '
+				<div class="alert alert-danger alert-dismissible fade show" role="alert">
+					Anda <strong>gagal</strong> mengubah password.
+					<button type="button" class="close py-auto" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				');
+	
+				redirect(base_url('admin/login/reset_pass_view'));
+			}
+		}else{
+			$this->session->set_flashdata('pesan', '
+				<div class="alert alert-danger alert-dismissible fade show" role="alert">
+					Password yang anda masukkan tidak sama
+					<button type="button" class="close py-auto" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				');
+	
+				redirect(base_url('admin/login/reset_pass_view'));
+		}
+
+		
+	}
 
 //fungsi logout berfungsi untuk mengapus semua sesion sehingga proses login berhenti/selesai
 	function logout(){

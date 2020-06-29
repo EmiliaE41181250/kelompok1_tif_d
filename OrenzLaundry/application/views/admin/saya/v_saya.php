@@ -8,9 +8,9 @@
                     <li class="breadcrumb-item active">Profil Saya</li>
                 </ul>
             </div>
+            
+            <?php foreach ($admin as $adm) { ?>
             <div class="card-body">
-
-                <?php foreach ($admin as $adm) { ?>
 
                     <table class="table table-borderless">
                         <thead>
@@ -36,11 +36,21 @@
                                 <td>:</td>
                                 <td><?= $adm->no_telp ?></td>
                             </tr>
+                            <tr>
+                                <td>Username</td>
+                                <td>:</td>
+                                <td><?= $adm->username ?></td>
+                            </tr>
+                            <tr>
+                                <td>Logo</td>
+                                <td>:</td>
+                                <td><img src="<?=base_url()?>assets/files/<?=$adm->logo?>" alt="Gambar <?= $adm->username ?>"></td>
+                            </tr>
                             <div class="form-group text-center">
-                                <td>
+                                <td colspan="3" class="text-center">
                                     <?php echo anchor(
                                             'admin/C_saya/edit/' . $adm->id_admin,
-                                            '<div class="btn btn-primary btn-sm mr-2"><i class="fa fa-edit"></i> Edit</div>'
+                                            '<div class="btn btn-ijo btn-sm mr-2"><i class="fa fa-edit"></i> Edit</div>'
                                         ) ?>
                                 </td>
 
@@ -49,8 +59,9 @@
                     </table>
 
             </div>
+            
+            <?php } ?>
         </div>
     </div>
 
 </div>
-<?php } ?>
