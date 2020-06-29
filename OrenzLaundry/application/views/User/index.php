@@ -229,8 +229,8 @@
 
 <!-- screenshort area start -->
 <section class="screenshort-area" id="mobile">
-        <div class="shape-1"><img src="<?=base_url()?>assets/user/img/shape/08.png" alt=""></div>
-        <div class="shape-2"><img src="<?=base_url()?>assets/user/img/shape/09.png" alt=""></div>
+        <div class="shape-1"><img src="<?=base_url()?>assets/user/img/shape/8.png" alt=""></div>
+        <div class="shape-2"><img src="<?=base_url()?>assets/user/img/shape/9.png" alt=""></div>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-10">
