@@ -1,16 +1,9 @@
 <!-- Footer -->
 <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Orenz Laundry 2020</span>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
-
+  <div class="container my-auto">
+    <div class="copyright text-center my-auto">
+      <span>Copyright &copy; Orenz Laundry 2020</span>
     </div>
-    <!-- End of Content Wrapper -->
-
   </div>
   <!-- End of Page Wrapper -->
 
@@ -94,22 +87,22 @@
         success:function(data)
         {
           $('.wadah-notif-dropdown').html(data.notification);
-          if(data.unseen_notification > 0){
+          if (data.unseen_notification > 0) {
             $('.notif-count').html(data.unseen_notification);
           }
         }
-        });
-      }
+      });
+    }
 
-      load_unseen_notification();
+    load_unseen_notification();
 
-      setInterval(function(){ 
-        load_unseen_notification();; 
-      }, 5000);
+    setInterval(function() {
+      load_unseen_notification();;
+    }, 5000);
 
-    });
-  </script>
-  
+  });
+</script>
+
 </body>
 
 </html>

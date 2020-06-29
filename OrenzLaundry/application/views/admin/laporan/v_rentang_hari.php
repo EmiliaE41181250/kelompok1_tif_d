@@ -14,48 +14,130 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-10 text-right">
-            <a class="btn btn-sm btn-warning mb-2" href="<?= base_url() ?>admin/laporan_rentang_hari"><i class="fas fa-file-pdf fa-sm mr-2"></i>Cetak Pdf</a>
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-6 col-md-10">
+                    <div class="form-group">
+                        <label for="awal">Pilih Tanggal :</label>
+
+                        <form action="<?= base_url() . "admin/laporan_rentang_hari/harian_report" ?>" method="post">
+                            <!-- <input type="text" name="awal" id="monthpicker" class="form-control mr-2" required> -->
+                            <div class="input-group mb-3">
+                                <input type="text" name="awal" id="tanggal_dari" required class="form-control" placeholder="Dari Tanggal . ." aria-label="Recipient's username" aria-describedby="button-addon2">
+                                <input type="text" name="akhir" id="tanggal_sampai" required class="form-control" placeholder="Sampai Tanggal . ." aria-label="Recipient's username" aria-describedby="button-addon2">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-warning" type="submit" id="button-addon2">Submit</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <head>
-        <?php
-        foreach ($data as $data) {
-            $tgl_transaksi[] = $data->tgl_transaksi;
-            $total_harga[] = (float) $data->total_harga;
-        }
-        ?>
-    </head>
+    <?php if (isset($data_harian)) { ?>
+        <div class="card mt-3">
+            <div class="card-body">
+                <canvas id="canvas" width="1000" height="280"></canvas>
 
-    <body>
+                <?php
+                    foreach ($data_harian as $data) {
+                        $tgl_transaksi[] = substr($data->tgl_transaksi, 0, 10);
+                        $total_harga[] = (float) $data->total_harga;
+                    }
+                    ?>
 
-        <canvas id="canvas" width="1000" height="280"></canvas>
+                <script type="text/javascript" src="<?php echo base_url() . 'assets/chartjs/chart.min.js' ?>"></script>
+                <script>
+                    var lineChartData = {
+                        labels: <?php echo json_encode($tgl_transaksi); ?>,
+                        datasets: [
 
-        <!--Load chart js-->
-        <script type="text/javascript" src="<?php echo base_url() . 'assets/chartjs/chart.min.js' ?>"></script>
-        <script>
-            var lineChartData = {
-                labels: <?php echo json_encode($tgl_transaksi); ?>,
-                datasets: [
+                            {
+                                fillColor: "#FFC300",
+                                strokeColor: "#FF9300",
+                                pointColor: "#FF0300",
+                                pointStrokeColor: "#fff",
+                                pointHighlightFill: "#fff",
+                                pointHighlightStroke: "rgba(152,235,239,1)",
+                                data: <?php echo json_encode($total_harga); ?>
+                            }
 
-                    {
-                        fillColor: "rgba(60,141,188,0.9)",
-                        strokeColor: "rgba(60,141,188,0.8)",
-                        pointColor: "#3b8bba",
-                        pointStrokeColor: "#fff",
-                        pointHighlightFill: "#fff",
-                        pointHighlightStroke: "rgba(152,235,239,1)",
-                        data: <?php echo json_encode($total_harga); ?>
+                        ]
+
                     }
 
-                ]
+                    var myLine = new Chart(document.getElementById("canvas").getContext("2d")).Line(lineChartData);
+                </script>
+            </div>
+        </div>
 
-            }
+        <div class="row card mt-3 mb-4 mx-1">
+            <div class="col card-body table-responsive">
+                <h2>Detail Transaksi</h2>
+                <div class="row">
+                    <div class="col-6">
+                        <a href="<?= base_url() . 'admin/laporan_rentang_hari/print_pdf_bulanan/' ?>" class="btn btn-sm btn-warning mb-2"><i class="fas fa-file-pdf fa-sm mr-2"></i>Cetak Pdf</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 col-sm-12">
+                        <table class="table table-bordered bg-white" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr class="text-center">
+                                    <th>No</th>
+                                    <th>Tanggal Transaksi</th>
+                                    <th>Total Harga</th>
+                                    <th>Total Berat (kg)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    $no = 1;
+                                    foreach ($data_harian as $dh) {
+                                        //$jenis = $this->db->query("SELECT nama_jenis_paket FROM jenis_paket WHERE id_jenis_paket = '$pk->id_jenis_paket'")->row();
+                                        ?>
+                                    <tr>
+                                        <td class="text-center"><?= $no++ ?></td>
+                                        <td class="text-center"><?= substr($dh->tgl_transaksi, 0, 10) ?></td>
+                                        <td class="text-right">Rp. <?= number_format($dh->total_harga, 0, ",", ".") ?></td>
+                                        <td class="text-right"><?= number_format((float) $dh->total_berat, 2, '.', '') ?></td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <h5 class="text-center">10 Customer Favorit</h5>
+                        <table class="table table-bordered bg-white" id="dataTable" width="100%" cellspacing="0">
+                            <thead>
+                                <tr class="text-center">
+                                    <th>Nama User</th>
+                                    <th>Total Berat (kg)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    $no = 1;
+                                    foreach ($data_berat as $brt) { ?>
+                                    <tr>
+                                        <td class="text-center"><?= $brt->nama_user ?></td>
+                                        <td class="text-right"><?= number_format((float) $brt->total_berat, 2, '.', '') ?></td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
-            var myLine = new Chart(document.getElementById("canvas").getContext("2d")).Line(lineChartData);
-        </script>
-    </body>
+            </div>
+        </div>
+</div>
+</div>
+</div>
+<?php } ?>
 
-    </html>
+</div>

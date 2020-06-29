@@ -89,7 +89,7 @@
                                 <tr class="text-center">
                                     <th>No</th>
                                     <th>Bulan</th>
-                                    <th>Total Haraga</th>
+                                    <th>Total Harga</th>
                                     <th>Total Berat (kg)</th>
                                 </tr>
                             </thead>

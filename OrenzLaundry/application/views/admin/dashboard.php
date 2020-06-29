@@ -17,7 +17,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Pendapatan per Bulan</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"> Rp. </div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"> Rp. <?= number_format($bulanan, 0, ',', '.'); ?> </div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -34,7 +34,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Pendapatan per Tahun</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">Rp.</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">Rp. <?= number_format($tahunan, 0, ',', '.'); ?></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -53,7 +53,7 @@
                       <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Pelanggan</div>
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?= $pelanggan; ?></div>
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?= number_format($pelanggan, 0, ',', '.'); ?></div>
                         </div>
                         
                       </div>
@@ -74,8 +74,8 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">History Transaksi</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800"> <?= $history; ?></div>
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Transaksi Hari Ini</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"> <?= number_format($history, 0, ',', '.'); ?></div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -95,7 +95,7 @@
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Grafik Pendapatan Minggu ini</h6>
+                  <h6 class="m-0 font-weight-bold text-ijo">Grafik Pendapatan Minggu ini</h6>
                   <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -118,6 +118,17 @@
               </div>
             </div>
 
+            <?php
+
+                foreach ($grafik as $data){
+          
+                  $tgl_transaksi[] = substr($data->tgl_transaksi, 0, 10);
+                  $total_harga[] = $data->total_harga;
+                }
+            
+
+              ?>
+
             <script src="<?=base_url()?>assets/admin/vendor/chart.js/Chart.min.js"></script>
             <script>
             // Set new default font family and font color to mimic Bootstrap's default styling
@@ -130,8 +141,8 @@
                 number = (number + '').replace(',', '').replace(' ', '');
                 var n = !isFinite(+number) ? 0 : +number,
                   prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
-                  sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
-                  dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+                  sep = (typeof thousands_sep === 'undefined') ? '.' : thousands_sep,
+                  dec = (typeof dec_point === 'undefined') ? ',' : dec_point,
                   s = '',
                   toFixedFix = function(n, prec) {
                     var k = Math.pow(10, prec);
@@ -154,22 +165,22 @@
                 type: 'line',
                 data: {
                   // ============ LABEL DIGANTI SESUAIKAN KEBUTUHAN (1 Minggu sebelumnya )==============
-                  labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                  labels: <?php echo json_encode($tgl_transaksi); ?>,
                   datasets: [{
-                    label: "Earnings",
+                    label: "Pendapatan",
                     lineTension: 0.3,
-                    backgroundColor: "rgba(78, 115, 223, 0.05)",
-                    borderColor: "rgba(78, 115, 223, 1)",
+                    backgroundColor: "rgba(255, 195, 0, 0.5)",
+                    borderColor: "rgba(255, 195, 0, 1)",
                     pointRadius: 3,
-                    pointBackgroundColor: "rgba(78, 115, 223, 1)",
-                    pointBorderColor: "rgba(78, 115, 223, 1)",
+                    pointBackgroundColor: "rgba(255, 3, 0, 1)",
+                    pointBorderColor: "rgba(255, 3, 0, 0.5)",
                     pointHoverRadius: 3,
-                    pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-                    pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+                    pointHoverBackgroundColor: "rgba(255, 100, 0, 1)",
+                    pointHoverBorderColor: "rgba(255, 100, 0, 1)",
                     pointHitRadius: 10,
                     pointBorderWidth: 2,
-                    // ==================== DATA DIGANTI SESUAIKAN DATA PENDAPATAN PER HARI SELAMA SEMINGGU ===========
-                    data: [0, 50000, 5000, 15000, 10000, 20000, 15000, 25000, 20000, 30000, 25000, 40000],
+                        // ==================== DATA DIGANTI SESUAIKAN DATA PENDAPATAN PER HARI SELAMA SEMINGGU ===========
+                    data: <?php echo json_encode($total_harga); ?>,
                   }],
                 },
                 options: {
@@ -201,7 +212,7 @@
                         padding: 10,
                         // Include a dollar sign in the ticks
                         callback: function(value, index, values) {
-                          return '$' + number_format(value);
+                          return 'Rp. ' + number_format(value);
                         }
                       },
                       gridLines: {
@@ -233,7 +244,7 @@
                     callbacks: {
                       label: function(tooltipItem, chart) {
                         var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-                        return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+                        return datasetLabel + ': Rp. ' + number_format(tooltipItem.yLabel);
                       }
                     }
                   }
@@ -246,7 +257,7 @@
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">5 Customer Tervaforit</h6>
+                  <h6 class="m-0 font-weight-bold text-ijo">5 Customer Tervaforit</h6>
                   <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -270,7 +281,15 @@
               </div>
             </div>
           </div>
+              <?php
 
+                foreach ($favorit as $data){
+                  $nama_user[] = $data->nama_user;
+                  $total_berat[] =  number_format((float)$data->total_berat, 2, '.', '');
+                }
+            
+
+              ?>
           <script>
             // Set new default font family and font color to mimic Bootstrap's default styling
             Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
@@ -282,13 +301,13 @@
               type: 'doughnut',
               data: {
                 // ============ LABEL DIGANTI 5 NAMA CUSTOMER TERFAVORIT ==============
-                labels: ["Direct", "Referral", "Social"],
+                labels: <?php echo json_encode($nama_user); ?>,
                 datasets: [{
                   // ============ DATA DIGANTI TOTAL BERAT CUCIAN MASING2 CUSTOMER TERFAVORIT ==============
-                  data: [11, 22, 77],
+                  data: <?php echo json_encode($total_berat); ?>,
                   // ============ WARNA DISESUAIKAN MENJADI 5 BUKAN 3 ======================
-                  backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
-                  hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
+                  backgroundColor: ['#669A00', '#80C000', '#C0C200','#FFC300', '#CC9500' ],
+                  hoverBackgroundColor: ['#FFC300', '#DFC200', '#C0C200', '#A0C100', '#80C000'],
                   hoverBorderColor: "rgba(234, 236, 244, 1)",
                 }],
               },
@@ -305,7 +324,15 @@
                   caretPadding: 10,
                 },
                 legend: {
-                  display: false
+                  display: true,
+                  position: "bottom",
+                  labels: {
+                    boxWidth: 30,
+                    fontStyle: 'bold'
+                  }
+                  //align: 'left'
+                  
+                
                 },
                 cutoutPercentage: 80,
               },

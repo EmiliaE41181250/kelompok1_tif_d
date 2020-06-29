@@ -78,4 +78,34 @@ class laporan_rentang_hari extends CI_Controller
             $this->load->view('templates/footer');
         }
     }
+
+    function harian_report()
+    {
+        if ($this->input->post('awal', 'akhir') != '') {
+
+            $awl = $this->input->post('awal');
+            $akr = $this->input->post('akhir');
+
+            $data['data_harian'] = $this->db->query("SELECT transaksi.tgl_transaksi, SUM(transaksi.total_harga) as total_harga, SUM(vtotalberat.total_berat) as total_berat 
+            FROM transaksi, vtotalberat 
+            WHERE transaksi.id_transaksi = vtotalberat.id_transaksi AND
+            transaksi.tgl_transaksi BETWEEN '$awl' AND '$akr' GROUP BY day(transaksi.tgl_transaksi) ORDER BY tgl_transaksi ASC")->result();
+            $data['data_berat'] = $this->db->query("SELECT user.nama_user, SUM(vtotalberat.total_berat) as total_berat FROM user, transaksi, vtotalberat
+            WHERE transaksi.id_user = user.id_user
+            AND transaksi.id_transaksi = vtotalberat.id_transaksi
+            AND transaksi.tgl_transaksi BETWEEN '$awl' AND '$akr'
+            GROUP BY user.nama_user
+            ORDER BY total_berat DESC
+            LIMIT 10")->result();
+            $this->load->view('templates/header');
+            $this->load->view('templates/sidebar');
+            $this->load->view('admin/laporan/v_rentang_hari', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $this->load->view('templates/header');
+            $this->load->view('templates/sidebar');
+            $this->load->view('admin/laporan/v_rentang_hari');
+            $this->load->view('templates/footer');
+        }
+    }
 }
