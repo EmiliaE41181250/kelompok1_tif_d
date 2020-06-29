@@ -23,7 +23,7 @@
 
                         <div class="form-group">
                             <label for="judul_promo">Alamat</label>
-                            <input value="<?= $adm->alamat ?>" type="text" name="alamat" id="alamat" class="form-control" placeholder="Masukkan Alamat Anda.." aria-describedby="Alamat" maxlength="100" required>
+                            <textarea name="alamat" id="alamat" rows="4" required class="form-control" placeholder="Masukkan Alamat Anda.." aria-describedby="Alamat" maxlength="100"><?= $adm->alamat ?></textarea>
                         </div>
 
                         <div class="form-group">
@@ -34,6 +34,20 @@
                         <div class="form-group">
                             <label for="judul_promo">No. Telp</label>
                             <input value="<?= $adm->no_telp ?>" type="text" name="no_telp" id="no_telp" class="form-control" placeholder="Masukkan Nama Anda.." aria-describedby="Nama" maxlength="100" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="judul_promo">Username</label>
+                            <input value="<?= $adm->username ?>" type="text" name="username" id="username" class="form-control" placeholder="Masukkan Nama Anda.." aria-describedby="Nama" maxlength="100" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="logo">Logo Orenz</label> <br>
+                            <img src="<?=base_url()?>assets/files/<?=$adm->logo?>" alt="Gambar <?=$adm->username?>" class="w-50 img-fluid img-rounded img-responsive mb-3" required>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" name="logo" id="logo">
+                                <label class="custom-file-label" for="logo">Masukkan Gambar berukuran 200 x 200 . .</label>
+                            </div>
                         </div>
 
                         <div class="form-group text-center">

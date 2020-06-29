@@ -234,38 +234,32 @@
         <div class="topbar-divider d-none d-sm-block"></div>
 
         <!-- Nav Item - User Information -->
-        <li class="nav-header">
-          <div class="dropdown profile-element mt-3">
-            <span>
-              <a onclick="gotohome('app/dashboard', 'Dashboard', 'Dashboard')">
-                <?php if ($this->session->userdata('foto') == '') : ?>
-                  <img src="<?= base_url('assets/files/gambar_customer/USR000000000002.jpeg'); ?>" class="img-circle mr-2" width="40" height="40" alt="Foto User">
-                <?php else : ?>
-                  <img alt="Foto User" class="img-circle" width="60" height="60" src="<?= base_url() ?>foto/<?= $this->session->userdata('foto'); ?>" />
-                <?php endif ?>
-              </a>
-            </span>
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-              <span class="clear">
-                <span class="block m-t-xs">
-                  <strong class="font-bold"><?= $this->session->userdata('nama'); ?></strong>
-                </span>
-                <span class="text-muted text-xs block"><?= $this->session->userdata('level'); ?><b class="caret"></b></span>
-                <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                  <li><a onclick="dashboard()"><i class="fa fa-dashboard"></i>&nbsp;Dashboard</a></li>
-                  <li><a onclick="my_profil()"><i class="fa fa-user"></i>&nbsp;Profile</a></li>
-                  <li><a onclick="ganti_password()"><i class="fa fa-refresh"></i>&nbsp;Ganti Password</a></li>
-                  <li class="divider"></li>
-                  <li>
-                    <a onclick="location.href='<?= base_url('users/logout') ?>'">
-                      <i class="fa fa-sign-out"></i> Log out
-                    </a>
-                  </li>
-                </ul>
-              </span>
+        <li class="nav-item dropdown no-arrow">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $this->session->userdata('nama'); ?></span>
+            <img class="img-profile rounded-circle" src="<?=base_url()?>assets/files/<?=$this->db->get_where('admin', array('id_admin' => $this->session->userdata('id_admin')))->row()->logo?>">
+          </a>
+          <!-- Dropdown - User Information -->
+          <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+            <a class="dropdown-item" href="<?=base_url('admin/c_transaksi')?>">
+              <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+              Transaksi
+            </a>
+            <a class="dropdown-item" href="<?=base_url('admin/c_pesan')?>">
+              <i class="fas fa-comments fa-sm fa-fw mr-2 text-gray-400"></i>
+              Pesan
+            </a>
+            <a class="dropdown-item" href="<?=base_url('admin/login/reset_pass_view')?>">
+              <i class="fas fa-lock fa-sm fa-fw mr-2 text-gray-400"></i>
+              Reset Password
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+              <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+              Logout
             </a>
           </div>
-
+        </li>
       </ul>
 
     </nav>

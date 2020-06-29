@@ -18,9 +18,6 @@
         <div class="col-6">
             <button class="btn btn-sm btn-ijo mb-2" data-toggle="modal" data-target="#tambah_barang"><i class="fas fa-plus fa-sm mr-2"></i>Tambah Jenis Paket</button>
         </div>
-        <div class="col-6 text-right">
-            <a class="btn btn-sm btn-warning mb-2" href="<?= base_url() ?>admin/v_jenispaket"><i class="fas fa-file-pdf fa-sm mr-2"></i>Cetak Pdf</a>
-        </div>
     </div>
 
     <?php echo $this->session->flashdata('pesan'); ?>

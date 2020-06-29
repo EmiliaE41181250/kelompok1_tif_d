@@ -19,6 +19,12 @@ class M_login extends CI_Model{
     return $response;
 	}
 
+	public function reset_pass($password, $id_admin)
+	{
+		$where = array('id_admin' => $id_admin);
+		return $this->db->update('admin', array('password' => md5($password)));
+	}
+
 	public function all_login(){
 
     $all = $this->db->get("user")->result();

@@ -18,9 +18,6 @@
       <div class="col-6">
         <button class="btn btn-sm btn-ijo mb-2" data-toggle="modal" data-target="#tambah_barang"><i class="fas fa-plus fa-sm mr-2"></i>Tambah Paket</button>
       </div>
-      <div class="col-6 text-right">
-        <a class="btn btn-sm btn-warning mb-2" href="<?=base_url()?>admin/C_paket"><i class="fas fa-file-pdf fa-sm mr-2"></i>Cetak Pdf</a>
-      </div>
     </div>
     
     <?php echo $this->session->flashdata('pesan');?>
@@ -54,11 +51,11 @@
             </td>
             <td class="text-center">
                 <?php echo anchor('admin/C_paket/detail/' . $pk->id_paket, '
-                <div class="btn btn-info btn-sm mr-2 pr-3 pl-3"><i class="fa fa-info"></i></div>')?>
+                <div class="btn mb-2 btn-info btn-sm mr-2 pr-3 pl-3"><i class="fa fa-info"></i></div>')?>
                 <?php echo anchor('admin/C_paket/edit/' . $pk->id_paket, '
-                <div class="btn btn-primary btn-sm mr-2"><i class="fa fa-edit"></i></div>')?>
+                <div class="btn mb-2 btn-primary btn-sm mr-2"><i class="fa fa-edit"></i></div>')?>
                 <?php echo anchor('admin/C_paket/destroy/' . $pk->id_paket, '
-                <div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></div>')?>
+                <div class="btn mb-2 btn-danger btn-sm"><i class="fa fa-trash"></i></div>')?>
                 
               </td>
           </tr>

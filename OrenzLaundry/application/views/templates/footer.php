@@ -29,7 +29,7 @@
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-body">Apakah anda yakin ingin keluar?.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
           <a class="btn btn-primary" href="<?=base_url('admin/login/logout')?>">Logout</a>
@@ -59,7 +59,7 @@
   <script src="<?=base_url()?>assets/admin/js/demo/datatables-demo.js"></script>
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
-
+  <script src="<?=base_url()?>assets/admin/js/custom.js"></script>
   <!-- Page level custom scripts -->
   <!-- <script src="<?php //base_url()?>assets/admin/js/demo/chart-area-demo.js"></script>
   <script src="<?php //base_url()?>assets/admin/js/demo/chart-pie-demo.js"></script> -->

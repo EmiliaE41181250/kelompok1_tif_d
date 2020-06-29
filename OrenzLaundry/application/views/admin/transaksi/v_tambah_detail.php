@@ -21,19 +21,19 @@
                 <select name="id_paket" id="nama_paket" class="selectpicker form-control mb-3" data-live-search="true" placeholder="Masukkan Jenis Paket . ." aria-describedby="formPaket">
                   <option value=""> Please select </option>
                   <?php foreach ($paket as $pk ) { ?>
-                  <option value="<?=$pk->id_paket?>"><?=$pk->nama_paket?> => Harga Rp. <?=$pk->harga?></option>
+                  <option value="<?=$pk->id_paket?>" harga="<?=$pk->harga?>"><?=$pk->nama_paket?> => Harga Rp. <?=$pk->harga?></option>
                   <?php }?>
                 </select>
             </div>
 
             <div class="form-group">
               <label for="berat">Berat</label>
-              <input value="" type="number" min="0" step=".0001" name="berat" id="berat" class="form-control w-50" placeholder="Masukkan Berat Cucian . ." aria-describedby="Berat" required>
+              <input value="" type="number" min="0" step=".0001" name="berat" id="berat_tambah" class="form-control w-50" placeholder="Masukkan Berat Cucian . ." aria-describedby="Berat" required>
             </div>
 
             <div class="form-group">
               <label for="sub_total">Sub Total</label>
-              <input value="" type="number" min="0" name="sub_total" id="sub_total" class="form-control w-50" placeholder="Masukkan Sub Total Harga . ." aria-describedby="SubTotal" required>
+              <input readonly value="" type="number" min="0" name="sub_total" id="sub_total" class="form-control w-50" placeholder="Masukkan Sub Total Harga . ." aria-describedby="SubTotal" required>
             </div>
 
             <div class="form-group text-center">
@@ -46,9 +46,3 @@
       </div>
     </div>
   </div>
-
-  <script>
-    $(function() {
-      $('.selectpicker').selectpicker();
-    });
-  </script>

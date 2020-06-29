@@ -15,9 +15,6 @@
       <div class="col-6">
         <button class="btn btn-sm btn-ijo mb-2" data-toggle="modal" data-target="#tambah_barang"><i class="fas fa-plus fa-sm mr-2"></i>Tambah Barang</button>
       </div>
-      <div class="col-6 text-right">
-        <a class="btn btn-sm btn-warning mb-2" href="<?=base_url()?>admin/promo/pdf"><i class="fas fa-file-pdf fa-sm mr-2"></i>Cetak Pdf</a>
-      </div>
     </div>
 
     <?php echo $this->session->flashdata('pesan');?>
@@ -29,8 +26,6 @@
               <th>NO</th>
               <th>JUDUL PROMO</th>
               <th>DISKON</th>
-              <th>AWAL</th>
-              <th>AKHIR</th>
               <th>KODE</th>
               <th>STATUS</th>
               <th>AKSI</th>
@@ -45,8 +40,6 @@
               <td><?=$no++?></td>
               <td><?=$prm->judul_promo?></td>
               <td><?=$prm->jumlah?>%</td>
-              <td><?=substr($prm->awal, 0, 10)?></td>
-              <td><?=substr($prm->akhir, 0, 10)?></td>
               <td><?=$prm->kode?></td>
               <td class="text-center">
                 <?php if($prm->status == "Aktif"){?>

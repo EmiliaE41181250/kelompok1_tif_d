@@ -96,7 +96,7 @@ class User extends CI_Controller
     // merekam id sebagai parameter where saat update
     $where = array('id_user' => $this->input->post('id_user'));
     // menentukan siapa dan kapan baris data ini diperbarui
-    $updated_by = "admin";
+    $updated_by = $this->input->post('id_user');
     $updated_at = date('Y-m-d H:i:s');
 
     //masukkan data yg akan di update ke dalam variabel data
@@ -109,8 +109,8 @@ class User extends CI_Controller
       'email' => $this->input->post('email'),
       'status' => $this->input->post('status'),
       'updated_by' => $updated_by,
-      'updated_at' => $updated_at
-
+      'updated_at' => $updated_at,
+      'saldo' => $this->input->post('saldo')
     );
 
     // menjalankan method update pada m_data_user

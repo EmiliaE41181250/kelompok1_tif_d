@@ -79,7 +79,7 @@
                         <h1 class="title wow fadeInDown">Make cool landing with appside</h1>
                         <p>Appside is the best app landing page which will help you showcase your business, lifestyle, social, or shopping app in the best possible manner.</p>
                         <div class="btn-wrapper wow fadeInUp">
-                            <a href="#" class="boxed-btn btn-rounded blank">Learn More</a>
+                            <a href="#mobile" class="boxed-btn btn-rounded blank">Learn More</a>
                         </div>
                     </div>
                 </div>
@@ -273,7 +273,7 @@
                     </div><!-- //.single screenshort item -->
                 </div>
                 <div class="btn-wrapper wow fadeInUp">
-                    <a href="#" class="boxed-btn btn-rounded">Download now</a>
+                    <a href="#" id="download" class="boxed-btn btn-rounded">Download now</a>
                 </div><!-- //. screenshort carousel -->
             </div>
         </div>

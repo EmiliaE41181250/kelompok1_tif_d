@@ -45,30 +45,70 @@ class C_saya extends CI_Controller
         $updated_by = "admin";
         $updated_at = date('Y-m-d H:i:s');
 
-        //masukkan data yg akan di update ke dalam variabel data
-        $data = array(
-            'nama_admin' => $this->input->post('nama_admin'),
-            'alamat' => $this->input->post('alamat'),
-            'no_hp' => $this->input->post('no_hp'),
-            'no_telp' => $this->input->post('no_telp'),
+        if ($_FILES['logo']['name'] != null) {
+            $logo = $_FILES['logo']['name'];
 
-            'updated_by' => $updated_by,
-            'updated_at' => $updated_at
+            if ($logo != '') {
+                redirect('admin/c_saya');
+            }else{
+                $config['upload_path'] = './assets/files/';
+                $config['allowed_types'] = 'jpg|jpeg|png';
+                $config['max_size'] = '3024';
+                $config['overwrite'] = true;
+                $config['file_name'] = $this->db->get_where('admin', $where)->row()->logo;
 
-        );
+                $this->load->library('upload', $config);
+                
+                if (!$this->upload->do_upload('logo'))
+                {
+                    redirect('admin/c_saya/edit/'. $this->input->post('id_admin'));
+                }
+                else
+                {
+                    $logo = $this->upload->data('file_name');
+                }
+            }
+
+            $data = array(
+                'nama_admin' => $this->input->post('nama_admin'),
+                'alamat' => $this->input->post('alamat'),
+                'no_hp' => $this->input->post('no_hp'),
+                'no_telp' => $this->input->post('no_telp'),
+                'username' => $this->input->post('admin'),
+                'logo' => $logo,
+    
+                'updated_by' => $updated_by,
+                'updated_at' => $updated_at
+    
+            );
+        }else{
+
+            //masukkan data yg akan di update ke dalam variabel data
+            $data = array(
+                'nama_admin' => $this->input->post('nama_admin'),
+                'alamat' => $this->input->post('alamat'),
+                'no_hp' => $this->input->post('no_hp'),
+                'no_telp' => $this->input->post('no_telp'),
+                'username' => $this->input->post('admin'),
+
+                'updated_by' => $updated_by,
+                'updated_at' => $updated_at
+
+            );
+        }
 
         // menjalankan method update pada m_data_saya
         $this->m_data_saya->update($where, $data, 'admin');
 
         // mengirim pesan berhasil update data
         $this->session->set_flashdata('pesan', '
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-      Anda <strong>berhasil</strong> mengubah profil.
-      <button type="button" class="close py-auto" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    ');
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+        Anda <strong>berhasil</strong> mengubah profil.
+        <button type="button" class="close py-auto" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        ');
         // mengarahkan ke halaman tabel admin
         redirect('admin/C_saya');
     }
