@@ -57,7 +57,20 @@
   <!-- <script src="<?php //base_url()?>assets/admin/js/demo/chart-area-demo.js"></script>
   <script src="<?php //base_url()?>assets/admin/js/demo/chart-pie-demo.js"></script> -->
 
-  
+  <script>
+    $("#tanggal_dari").datepicker({
+      format: "yyyy-mm-dd",
+      startView: "days", 
+      minViewMode: "days"
+    });
+
+    $("#tanggal_sampai").datepicker({
+      format: "yyyy-mm-dd",
+      startView: "days", 
+      minViewMode: "days"
+    });
+  </script>
+
   <script>
     $("#monthpicker").datepicker({
       format: "yyyy-mm",
