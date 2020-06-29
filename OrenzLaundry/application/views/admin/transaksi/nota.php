@@ -64,12 +64,12 @@
   <table width="100%">
     <tr>
       <th>No</th>
-      <th>Judul</th>
-      <th>Deskripsi</th>
-      <th>Diskon</th>
-      <th>Awal</th>
-      <th>Akhir</th>
-      <th>Status</th>
+      <th>Nama Customer</th>
+      <th>Tanggal dan Waktu</th>
+      <th>Paket</th>
+      <th>Berat</th>
+      <th>Harga</th>
+      <th>Total</th>
     </tr>
     
     <?php 
