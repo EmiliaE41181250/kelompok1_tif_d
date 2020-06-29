@@ -216,9 +216,9 @@ class C_transaksi extends CI_Controller {
     {
       $this->load->library('dompdf_gen');
   
-      $data['promo'] = $this->m_transaksi->getAll('promo')->result();
+      $data['transaksi'] = $this->m_transaksi->getAll('transaksi')->result();
   
-      $this->load->view('admin/transaksi/laporan_pdf', $data);
+      $this->load->view('admin/transaksi/nota', $data);
   
       $paper_size = 'A4';
       $oriantation = 'landscape';
