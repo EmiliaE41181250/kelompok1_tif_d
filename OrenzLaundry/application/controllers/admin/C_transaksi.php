@@ -212,6 +212,23 @@ class C_transaksi extends CI_Controller {
       redirect('admin/c_transaksi/edit/' . $id_trs);
     }
 
+    public function nota()
+    {
+      $this->load->library('dompdf_gen');
+  
+      $data['promo'] = $this->m_transaksi->getAll('promo')->result();
+  
+      $this->load->view('admin/transaksi/laporan_pdf', $data);
+  
+      $paper_size = 'A4';
+      $oriantation = 'landscape';
+      $html = $this->output->get_output();
+      $this->dompdf->set_paper($paper_size, $oriantation);
+  
+      $this->dompdf->load_html($html);
+      $this->dompdf->render();
+      $this->dompdf->stream("laporan_promo_".date('Y-m-d_H-i-s').".pdf", array('Attachment' => 0));
+    }
         
 
     }
