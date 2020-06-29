@@ -69,12 +69,16 @@
       <th>Paket</th>
       <th>Berat</th>
       <th>Harga</th>
-      <th>Total</th>
+      <th>Total Harga</th>
+      <th>Diskon</th>
+      <th>Tanggal Jemput</th>
+      <th>Total Antar</th>
     </tr>
     
     <?php 
     $no = 1;
-    foreach ($promo as $prm) { ?>
+    foreach ($transaksi as $trns) 
+    foreach ($detail as $dt) { ?>
 
         <tr style="text-align:center;">
           <td><?=$no++?></td>
