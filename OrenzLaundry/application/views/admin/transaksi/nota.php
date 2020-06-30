@@ -64,7 +64,6 @@
   <table width="100%">
     <tr>
       <th>No</th>
-      <th>Nama Customer</th>
       <th>Tanggal dan Waktu</th>
       <th>Paket</th>
       <th>Berat</th>
@@ -74,25 +73,26 @@
       <th>Tanggal Jemput</th>
       <th>Total Antar</th>
     </tr>
-    
+
     <?php 
     $no = 1;
-    foreach ($transaksi as $trns) 
-    foreach ($detail as $dt) { ?>
+    foreach ($transaksi as $trns) { ?>
 
         <tr style="text-align:center;">
           <td><?=$no++?></td>
-          <td style="text-align:left;"><?=$prm->judul_promo?></td>
-          <td style="text-align:justify;"><?=$prm->deskripsi?></td>
-          <td><?=$prm->jumlah?>%</td>
-          <td><?=$prm->awal?></td>
-          <td><?=$prm->akhir?></td>
-          <td><?=$prm->status?></td>
+          <td style="text-align:justify;"><?=$trns->tgl_transaksi?></td>
+          <td><?=$dt->nama_paket?>%</td>
+          <td><?=$dt->berat?></td>
+          <td><?=$dt->harga?></td>
+          <td><?=$dt->total_harga?></td>
+          <td><?=$dt->diskon?></td>
+          <td><?=$trns->tgl_jemput?></td>
+          <td><?=$trns->tanggall_antar?></td>
         </tr>
 
     <?php }?>
     
   </table>
 </div>
-  
-</body></html>
+</body>
+</html>
