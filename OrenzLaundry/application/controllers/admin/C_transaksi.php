@@ -19,6 +19,7 @@ class C_transaksi extends CI_Controller {
       $data['promo'] = $this->m_transaksi->getAll('promo')->result();
       $data['admin'] = $this->m_transaksi->getAll('admin')->result();
       $data['paket'] = $this->m_transaksi->getAll('paket')->result();
+      $this->db->order_by('tgl_transaksi', 'DESC');
       $data['transaksi'] = $this->m_transaksi->getAll('transaksi')->result();
 
       $this->load->view('templates/header');
@@ -167,8 +168,8 @@ class C_transaksi extends CI_Controller {
         $this->load->library('primslib');
         $datatoken = $this->db->get_where('user', array('id_user' => $id_user));
         $tokenM = $datatoken->row()->device_token;
-        $title = "Cucian siap diantarkan! Mohon tentukan lokasi.";
-        $message = "Cucian anda telah bersih nih! segera tentukan lokasi dan kami akan meluncur ketempat anda.";
+        $title = "Hai! Pesanan cucian Anda siap diantarkan, ";
+        $message = "mohon atur lokasi Anda dan siapkan biaya tagihan untuk transaksi.";
         $payload = array('intent' => 'notifikasi');
         print_r($this->primslib->SendNotification($tokenM, $title, $message, $payload));
         print_r($message);
@@ -181,8 +182,8 @@ class C_transaksi extends CI_Controller {
         $this->load->library('primslib');
         $datatoken = $this->db->get_where('user', array('id_user' => $id_user));
         $tokenM = $datatoken->row()->device_token;
-        $title = "Sortir cucian selesai, mohon konfirmasi untuk melanjutkan.";
-        $message = "Kami telah melakukan sortir, detail transaksi telah diperbarui. Mungkin ada perubahan.. Cek dulu ya, semoga harganya cocok ";
+        $title = "Yuk, konfirmasi pesanan cucian Anda sekarang!";
+        $message = " ";
         $payload = array('intent' => 'notifikasi');
         print_r($this->primslib->SendNotification($tokenM, $title, $message, $payload));
         print_r($message);
