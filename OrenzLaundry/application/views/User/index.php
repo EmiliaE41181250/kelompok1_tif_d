@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noarchive">
-    <title> Appside | App Landing pages HTML Templates </title>
+    <title> Orenz Laundry</title>
     <!-- favicon -->
     <link rel="shortcut icon" href="<?=base_url()?>favicon.ico" type="image/x-icon">
     <!-- bootstrap -->
@@ -49,15 +49,10 @@
                         <a href="#">Home</a>
                     </li>
                     <li><a href="#about">About</a></li>
-                    <li><a href="#pricing">Pricing</a></li>
-                    <li><a href="#team">Team</a></li>
-                    <li class="menu-item-has-children">
-                        <a href="#">Blog</a>
-                        <ul class="sub-menu">
-                            <li><a href="blog.html">Blog 01</a></li>
-                            <li><a href="blog-details.html">Blog Details</a></li>
-                        </ul>
-                    </li>
+                    <li><a href="#fitur">Fitur</a></li>
+                    <li><a href="#mobile">Interface</a></li>
+                    
+                    
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
@@ -76,10 +71,10 @@
             <div class="row">
                 <div class="col-lg-7">
                     <div class="header-inner">
-                        <h1 class="title wow fadeInDown">Make cool landing with appside</h1>
-                        <p>Appside is the best app landing page which will help you showcase your business, lifestyle, social, or shopping app in the best possible manner.</p>
+                        <h1 class="title wow fadeInDown">Orenz Laundry Mobile App</h1>
+                        <p>Layanan kami menyediakan aplikasi mobile yang akan mempermudah Customer dalam melakukan pesanan cucian.</p>
                         <div class="btn-wrapper wow fadeInUp">
-                            <a href="#mobile" class="boxed-btn btn-rounded blank">Learn More</a>
+                            <a href="#mobile" class="boxed-btn btn-rounded blank">Selebihnya</a>
                         </div>
                     </div>
                 </div>
@@ -90,13 +85,13 @@
 
 <!-- about us area start -->
 
-<section class="about-us-area">
+<section class="about-us-area" id="about">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-10">
                 <div class="section-title"><!-- section title -->
-                    <span class="subtitle">About Appside</span>
-                    <h3 class="title extra">Bulit for everybody with unlimited unique features</h3>
+                    <span class="subtitle">Tentang Layanan Kami</span>
+                    <h3 class="title extra">Cukup dengan smartphone, Anda bisa menggunakan layanan dalam Orenz Laundry</h3>
                     <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolor  tempor incididunt ut labore dolore magna.</p>
                 </div><!-- //. section title -->
             </div>
@@ -162,7 +157,7 @@
 <!-- counterup area end -->
 
 <!-- why choose area start -->
-<section class="why-choose-area why-choose-us-bg">
+<section class="why-choose-area why-choose-us-bg" id="fitur">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-10">
@@ -352,10 +347,10 @@
                 <div class="col-lg-12">
                     <div class="copyright-inner"><!-- copyright inner wrapper -->
                         <div class="left-content-area"><!-- left content area -->
-                            &copy; Copyrights 2019 Appside All rights reserved.
+                            &copy; Copyrights 2020 Orenz Laundry.
                         </div><!-- //. left content aera -->
                         <div class="right-content-area"><!-- right content area -->
-                            Designed by <strong>Love</strong>
+                            Designed by <strong>Kelompok1_TIFD</strong>
                         </div><!-- //. right content area -->
                     </div><!-- //.copyright inner wrapper -->
                 </div>
