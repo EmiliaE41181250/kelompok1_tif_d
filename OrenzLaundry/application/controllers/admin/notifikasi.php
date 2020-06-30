@@ -43,11 +43,12 @@ class notifikasi extends CI_Controller
 
     public function fetch_notif()
     {
+        $output = '';
         if($this->input->post('view') == ''){
             $data_row = $this->db->get('vFetchNotif')->row();
             $data_result = $this->db->get('vFetchNotif')->result();
             // print_r($data_result);
-            $output = '';
+            
 
             foreach ($data_result as $result ) {
                 if($result->notif_admin == 0){
