@@ -48,7 +48,7 @@
                             </td>
                             <td class="text-center">
                             <a href="<?=base_url('admin/C_durasipaket/edit/' . $ip->id_durasi)?>" 
-                            class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                            class="btn btn-primary mb-2 btn-sm"><i class="fa fa-edit"></i></a>
                             <a onclick="return confirm('Apakah anda yakin ingin menghapus item ini ?');" href="<?=base_url('admin/C_durasipaket/destroy/' . $ip->id_durasi)?>" 
                             class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
 
@@ -74,12 +74,12 @@
                 <div class="modal-body">
                   <div class="form-group">
                     <label for="durasi_paket">Durasi Paket</label>
-                     <input type="text" name="durasi_paket" id="durasi_paket" class="form-control" placeholder="Masukkan Durasi Paket . ." aria-describedby="durasipaket" maxlength="100">
+                     <input required type="text" name="durasi_paket" id="durasi_paket" class="form-control" placeholder="Masukkan Durasi Paket . ." aria-describedby="durasipaket" maxlength="100">
                     <small id="durasipaket" class="text-muted">Masukkan Nama Paket tidak lebih dari 100 Karakter</small>
                   </div>
                   <div class="form-group w-50">
                     <label for="status">Status Durasi</label>
-                    <select class="form-control" name="status" id="status">
+                    <select required class="form-control" name="status" id="status">
                     <option value="">Pilih Status Durasi :</option>
                     <option value="Aktif">Aktif</option>
                     <option value="Draft">Draft</option>

@@ -180,7 +180,7 @@
                 <h2>Detail Transaksi</h2>
                 <div class="row">
                     <div class="col-6">
-                        <a href="<?= base_url() . 'admin/laporan_rentang_hari/print_pdf_bulanan/' ?>" class="btn btn-sm btn-warning mb-2"><i class="fas fa-file-pdf fa-sm mr-2"></i>Cetak Pdf</a>
+                        <a href="<?= base_url() . 'admin/laporan_rentang_hari/print_pdf_tahunan/' . $hasil_cari ?>" class="btn btn-sm btn-warning mb-2"><i class="fas fa-file-pdf fa-sm mr-2"></i>Cetak Pdf</a>
                     </div>
                 </div>
                 <div class="row">

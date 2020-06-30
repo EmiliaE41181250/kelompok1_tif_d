@@ -25,12 +25,12 @@
       <div class="modal-body">
         <div class="form-group">
           <label for="durasi_paket">Durasi</label>
-          <input value="<?=$ip->durasi_paket?>" type="text" name="durasi_paket" id="durasi_paket" class="form-control" placeholder="Masukkan Durasi paket . ." aria-describedby="durasipaket" maxlength="100">
+          <input required value="<?=$ip->durasi_paket?>" type="text" name="durasi_paket" id="durasi_paket" class="form-control" placeholder="Masukkan Durasi paket . ." aria-describedby="durasipaket" maxlength="100">
           <small id="durasi_paket" class="text-muted">Masukkan Durasi Paket</small>
         </div>
         <div class="form-group w-50">
           <label for="status">Status Durasi</label>
-          <select class="form-control" name="status" id="status">
+          <select required class="form-control" name="status" id="status">
             <option value="">Pilih Status Paket :</option>
             <option value="Aktif" <?=$ip->status == "Aktif" ? "selected" : ""?>>Aktif</option>
             <option value="Draft" <?=$ip->status == "Draft" ? "selected" : ""?>>Draft</option>

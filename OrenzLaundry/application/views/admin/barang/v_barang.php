@@ -48,7 +48,7 @@
                             </td>
                             <td class="text-center">
                                 <?php echo anchor('admin/C_barang/edit/' . $brg->id_barang, '
-                                <div class="btn btn-primary btn-sm mr-2"><i class="fa fa-edit"></i></div>') ?>
+                                <div class="btn btn-primary btn-sm mb-2 mr-2"><i class="fa fa-edit"></i></div>') ?>
                                 <?php echo anchor('admin/C_barang/destroy/' . $brg->id_barang, '
                                 <div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></div>') ?>
 
@@ -74,12 +74,12 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="nama_barang">Barang</label>
-                        <input type="text" name="nama_barang" id="nama_barang" class="form-control" placeholder="Masukkan Nama Barang . ." aria-describedby="namabarang" maxlength="100">
+                        <input required type="text" name="nama_barang" id="nama_barang" class="form-control" placeholder="Masukkan Nama Barang . ." aria-describedby="namabarang" maxlength="100">
                         <small id="namabarang" class="text-muted">Masukkan Nama Barang tidak lebih dari 100 Karakter</small>
                     </div>
                     <div class="form-group w-50">
                         <label for="status">Status Barang</label>
-                        <select class="form-control" name="status" id="status">
+                        <select required class="form-control" name="status" id="status">
                         <option value="">Pilih Status Barang :</option>
                         <option value="Aktif">Aktif</option>
                         <option value="Draft">Draft</option>
