@@ -19,7 +19,7 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="nama_paket">Nama Jenis Paket</label>
-                                <input value="<?= $jp->nama_jenis_paket ?>" type="text" name="nama_jenis_paket" id="nama_jenis_paket" class="form-control" placeholder="Masukkan Nama Jenis Paket . ." aria-describedby="namajenispaket" maxlength="100">
+                                <input required value="<?= $jp->nama_jenis_paket ?>" type="text" name="nama_jenis_paket" id="nama_jenis_paket" class="form-control" placeholder="Masukkan Nama Jenis Paket . ." aria-describedby="namajenispaket" maxlength="100">
                                 <small id="namajenispaket" class="text-muted">Masukkan Nama Jenis Paket tidak lebih dari 100 Karakter</small>
                             </div>
                         </div>

@@ -48,11 +48,11 @@
                             </td>
                             <td class="text-center">
                                 <?php echo anchor('admin/User/detail/' . $usr->id_user, '
-                <div class="btn btn-info btn-sm mr-2 pr-3 pl-3"><i class="fa fa-info"></i></div>') ?>
+                <div class="btn btn-info btn-sm mb-2 mr-2 pr-3 pl-3"><i class="fa fa-info"></i></div>') ?>
                                 <?php echo anchor('admin/User/edit/' . $usr->id_user, '
-                <div class="btn btn-primary btn-sm mr-2"><i class="fa fa-edit"></i></div>') ?>
+                <div class="btn btn-primary btn-sm mb-2 mr-2"><i class="fa fa-edit"></i></div>') ?>
                                 <?php echo anchor('admin/User/destroy/' . $usr->id_user, '
-                <div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></div>') ?>
+                <div class="btn btn-danger mb-2 btn-sm"><i class="fa fa-trash"></i></div>') ?>
 
                             </td>
                         </tr>

@@ -42,9 +42,9 @@
                             <td class="text-center">
 
                                 <?php echo anchor('admin/C_jenispaket/edit/' . $jp->id_jenis_paket, '
-                <div class="btn btn-primary btn-sm mr-2"><i class="fa fa-edit"></i></div>') ?>
+                <div class="btn btn-primary mb-2 btn-sm mr-2"><i class="fa fa-edit"></i></div>') ?>
                                 <?php echo anchor('admin/C_jenispaket/destroy/' . $jp->id_jenis_paket, '
-                <div class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></div>') ?>
+                <div class="btn btn-danger mb-2 btn-sm"><i class="fa fa-trash"></i></div>') ?>
 
                             </td>
                         </tr>
@@ -68,7 +68,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="nama_jenis_paket">Jenis Paket</label>
-                        <input type="text" name="nama_jenis_paket" id="nama_jenis_paket" class="form-control" placeholder="Masukkan Nama Jenis Paket . ." aria-describedby="namajenispaket" maxlength="100">
+                        <input required type="text" name="nama_jenis_paket" id="nama_jenis_paket" class="form-control" placeholder="Masukkan Nama Jenis Paket . ." aria-describedby="namajenispaket" maxlength="100">
                         <small id="namajenispaket" class="text-muted">Masukkan Nama jenis Paket tidak lebih dari 100 Karakter</small>
                     </div>
 

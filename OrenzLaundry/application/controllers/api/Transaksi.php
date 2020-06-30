@@ -82,16 +82,7 @@ class Transaksi extends REST_Controller {
 
     $response = $this->m_notif->updateantartrsmobile($dataTrs, $where);
     if ($response['data']==true) {
-      $this->response($response);
-
-      // kirim notif ke HP
-      $datatoken = $this->db->get_where('user', array('id_user' => $id_user));
-      $tokenM = $datatoken->row()->device_token;
-      $title = "Transaksi anda berhasil dilakukan!";
-      $message = "Tunggu sebentar, kami akan menjemput cucian ke lokasi anda sesuai jadwal!";
-      $payload = array('intent' => 'notifikasi');
-      $firebase = $this->primslib->SendNotification($tokenM, $title, $message, $payload);
-      $response['firebase']=$firebase;
+        $this->response($response);
     }else{
         $response['status']=502;
         $response['error']=true;
@@ -129,6 +120,12 @@ class Transaksi extends REST_Controller {
     $catatan = "";
 
     $harga = $this->db->get_where('paket', array('id_paket' => $id_paket))->row()->harga;
+
+    if($id_promo != 'PRM000000000001'){
+      $diskon = $this->db->query("SELECT jumlah FROM promo WHERE id_promo = '$id_promo'")->row()->jumlah;
+      $diskon = ($diskon/100) * $harga;
+      $harga = $harga - $diskon;
+    }
     
     $dataTrs = array("id_transaksi" => $id,
                       "id_user" => $id_user,

@@ -93,6 +93,13 @@ class C_transaksi extends CI_Controller {
       $this->m_transaksi->insert($data, 'detail_transaksi');
 
       $total = $this->db->query("SELECT sum(sub_total) as total FROM detail_transaksi WHERE id_transaksi = '$id_trs'")->row()->total;
+      $id_promo = $this->db->query("SELECT * FROM transaksi WHERE id_transaksi = '$id_trs'")->row()->id_promo;
+
+      if($id_promo != 'PRM000000000001'){
+        $diskon = $this->db->query("SELECT jumlah FROM promo WHERE id_promo = '$id_promo'")->row()->jumlah;
+        $diskon = ($diskon/100) * $total;
+        $total = $total - $diskon;
+      }
 
       $where = array('id_transaksi' => $id_trs);
       $set = array('total_harga' => $total);
@@ -122,6 +129,13 @@ class C_transaksi extends CI_Controller {
       $this->m_transaksi->update($where, $data, 'detail_transaksi');
 
       $total = $this->db->query("SELECT sum(sub_total) as total FROM detail_transaksi WHERE id_transaksi = '$id_trs'")->row()->total;
+      $id_promo = $this->db->query("SELECT * FROM transaksi WHERE id_transaksi = '$id_trs'")->row()->id_promo;
+
+      if($id_promo != 'PRM000000000001'){
+        $diskon = $this->db->query("SELECT jumlah FROM promo WHERE id_promo = '$id_promo'")->row()->jumlah;
+        $diskon = ($diskon/100) * $total;
+        $total = $total - $diskon;
+      }
 
       $where = array('id_transaksi' => $id_trs);
       $set = array('total_harga' => $total);
@@ -172,6 +186,37 @@ class C_transaksi extends CI_Controller {
         $payload = array('intent' => 'notifikasi');
         print_r($this->primslib->SendNotification($tokenM, $title, $message, $payload));
         print_r($message);
+      }else if($this->input->post('status') == 5){
+        
+        $id_user = $this->db->get_where('transaksi', $where)->row()->id_user;
+        $total = $this->db->get_where('transaksi', $where)->row()->total_harga;
+        $saldo =  $this->db->get_where('user', array('id_user' => $id_user))->row()->saldo;
+
+        $saldo_baru = $saldo - $total;
+
+        if($saldo_baru >= 0){
+          $set = array('saldo' => $saldo_baru);
+          $this->db->where(array('id_user' => $id_user));
+          $this->db->update('user', $set);
+          $this->session->set_flashdata('pesan_saldo', '
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Berhasil menggunakan saldo!
+            <button type="button" class="close py-auto" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          ');
+
+        }else{
+          $this->session->set_flashdata('pesan_saldo', '
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Saldo tidak cukup!
+            <button type="button" class="close py-auto" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          ');
+        }
       }
 
       $this->session->set_flashdata('pesan_trs', '
@@ -236,6 +281,27 @@ class C_transaksi extends CI_Controller {
 
     public function cetak($id) {
       $data = array(
+    public function cetak_pdf()
+    {
+      $this->load->library('dompdf_gen');
+
+      $data['user'] = $this->m_transaksi->getAll('user')->result();
+      $data['promo'] = $this->m_transaksi->getAll('promo')->result();
+      $data['admin'] = $this->m_transaksi->getAll('admin')->result();
+      $data['paket'] = $this->m_transaksi->getAll('paket')->result();
+      $data['transaksi'] = $this->m_transaksi->getAll('transaksi')->result();
+
+      $this->load->view('admin/transaksi/laporan_pdf', $data);
+
+      $paper_size = 'A4';
+      $oriantation = 'landscape';
+      $html = $this->output->get_output();
+      $this->dompdf->set_paper($paper_size, $oriantation);
+
+      $this->dompdf->load_html($html);
+      $this->dompdf->render();
+      $this->dompdf->stream("laporan_transaksi_".date('Y-m-d_H-i-s').".pdf", array('Attachment' => 0));
+    }
         
       );
       this->load->view('transaksi/nota');

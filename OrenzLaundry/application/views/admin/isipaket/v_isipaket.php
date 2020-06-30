@@ -48,9 +48,9 @@
                             </td>
                             <td class="text-center">
                             <a href="<?=base_url('admin/C_isipaket/detail/' . $ip->id_isi_paket)?>" 
-                            class="btn btn-info btn-sm"><i class="px-1 fa fa-info"></i></a>
+                            class="btn btn-info mb-2 btn-sm"><i class="px-1 fa fa-info"></i></a>
                             <a href="<?=base_url('admin/C_isipaket/edit/' . $ip->id_isi_paket)?>" 
-                            class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                            class="btn btn-primary mb-2 btn-sm"><i class="fa fa-edit"></i></a>
                             <a onclick="return confirm('Apakah anda yakin ingin menghapus item ini ?');" href="<?=base_url('admin/C_isipaket/destroy/' . $ip->id_isi_paket)?>" 
                             class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
 
@@ -76,18 +76,18 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="nama_isi_paket">Isi Paket</label>
-                        <input type="text" name="nama_isi_paket" id="nama_isi_paket" class="form-control" placeholder="Masukkan Nama Isi Paket . ." aria-describedby="nama_isi_paket" maxlength="100">
+                        <input required type="text" name="nama_isi_paket" id="nama_isi_paket" class="form-control" placeholder="Masukkan Nama Isi Paket . ." aria-describedby="nama_isi_paket" maxlength="100">
                         <small id="nama_isi_paket" class="text-muted">Masukkan Nama Isi Paket tidak lebih dari 100 Karakter</small>
                     </div>
                     <div class="modal-body">
                     <div class="form-group">
                         <label for="keterangan">Keterangan</label>
-                        <input type="text" name="keterangan" id="keterangan" class="form-control" placeholder="Masukkan Keterangan . ." aria-describedby="keterangan" maxlength="100">
+                        <input required type="text" name="keterangan" id="keterangan" class="form-control" placeholder="Masukkan Keterangan . ." aria-describedby="keterangan" maxlength="100">
                         <small id="keterangan" class="text-muted">Masukkan Keterangan Isi Paket</small>
                     </div>
                     <div class="form-group w-50">
                         <label for="status">Status</label>
-                        <select class="form-control" name="status" id="status">
+                        <select required class="form-control" name="status" id="status">
                         <option value="">Pilih Status Isi Paket:</option>
                         <option value="Aktif">Aktif</option>
                         <option value="Draft">Draft</option>

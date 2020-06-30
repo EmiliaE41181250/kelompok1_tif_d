@@ -19,12 +19,12 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="nama_barang">Nama Barang</label>
-                                <input value="<?= $brg->nama_barang ?>" type="text" name="nama_barang" id="nama_barang" class="form-control" placeholder="Masukkan Nama Barang . ." aria-describedby="namabarang" maxlength="100">
+                                <input required value="<?= $brg->nama_barang ?>" type="text" name="nama_barang" id="nama_barang" class="form-control" placeholder="Masukkan Nama Barang . ." aria-describedby="namabarang" maxlength="100">
                                 <small id="namabarang" class="text-muted">Masukkan Nama Barang tidak lebih dari 100 Karakter</small>
                             </div>
                             <div class="form-group w-50">
                                 <label for="status">Status Barang</label>
-                                <select class="form-control" name="status" id="status">
+                                <select required class="form-control" name="status" id="status">
                                 <option value="">Pilih Status Barang :</option>
                                 <option value="Aktif" <?=$brg->status == "Aktif" ? "selected" : ""?>>Aktif</option>
                                 <option value="Draft" <?=$brg->status == "Draft" ? "selected" : ""?>>Draft</option>

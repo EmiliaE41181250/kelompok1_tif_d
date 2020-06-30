@@ -8,7 +8,7 @@
                 <h2 class="font-weight-bolder">Transaksi</h2>
                 <ul class="breadcrumb bg-transparent ml-n3 mt-n4 mb-0">
                     <li class="breadcrumb-item"><a href="<?=base_url()?>admin/dashboard"><i class="fa fa-home"></i> OrenzLaundry</a></li>
-                    <li class="breadcrumb-item active">Paket</li>
+                    <li class="breadcrumb-item active">Transaksi</li>
                 </ul>
             </div>
             <div class="col-md-6 col-sm-12">
@@ -65,9 +65,9 @@
             </td>
             <td class="text-center">
                 <?php echo anchor('admin/notifikasi/detail/' . $trns->id_transaksi, '
-                <div class="btn btn-info btn-sm mr-2 pr-3 pl-3"><i class="fa fa-info"></i></div>')?>
+                <div class="btn btn-info btn-sm mb-2 mr-2 pr-3 pl-3"><i class="fa fa-info"></i></div>')?>
                 <?php echo anchor('admin/C_transaksi/edit/' . $trns->id_transaksi, '
-                <div class="btn btn-primary btn-sm mr-2"><i class="fa fa-edit"></i></div>')?>
+                <div class="btn btn-primary mb-2 btn-sm mr-2"><i class="fa fa-edit"></i></div>')?>
             </td>
           </tr>
         <?php } ?>
