@@ -7,7 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noarchive">
-    <title> Appside | App Landing pages HTML Templates </title>
+    <title> Orenz Laundry </title>
+    <link rel="shortcut icon" href="<?=base_url()?>assets/files/<?=$this->db->get_where('admin', array('id_admin' => $this->session->userdata('id_admin')))->row()->logo?>" type="image/x-icon">
     <!-- favicon -->
     <link rel="shortcut icon" href="<?=base_url()?>favicon.ico" type="image/x-icon">
     <!-- bootstrap -->
@@ -142,11 +143,6 @@
                             </div>
                         </li>
                     </ul>
-                    <div class="btn-wrapper ">
-                        <a href="#" class="boxed-btn btn-rounded gd-bg-1"><i class="flaticon-apple-1"></i> App Store</a>
-                        <a href="#" class="boxed-btn btn-rounded gd-bg-2"><i class="flaticon-android-logo"></i> Play Store</a>
-                        <a href="#" class="boxed-btn btn-rounded gd-bg-3"><i class="flaticon-windows"></i> Windows</a>
-                    </div>
                 </div>
             </div>
         </div>
