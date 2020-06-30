@@ -212,23 +212,34 @@ class C_transaksi extends CI_Controller {
       redirect('admin/c_transaksi/edit/' . $id_trs);
     }
 
-    public function nota()
+    public function cetak_pdf()
     {
       $this->load->library('dompdf_gen');
-  
+
+      $data['user'] = $this->m_transaksi->getAll('user')->result();
+      $data['promo'] = $this->m_transaksi->getAll('promo')->result();
+      $data['admin'] = $this->m_transaksi->getAll('admin')->result();
+      $data['paket'] = $this->m_transaksi->getAll('paket')->result();
       $data['transaksi'] = $this->m_transaksi->getAll('transaksi')->result();
-  
-      $this->load->view('admin/transaksi/nota', $data);
-  
+
+      $this->load->view('admin/transaksi/laporan_pdf', $data);
+
       $paper_size = 'A4';
       $oriantation = 'landscape';
       $html = $this->output->get_output();
       $this->dompdf->set_paper($paper_size, $oriantation);
-  
+
       $this->dompdf->load_html($html);
       $this->dompdf->render();
-      $this->dompdf->stream("laporan_promo_".date('Y-m-d_H-i-s').".pdf", array('Attachment' => 0));
+      $this->dompdf->stream("laporan_transaksi_".date('Y-m-d_H-i-s').".pdf", array('Attachment' => 0));
     }
+
+    public function cetak($id) {
+      $data = array(
         
+      );
+      this->load->view('transaksi/nota');
+    }
+    
 
     }

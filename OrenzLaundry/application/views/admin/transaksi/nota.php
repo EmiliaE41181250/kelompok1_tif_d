@@ -1,98 +1,63 @@
-<!DOCTYPE html>
-<html lang="en"><head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Print Mahasiswa</title>
-  <style>
-    html,
-    body {
-      height: 100%;
+<html mozmonarginboxes mozdisallowselectionprint>
+<head>
+  <title> Nota </title>
+  <style type="text/css">
+    htlm { font-family: "Verdana, Arial"; }
+    .content {
+      width: 80mm;
+      font-size: 12px;
+      padding: 5px;
     }
-
-    body {
-      margin: 0;
-      font-family: 'Roboto', serif;
-      font-weight: 100;
-    }
-
-    .judul{
+    .title {
       text-align: center;
-      padding-bottom:20px;
+      font-size: 13px;
+      padding-bottom: 5px;
+      border-bottom: 1px dashed;
     }
-
-    .container {
-      padding: 0px auto 5px;
+    .head {
+      margin-top: 5px;
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid;
     }
-
     table {
-      width: 90%;
-      margin: 10px auto;
-      border-collapse: collapse;
+      width: 100%;
+      font-size: 12px;
     }
-
-    th,
-    td {
-      padding: 9px;
-      border: solid 2px black;
-      color: #000;
+    .thanks {
+        margin-top: 10px;
+        padding-top: 10px;
+        text-align: center;
+        border-top: 1px dashed;
     }
+    @media print{
+      @page{
+        width: 80mm;
+        margin: 0mm;
+      }
 
-    th {
-      text-align: center;
     }
+    </style>
+    </head>
+    <body onload="window.print()">
+      <div class="content">
+        <div class="title">
+        <b> Orenz Laundry Jember </b>
+        <br>
+        Perumahan Mastrip Blok G-21 Jember
+        <br>
+        081556885614
+        </div>
 
-  </style>
-</head><body>
-
-<div style="text-align: center; border-bottom: solid 1px black; padding-bottom: 10px;">
-    <h1>Orenz Laundry</h1>
-    Alamat Orenz Laundry <br>
-    Nomor Telepon (0331)442211 <br>
-</div>
-<div class="judul">
-  <h2>Nota Transaksi Orenz Laundry</h2>
-</div><br>
-
-<div style="
-  width:100%;
-  margin: auto;
-  text-align:left;
-  ">Tanggal : <?=date('Y-m-d H:i:s')?>
-</div>
-
-<div class="container">
-  <table width="100%">
-    <tr>
-      <th>No</th>
-      <th>Tanggal dan Waktu</th>
-      <th>Paket</th>
-      <th>Berat</th>
-      <th>Harga</th>
-      <th>Total Harga</th>
-      <th>Diskon</th>
-      <th>Tanggal Jemput</th>
-      <th>Total Antar</th>
-    </tr>
-
-    <?php 
-    $no = 1;
-    foreach ($transaksi as $trns) { ?>
-
-        <tr style="text-align:center;">
-          <td><?=$no++?></td>
-          <td style="text-align:justify;"><?=$trns->tgl_transaksi?></td>
-          <td><?=$dt->nama_paket?>%</td>
-          <td><?=$dt->berat?></td>
-          <td><?=$dt->harga?></td>
-          <td><?=$dt->total_harga?></td>
-          <td><?=$dt->diskon?></td>
-          <td><?=$trns->tgl_jemput?></td>
-          <td><?=$trns->tanggall_antar?></td>
-        </tr>
-
-    <?php }?>
-    
-  </table>
-</div>
-</body>
-</html>
+        <div class="head">
+          <table cellspacing="0" cellpading="0">
+          <tr>
+          <td style ="width:200px">
+          <?php
+            echo Date("d/m/Y, strtotime($sale->date))." ". Date("H:i", strtotime($scale->sale_created));
+            ?>
+            </td>
+            <td> Cashier </td>
+            <td style="text-align:center; width:10px">:</td>
+            <td syle="text-align:right">
+                <?=ucfirst(
