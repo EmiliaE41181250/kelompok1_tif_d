@@ -138,7 +138,9 @@ class Messages extends REST_Controller {
     $data = array("id_pesan" => $id,
                   "id_user" => $user,
                   "subjek_pesan" => $subjek,
-                  "isi_pesan" => $body);
+                  "isi_pesan" => $body,
+                  'tanggal_pesan' => date("Y-m-d")
+                );
 
 
     $response = $this->m_messages->sendMessage($data);
