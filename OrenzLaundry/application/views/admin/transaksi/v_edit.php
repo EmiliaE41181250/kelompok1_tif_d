@@ -25,8 +25,7 @@
       </div>
       <div class="card-body">
       <?php echo $this->session->flashdata('pesan_trs');?>
-
-      
+      <?php echo $this->session->flashdata('pesan_saldo');?>
 
     <form action="<?= base_url() . 'admin/C_transaksi/update_status'; ?>" method="post" enctype="multipart/form-data">
     <div class="row">
