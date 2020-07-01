@@ -50,7 +50,7 @@
                             <a href="<?=base_url('admin/C_durasipaket/edit/' . $ip->id_durasi)?>" 
                             class="btn btn-primary mb-2 btn-sm"><i class="fa fa-edit"></i></a>
                             <a onclick="return confirm('Apakah anda yakin ingin menghapus item ini ?');" href="<?=base_url('admin/C_durasipaket/destroy/' . $ip->id_durasi)?>" 
-                            class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                            class="btn btn-danger mb-2 btn-sm"><i class="fa fa-trash"></i></a>
 
                             </td>
                         </tr>

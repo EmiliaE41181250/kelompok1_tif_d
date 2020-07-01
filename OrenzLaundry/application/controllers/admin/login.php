@@ -54,7 +54,7 @@ class Login extends CI_Controller{
 // jika ternyata username dan passowrd yang diinputkan tidak tersedia maka akan tampil pemberiatahuan password dan username salah
 		}else{
 			$this->session->set_flashdata('pesan', '<div class="alert alert-danger alert-dismissible fade show text-center mx-4" role="alert">
-          <button type="button" class="close pt-4" data-dismiss="alert" aria-label="Close">
+          <button type="button" class="close pt-2" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             <span class="sr-only">Close</span>
           </button>

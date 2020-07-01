@@ -52,7 +52,7 @@
                             <a href="<?=base_url('admin/C_isipaket/edit/' . $ip->id_isi_paket)?>" 
                             class="btn btn-primary mb-2 btn-sm"><i class="fa fa-edit"></i></a>
                             <a onclick="return confirm('Apakah anda yakin ingin menghapus item ini ?');" href="<?=base_url('admin/C_isipaket/destroy/' . $ip->id_isi_paket)?>" 
-                            class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                            class="btn btn-danger mb-2 btn-sm"><i class="fa fa-trash"></i></a>
 
                             </td>
                         </tr>

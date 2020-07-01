@@ -47,7 +47,7 @@
                             <a href="<?=base_url('admin/C_pesan/detail/' . $psn->id_pesan)?>" 
                             class="btn btn-info mb-2 btn-sm"><i class="px-1 fa fa-info"></i></a>
                             <a onclick="return confirm('Apakah anda yakin ingin menghapus item ini ?');" href="<?=base_url('admin/C_pesan/destroy/' . $psn->id_pesan)?>" 
-                            class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                            class="btn btn-danger mb-2 btn-sm"><i class="fa fa-trash"></i></a>
 
                             </td>
                         </tr>

@@ -15,7 +15,7 @@
               <div class="row">
                 <div class="col-12 text-right pt-4">
                   <a class="btn btn-sm btn-primary mb-2" href="<?=base_url()?>admin/c_transaksi/edit/<?=$trs->id_transaksi?>"><i class="fas fa-edit fa-sm mr-2"></i>Edit Transaksi</a>
-                  <a class="btn btn-sm btn-warning mb-2" href="<?=base_url()?>admin/notifikasi/cetak_nota"><i class="fas fa-file-pdf fa-sm mr-2"></i>Cetak Pdf</a>
+                  <a class="btn btn-sm btn-warning mb-2" href="<?=base_url()?>admin/C_transaksi/nota/<?=$trs->id_transaksi?>"><i class="fas fa-file-pdf fa-sm mr-2"></i>Nota Transaksi</a>
                 </div>
               </div>
             </div>

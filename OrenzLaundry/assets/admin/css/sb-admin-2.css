@@ -9744,7 +9744,7 @@ a:focus {
 
 .bg-gradient-ijo {
   background-color: #80C000;
-  background-image: linear-gradient(180deg, #80C000 70%, #FFC300 100%);
+  background-image: linear-gradient(180deg, #80C000 10%, #FFC300 100%);
   background-size: cover;
 }
 
