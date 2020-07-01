@@ -63,12 +63,7 @@ class C_isipaket extends CI_Controller
 
     $created_by = "admin";
     $created_at = date('Y-m-d H:i:s');
-    // $gambar_promo = null;
-    // // menjalankan perintah untuk mengupload gambar
-    // if ($_FILES['gambar_promo']['name'] != null) {
-    //   $gambar_promo = $_FILES['gambar_promo']['name'];
-    //   $gambar_promo = $this->primslib->upload_file('gambar_promo', $gambar_promo, 'jpg|jpeg|png', '3024');
-    // }
+    
 
     // merekam data yang dikirim melalui form
     $data = array(
@@ -102,12 +97,7 @@ class C_isipaket extends CI_Controller
     // menentukan siapa dan kapan baris data ini diperbarui
     $updated_by = "admin";
     $updated_at = date('Y-m-d H:i:s');
-    // $gambar_promo = null;
-    // // memeriksa apakah admin mengganti gambar atau tidak
-    // if ($_FILES['gambar_promo']['name'] != null) {
-    //   // jika memilih gambar
-    //   $gambar_promo = $_FILES['gambar_promo']['name'];
-    //   $gambar_promo = $this->primslib->upload_file('gambar_promo', $gambar_promo, 'jpg|jpeg|png', '3024');
+    
 
       $data = array(
         'id_isi_paket' => $id,
@@ -117,19 +107,9 @@ class C_isipaket extends CI_Controller
         'updated_by' => $updated_by,
         'updated_at' => $updated_at
       );
-    // }else{
-    //   // jika tidak memilih gambar
-    //   $data = array(
-    //     'id_isi_paket' => $id,
-    //     'nama_isi_paket' => $this->input->post('nama_isi_paket'),
-    //     'keterangan' => $this->input->post('keterangan', true),
-    //     'status' => $this->input->post('status'),
-    //     'updated_by' => $updated_by,
-    //     'updated_at' => $updated_at
-    //   );
-    // }
+    
 
-    // menjalankan method update pada model promo
+    // menjalankan method update pada model isi paket
     $this->m_isipaket->update($where, $data, 'isi_paket');
 
     // mengirim pesan berhasil update data
@@ -141,7 +121,7 @@ class C_isipaket extends CI_Controller
       </button>
     </div>
     ');
-    // mengarahkan ke halaman tabel promo
+    // mengarahkan ke halaman tabel isi paket
     redirect('admin/C_isipaket');
   }
 
@@ -150,7 +130,7 @@ class C_isipaket extends CI_Controller
   {
     // deklarasi $where by id
     $where = array('id_isi_paket' => $id);
-    // menjalankan fungsi delete pada model_promo
+    // menjalankan fungsi delete pada model_isi paket
     $this->m_isipaket->delete($where, 'isi_paket');
     // mengirim pesan berhasil dihapus
     $this->session->set_flashdata('pesan', '
@@ -161,7 +141,7 @@ class C_isipaket extends CI_Controller
       </button>
     </div>
     ');
-    // mengarahkan ke halaman tabel promo
+    // mengarahkan ke halaman tabel isi paket
     redirect('admin/C_isipaket');
   }
 
