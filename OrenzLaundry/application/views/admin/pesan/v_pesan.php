@@ -55,54 +55,5 @@
     </div>
 </div>
 
-<div class="modal fade" id="tambah_barang" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <form action="<?= base_url() . 'admin/C_isipaket/tambah'; ?>" method="post" enctype="multipart/form-data">
-                <div class="modal-header">
-                    <h5 class="modal-title font-weight-bolder text-ijo">Tambah Data Isi Paket</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="nama_isi_paket">Isi Paket</label>
-                        <input required type="text" name="nama_isi_paket" id="nama_isi_paket" class="form-control" placeholder="Masukkan Nama Isi Paket . ." aria-describedby="nama_isi_paket" maxlength="100">
-                        <small id="nama_isi_paket" class="text-muted">Masukkan Nama Isi Paket tidak lebih dari 100 Karakter</small>
-                    </div>
-                    <div class="modal-body">
-                    <div class="form-group">
-                        <label for="keterangan">Keterangan</label>
-                        <input required type="text" name="keterangan" id="keterangan" class="form-control" placeholder="Masukkan Keterangan . ." aria-describedby="keterangan" maxlength="100">
-                        <small id="keterangan" class="text-muted">Masukkan Keterangan Isi Paket</small>
-                    </div>
-                    <div class="form-group w-50">
-                        <label for="status">Status</label>
-                        <select required class="form-control" name="status" id="status">
-                        <option value="">Pilih Status Isi Paket:</option>
-                        <option value="Aktif">Aktif</option>
-                        <option value="Draft">Draft</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-ijo">Tambah</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<!-- /.container-fluid -->
-
-</footer>
-<!-- End of Footer -->
-
-</div>
-<!-- End of Content Wrapper -->
-
-
-<!-- End of Page Wrapper -->
 
 
