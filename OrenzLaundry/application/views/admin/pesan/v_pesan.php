@@ -29,6 +29,7 @@
                         <th>No</th>
                         <th>Nama Customer</th>
                         <th>Subjek Pesan</th>
+                        <th>Tanggal Pesan</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -40,6 +41,7 @@
                             <td><?= $no++ ?></td>
                             <td><?php foreach ($user as $us){ echo $us->id_user == $psn->id_user ? $us->nama_user : ""; }?></td>
                             <td><?=$psn->subjek_pesan?></td>
+                            <td><?=$psn->tanggal_pesan?></td>
                             <td class="text-center">
                             <a href="<?=base_url('admin/C_pesan/detail/' . $psn->id_pesan)?>" 
                             class="btn btn-info mb-2 btn-sm"><i class="px-1 fa fa-info"></i></a>
