@@ -10,7 +10,8 @@ class M_Messages extends CI_Model
   public function getAllMessages($user)
   {
     $this->db->where("id_user", $user);
-		$data = $this->db->get("pesan")->result();
+    $this->db->order_by('tanggal_pesan', 'DESC');
+    $data = $this->db->get("pesan")->result();
     $response['status']=200;
     $response['error']=false;
     $response['data']=$data;
@@ -33,6 +34,7 @@ class M_Messages extends CI_Model
   {
     $this->db->where("id_user", $user);
     $this->db->where("notif_user", 0);
+    $this->db->order_by('tgl_transaksi', 'DESC');
 		$data = $this->db->get("transaksi")->result();
     $response['status']=200;
     $response['error']=false;
@@ -90,7 +92,7 @@ class M_Messages extends CI_Model
     $response['status']=200;
     $response['error']=false;
     $response['data']=$data;
-    $response['message']='Anda berhasil melakukan konfirmasi pesanan ! \n Cucian anda akan segera di proses..';
+    $response['message']='Berhasil';
     return $response;
   }
 }
