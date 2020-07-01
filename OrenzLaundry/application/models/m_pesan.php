@@ -21,7 +21,11 @@ class M_isipaket extends CI_Model
   }
 
 
-  
+  public function delete($where, $table)
+  {
+    $this->db->delete($table, $where);
+  }
+
   public function detail_data($id = NULL){
     $query = $this->db->get_where('pesan', array('id_pesan' => $id))->result();
     return $query;
