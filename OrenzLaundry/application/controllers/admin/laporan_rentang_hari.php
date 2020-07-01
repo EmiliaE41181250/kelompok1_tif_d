@@ -20,13 +20,13 @@ class laporan_rentang_hari extends CI_Controller
         if ($this->input->post('bulanan') != '') {
 
             $hasil_cari = $this->input->post('bulanan');
-            $data['data_bulanan'] = $this->db->query("SELECT transaksi.tgl_transaksi, SUM(transaksi.total_harga) as total_harga, SUM(vtotalberat.total_berat) as total_berat 
-            FROM transaksi, vtotalberat 
-            WHERE transaksi.id_transaksi = vtotalberat.id_transaksi AND
+            $data['data_bulanan'] = $this->db->query("SELECT transaksi.tgl_transaksi, SUM(transaksi.total_harga) as total_harga
+            FROM transaksi
+            WHERE 
             transaksi.tgl_transaksi LIKE '%$hasil_cari%' GROUP BY day(transaksi.tgl_transaksi) ORDER BY tgl_transaksi ASC")->result();
-            $data['data_berat'] = $this->db->query("SELECT user.nama_user, SUM(vtotalberat.total_berat) as total_berat FROM user, transaksi, vtotalberat
+            $data['data_berat'] = $this->db->query("SELECT user.nama_user, SUM(detail_transaksi.berat) as total_berat FROM user, transaksi, detail_transaksi
             WHERE transaksi.id_user = user.id_user
-            AND transaksi.id_transaksi = vtotalberat.id_transaksi
+            AND transaksi.id_transaksi = detail_transaksi.id_transaksi
             AND transaksi.tgl_transaksi LIKE '%$hasil_cari%'
             GROUP BY user.nama_user
             ORDER BY total_berat DESC
@@ -46,9 +46,9 @@ class laporan_rentang_hari extends CI_Controller
 
     function print_pdf_bulanan($hasil_cari)
     {
-        $data['data_bulanan'] = $this->db->query("SELECT transaksi.tgl_transaksi, SUM(transaksi.total_harga) as total_harga, SUM(vtotalberat.total_berat) as total_berat 
-        FROM transaksi, vtotalberat 
-        WHERE transaksi.id_transaksi = vtotalberat.id_transaksi AND
+        $data['data_bulanan'] = $this->db->query("SELECT transaksi.tgl_transaksi, SUM(transaksi.total_harga) as total_harga
+        FROM transaksi
+        WHERE 
         transaksi.tgl_transaksi LIKE '%$hasil_cari%' GROUP BY day(transaksi.tgl_transaksi) ORDER BY tgl_transaksi ASC")->result();
 
         $this->load->library('dompdf_gen');
@@ -70,21 +70,13 @@ class laporan_rentang_hari extends CI_Controller
         if ($this->input->post('tahunan') != '') {
 
             $hasil_cari = $this->input->post('tahunan');
-
-            /* BUAT VIEW DULUU LEWAT SQL PHPMYADMIN DI DATABASE ORENZLAUNDRY
-            CREATE VIEW vTotalBerat AS
-            SELECT SUM(detail_transaksi.berat) as total_berat, detail_transaksi.id_transaksi
-            FROM detail_transaksi
-            GROUP BY detail_transaksi.id_transaksi
-            */
-
-            $data['data_tahunan'] = $this->db->query("SELECT transaksi.tgl_transaksi, SUM(transaksi.total_harga) as total_harga, SUM(vtotalberat.total_berat) as total_berat 
-            FROM transaksi, vtotalberat 
-            WHERE transaksi.id_transaksi = vtotalberat.id_transaksi AND
+            $data['data_tahunan'] = $this->db->query("SELECT transaksi.tgl_transaksi, SUM(transaksi.total_harga) as total_harga
+            FROM transaksi 
+            WHERE 
             transaksi.tgl_transaksi LIKE '%$hasil_cari%' GROUP BY month(transaksi.tgl_transaksi) ORDER BY tgl_transaksi ASC")->result();
-            $data['data_berat'] = $this->db->query("SELECT user.nama_user, SUM(vtotalberat.total_berat) as total_berat FROM user, transaksi, vtotalberat
+            $data['data_berat'] = $this->db->query("SELECT user.nama_user, SUM(detail_transaksi.berat) as total_berat FROM user, transaksi, detail_transaksi
             WHERE transaksi.id_user = user.id_user
-            AND transaksi.id_transaksi = vtotalberat.id_transaksi
+            AND transaksi.id_transaksi = detail_transaksi.id_transaksi
             AND transaksi.tgl_transaksi LIKE '%$hasil_cari%'
             GROUP BY user.nama_user
             ORDER BY total_berat DESC
@@ -104,9 +96,9 @@ class laporan_rentang_hari extends CI_Controller
 
     function print_pdf_tahunan($hasil_cari)
     {
-        $data['data_tahunan'] = $this->db->query("SELECT transaksi.tgl_transaksi, SUM(transaksi.total_harga) as total_harga, SUM(vtotalberat.total_berat) as total_berat 
-        FROM transaksi, vtotalberat 
-        WHERE transaksi.id_transaksi = vtotalberat.id_transaksi AND
+        $data['data_tahunan'] = $this->db->query("SELECT transaksi.tgl_transaksi, SUM(transaksi.total_harga) as total_harga
+        FROM transaksi 
+        WHERE 
         transaksi.tgl_transaksi LIKE '%$hasil_cari%' GROUP BY month(transaksi.tgl_transaksi) ORDER BY tgl_transaksi ASC")->result();
 
         $this->load->library('dompdf_gen');
@@ -132,13 +124,13 @@ class laporan_rentang_hari extends CI_Controller
 
             $akr = date('Y-m-d', strtotime("+1 day", strtotime($akr)));
 
-            $data['data_harian'] = $this->db->query("SELECT transaksi.tgl_transaksi, SUM(transaksi.total_harga) as total_harga, SUM(vtotalberat.total_berat) as total_berat 
-            FROM transaksi, vtotalberat 
-            WHERE transaksi.id_transaksi = vtotalberat.id_transaksi AND
+            $data['data_harian'] = $this->db->query("SELECT transaksi.tgl_transaksi, SUM(transaksi.total_harga) as total_harga
+            FROM transaksi
+            WHERE 
             transaksi.tgl_transaksi BETWEEN '$awl' AND '$akr' GROUP BY day(transaksi.tgl_transaksi) ORDER BY tgl_transaksi ASC")->result();
-            $data['data_berat'] = $this->db->query("SELECT user.nama_user, SUM(vtotalberat.total_berat) as total_berat FROM user, transaksi, vtotalberat
+            $data['data_berat'] = $this->db->query("SELECT user.nama_user, SUM(detail_transaksi.berat) as total_berat FROM user, transaksi, detail_transaksi
             WHERE transaksi.id_user = user.id_user
-            AND transaksi.id_transaksi = vtotalberat.id_transaksi
+            AND transaksi.id_transaksi = detail_transaksi.id_transaksi
             AND transaksi.tgl_transaksi BETWEEN '$awl' AND '$akr'
             GROUP BY user.nama_user
             ORDER BY total_berat DESC
@@ -159,9 +151,9 @@ class laporan_rentang_hari extends CI_Controller
 
     function print_pdf_rentang($awal, $akhir)
     {
-        $data['data_rentang'] =$this->db->query("SELECT transaksi.tgl_transaksi, SUM(transaksi.total_harga) as total_harga, SUM(vtotalberat.total_berat) as total_berat 
-        FROM transaksi, vtotalberat 
-        WHERE transaksi.id_transaksi = vtotalberat.id_transaksi AND
+        $data['data_rentang'] =$this->db->query("SELECT transaksi.tgl_transaksi, SUM(transaksi.total_harga) as total_harga
+        FROM transaksi
+        WHERE 
         transaksi.tgl_transaksi BETWEEN '$awal' AND '$akhir' GROUP BY day(transaksi.tgl_transaksi) ORDER BY tgl_transaksi ASC")->result();
 
         $this->load->library('dompdf_gen');

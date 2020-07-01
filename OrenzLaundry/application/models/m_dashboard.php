@@ -40,10 +40,10 @@ class M_dashboard extends CI_Model{
     {
         $favorit = date("Y-m");
 
-        $query = $this->db->query("SELECT user.nama_user, SUM(vtotalberat.total_berat) as total_berat 
-        FROM user, transaksi, vtotalberat 
+        $query = $this->db->query("SELECT user.nama_user, SUM(detail_transaksi.berat) as total_berat 
+        FROM user, transaksi, detail_transaksi
         WHERE transaksi.id_user = user.id_user 
-        AND transaksi.id_transaksi = vtotalberat.id_transaksi 
+        AND transaksi.id_transaksi = detail_transaksi.id_transaksi 
         AND transaksi.tgl_transaksi LIKE '%$favorit%' 
         GROUP BY user.nama_user ORDER BY total_berat DESC LIMIT 5");
 

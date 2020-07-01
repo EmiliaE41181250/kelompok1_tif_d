@@ -66,7 +66,6 @@
       <th>No</th>
       <th>Tanggal Transaksi</th>
       <th>Total Pendapatan</th>
-      <th>Total Berat (kg)</th>
     </tr>
     
     <?php 
@@ -77,7 +76,6 @@
           <td><?=$no++?></td>
           <td style="text-align:center;"><?= substr($trs->tgl_transaksi, 0, 10)?></td>
           <td style="text-align:right;">Rp. <?=number_format($trs->total_harga, 0, ",", ".")?></td>
-          <td><?=number_format($trs->total_berat, 2, ",", "")?></td>
         </tr>
 
     <?php }?>

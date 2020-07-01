@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class notifikasi extends CI_Controller
+class Notifikasi extends CI_Controller
 {
 
     function __construct()
@@ -46,8 +46,11 @@ class notifikasi extends CI_Controller
     {
         $output = '';
         if($this->input->post('view') == ''){
-            $data_row = $this->db->get('vFetchNotif')->row();
-            $data_result = $this->db->get('vFetchNotif')->result();
+            $data = $this->db->query("
+            select `orenz_laundry`.`transaksi`.`id_transaksi` AS `id_transaksi`,`orenz_laundry`.`transaksi`.`tgl_transaksi` AS `tgl_transaksi`,`orenz_laundry`.`user`.`nama_user` AS `nama_user`,`orenz_laundry`.`paket`.`nama_paket` AS `nama_paket`,`orenz_laundry`.`transaksi`.`notif_admin` AS `notif_admin` from (((`orenz_laundry`.`transaksi` join `orenz_laundry`.`user`) join `orenz_laundry`.`paket`) join `orenz_laundry`.`detail_transaksi`) where `orenz_laundry`.`transaksi`.`id_transaksi` = `orenz_laundry`.`detail_transaksi`.`id_transaksi` and `orenz_laundry`.`paket`.`id_paket` = `orenz_laundry`.`detail_transaksi`.`id_paket` and `orenz_laundry`.`transaksi`.`id_user` = `orenz_laundry`.`user`.`id_user` group by `orenz_laundry`.`transaksi`.`id_transaksi` order by `orenz_laundry`.`transaksi`.`tgl_transaksi` desc limit 4
+            ");
+            $data_row = $data->row();
+            $data_result = $data->result();
             // print_r($data_result);
             
 

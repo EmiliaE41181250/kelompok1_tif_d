@@ -191,7 +191,6 @@
                   <th>No</th>
                   <th>Tanggal Transaksi</th>
                   <th>Total Harga</th>
-                  <th>Total Berat (kg)</th>
                 </tr>
               </thead>
               <tbody>
@@ -204,7 +203,6 @@
                     <td class="text-center"><?= $no++ ?></td>
                     <td class="text-center"><?= substr($dt->tgl_transaksi, 0, 10) ?></td>
                     <td class="text-right">Rp. <?= number_format($dt->total_harga, 0, ",", ".") ?></td>
-                    <td class="text-right"><?= number_format((float) $dt->total_berat, 2, '.', '') ?></td>
                   </tr>
                 <?php } ?>
               </tbody>
