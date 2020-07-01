@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noarchive">
     <title> Orenz Laundry </title>
-    <link rel="shortcut icon" href="<?=base_url()?>assets/files/<?=$this->db->get_where('admin', array('id_admin' => $this->session->userdata('id_admin')))->row()->logo?>" type="image/x-icon">
+    <link rel="shortcut icon" href="<?=base_url()?>assets/files/logoorenz.png" type="image/x-icon">
     <!-- favicon -->
     <link rel="shortcut icon" href="<?=base_url()?>favicon.ico" type="image/x-icon">
     <!-- bootstrap -->
@@ -93,7 +93,7 @@
                 <div class="section-title"><!-- section title -->
                     <span class="subtitle">Tentang Layanan Kami</span>
                     <h3 class="title extra">Cukup dengan smartphone, Anda bisa menggunakan layanan dalam Orenz Laundry</h3>
-                    <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolor  tempor incididunt ut labore dolore magna.</p>
+                    <p>Layanan kami mempunyai berbagai paket pesanan yaitu paket reguler, paket express, dan paket satuan.</p>
                 </div><!-- //. section title -->
             </div>
         </div>
@@ -106,8 +106,8 @@
                                 <i class="flaticon-vector"></i>
                             </div>
                             <div class="content">
-                                <h4 class="title"><a href="#">Clean Design</a></h4>
-                                <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolor  tempor incididunt</p>
+                                <h4 class="title">Paket Reguler</a></h4>
+                                <p>Berisi paket cuci kering setrika (CKS), cuci kering (CK), dan setrika (S). Memiliki durasi paket selama 3 hari.</p>
                             </div>
                         </li>
                         <li class="single-feature-list">
@@ -115,8 +115,8 @@
                                 <i class="flaticon-responsive"></i>
                             </div>
                             <div class="content">
-                                <h4 class="title"><a href="#">Fully Respnosive</a></h4>
-                                <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labor  tempor incididunt</p>
+                                <h4 class="title">Paket Express</a></h4>
+                                <p>Berisi paket cuci kering setrika (CKS), cuci kering (CK), dan setrika (S). Memiliki pilihan durasi paket mulai dari 2 hari, 1 hari, 1/2hari, dan 6 jam.</p>
                             </div>
                         </li>
                         <li class="single-feature-list">
@@ -124,19 +124,10 @@
                                 <i class="flaticon-layers-2"></i>   
                             </div>
                             <div class="content">
-                                <h4 class="title"><a href="#">Pixel Perfect</a></h4>
-                                <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolor  tempor incididunt</p>
+                                <h4 class="title">Paket Satuan</a></h4>
+                                <p>Berisi seperti barang-barang tambahan seperti selimut, boneka, tas ransel, bed cover mulai dari kecil, sedang, sampai yang besar.</p>
                             </div>
-                        </li>
-                        <li class="single-feature-list">
-                            <div class="icon icon-bg-4">
-                                <i class="flaticon-picture"></i>
-                            </div>
-                            <div class="content">
-                                <h4 class="title"><a href="#">Retina Ready</a></h4>
-                                <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolor  tempor incididunt</p>
-                            </div>
-                        </li>
+                        
                     </ul>
                 </div>
             </div>
@@ -158,9 +149,9 @@
         <div class="row justify-content-center">
             <div class="col-lg-10">
                 <div class="section-title white"><!-- section title -->
-                    <span class="subtitle">why choose this</span>
-                    <h3 class="title extra">Users love appside to make cool landing page</h3>
-                    <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolor  tempor incididunt ut labore dolore magna.</p>
+                    <span class="subtitle">Mengapa Pilih Orenz Laundry</span>
+                    <h3 class="title extra">Aplikasi Mobile Dengan Fitur Menarik</h3>
+                    <p>Berupa fitur antar-jemput pesanan cucian, promo, messege & notifikasi, history, dan profil.</p>
                 </div><!-- //. section title -->
             </div>
         </div>
@@ -171,8 +162,8 @@
                         <i class="flaticon-settings-1"></i>
                     </div>
                     <div class="content">
-                        <h4 class="title">Easy Customize</h4>
-                        <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
+                        <h4 class="title">Antar - Jemput</h4>
+                        <p>Customer bisa melakukan pesanannya, kemudian pihak laundry akan menjemput pakaian, dan ketika pesanan sudah selesai langsung diantar ke lokasi Customer.</p>
                     </div>
                 </div><!-- //. single why us item -->
                 <div class="single-why-us-item wow zoomIn"><!-- single why us item -->
@@ -180,8 +171,8 @@
                         <i class="flaticon-checked"></i>
                     </div>
                     <div class="content">
-                        <h4 class="title">Fast & Secure</h4>
-                        <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
+                        <h4 class="title">Promo</h4>
+                        <p>Customer dapat memakai voucher promo pada saat hari-hari tertentu, promo dapat berupa cashback saat Cusotmer melakukan transaksi dengan mengisikan kode promonya.</p>
                     </div>
                 </div><!-- //. single why us item -->
             </div>
@@ -196,8 +187,8 @@
                         <i class="flaticon-chat-1"></i>
                     </div>
                     <div class="content">
-                        <h4 class="title">Live Chat</h4>
-                        <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
+                        <h4 class="title">Pesan & Notifikasi</h4>
+                        <p>Customer dapat menerima notifikasi mulai dari jemput pesanan sampai antar pesanan dan juga Customer bisa mengirim pesan ke pihak laundry apabila ada yang dipertanyakan.</p>
                     </div>
                 </div><!-- //. single why us item -->
                 <div class="single-why-us-item wow zoomIn"><!-- single why us item -->
@@ -205,8 +196,8 @@
                         <i class="flaticon-cloud"></i>
                     </div>
                     <div class="content">
-                        <h4 class="title">Secure Data</h4>
-                        <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore</p>
+                        <h4 class="title">Profil & History</h4>
+                        <p>Customer bisa mendaftarkan akun untuk login dalam aplikasi dan sudah terdapat aktivasi, update, dan reset password. History setelah Customer telah menyelesaikan transaksi.</p>
                     </div>
                 </div><!-- //. single why us item -->
             </div>
@@ -227,8 +218,8 @@
             <div class="col-lg-10">
                 <div class="section-title"><!-- section title -->
                     <span class="subtitle">Screenshots</span>
-                    <h3 class="title extra">Amazing visual interface</h3>
-                    <p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolor  tempor incididunt ut labore dolore magna.</p>
+                    <h3 class="title extra">Interface Yang Sangat Menarik</h3>
+                    <p>Terdapat tampilan home, transaksi & history, promo, pesan & notifikasi, dan profil.</p>
                 </div><!-- //. section title -->
             </div>
         </div>
@@ -264,7 +255,7 @@
                     </div><!-- //.single screenshort item -->
                 </div>
                 <div class="btn-wrapper wow fadeInUp">
-                    <a href="#" id="download" class="boxed-btn btn-rounded">Download now</a>
+                    <a href="<?=base_url('user/landingpage/download_apk')?>" id="download" class="boxed-btn btn-rounded">Download now</a>
                 </div><!-- //. screenshort carousel -->
             </div>
         </div>
@@ -282,57 +273,35 @@
 <!-- team member area end -->
 
 <!-- footer area start -->
-<footer class="footer-area">
+<footer class="footer-area" id="contact">
     <div class="footer-top">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-4 col-md-6">
                     <div class="footer-widget about_widget">
-                        <a href="index.html" class="footer-logo"><img src="<?=base_url()?>assets/img/logo-white.png" alt=""></a>
-                        <p>Within coming figure sex things are. Pretended concluded did repulsive education smallness yet yet described. Had country man his pressed shewing. </p>
-                        <ul class="social-icon">
-                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                            <li><a href="#"><i class="fab fa-pinterest-p"></i></a></li>
+            
+                        <h3>Orenz Laundry</h3>
+                        <p><?php echo $this->db->get_where('admin', array('id_admin' => 'ADM000000000001'))->row()->alamat;?></p>
+                        <p><?php echo $this->db->get_where('admin', array('id_admin'=> 'ADM000000000001'))->row()->no_hp;?></p>
+                    
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6">
+                    <div class="footer-widget nav_menus_widget">
+                        <h4 class="widget-title">Navigasi</h4>
+                        <ul>
+                            <li><a href="#"><i class="fas fa-chevron-right"></i> Home</a></li>
+                            <li><a href="#about"><i class="fas fa-chevron-right"></i> About</a></li>
+                            <li><a href="#fitur"><i class="fas fa-chevron-right"></i> Fitur</a></li>
+                            <li><a href="#mobile"><i class="fas fa-chevron-right"></i> Interface</a></li>
+                            <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                            <li><a href="<?php echo base_url('admin') ?>"><i class="fas fa-chevron-right"></i> Login</a></li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="footer-widget nav_menus_widget">
-                        <h4 class="widget-title">Useful Links</h4>
-                        <ul>
-                            <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
-                            <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
-                            <li><a href="#"><i class="fas fa-chevron-right"></i> Service</a></li>
-                            <li><a href="#"><i class="fas fa-chevron-right"></i> Blog</a></li>
-                            <li><a href="#"><i class="fas fa-chevron-right"></i> Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="footer-widget nav_menus_widget">
-                        <h4 class="widget-title">Need Help?</h4>
-                        <ul>
-                            <li><a href="#"><i class="fas fa-chevron-right"></i> Faqs</a></li>
-                            <li><a href="#"><i class="fas fa-chevron-right"></i> Privacy</a></li>
-                            <li><a href="#"><i class="fas fa-chevron-right"></i> Policy</a></li>
-                            <li><a href="#"><i class="fas fa-chevron-right"></i> Support</a></li>
-                            <li><a href="#"><i class="fas fa-chevron-right"></i> Temrs</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="footer-widget nav_menus_widget">
-                        <h4 class="widget-title">Download</h4>
-                        <ul>
-                            <li><a href="#"><i class="fas fa-chevron-right"></i> For IOS</a></li>
-                            <li><a href="#"><i class="fas fa-chevron-right"></i> For Android</a></li>
-                            <li><a href="#"><i class="fas fa-chevron-right"></i> For Mac</a></li>
-                            <li><a href="#"><i class="fas fa-chevron-right"></i> For Window</a></li>
-                            <li><a href="#"><i class="fas fa-chevron-right"></i> For Linax</a></li>
-                        </ul>
-                    </div>
+                <div class="col-lg-6 col-md-12">
+                    <img class="img-fluid" width="100%" src="<?=base_url()?>assets/user/img/bg/orenzlp.jfif" alt="" srcset="">
                 </div>
             </div>
         </div>
