@@ -256,7 +256,7 @@ class C_transaksi extends CI_Controller {
       // mengarahkan ke halaman tabel promo
       redirect('admin/c_transaksi/edit/' . $id_trs);
     }
-
+    
     public function cetak_pdf()
     {
       $this->load->library('dompdf_gen');
@@ -279,32 +279,27 @@ class C_transaksi extends CI_Controller {
       $this->dompdf->stream("laporan_transaksi_".date('Y-m-d_H-i-s').".pdf", array('Attachment' => 0));
     }
 
-    public function cetak($id) {
-      $data = array(
-    public function cetak_pdf()
-    {
+    public function nota($id) {
       $this->load->library('dompdf_gen');
 
+      $where = array('id_transaksi' => $id);
       $data['user'] = $this->m_transaksi->getAll('user')->result();
       $data['promo'] = $this->m_transaksi->getAll('promo')->result();
       $data['admin'] = $this->m_transaksi->getAll('admin')->result();
       $data['paket'] = $this->m_transaksi->getAll('paket')->result();
-      $data['transaksi'] = $this->m_transaksi->getAll('transaksi')->result();
+      $data['detail'] = $this->m_transaksi->edit($where, 'detail_transaksi')->result();
+      $data['transaksi'] = $this->m_transaksi->edit($where, 'transaksi')->result();
 
-      $this->load->view('admin/transaksi/laporan_pdf', $data);
+      $this->load->view('admin/transaksi/nota', $data);
 
-      $paper_size = 'A4';
-      $oriantation = 'landscape';
+      $paper_size = 'A6';
+      $oriantation = 'potrait';
       $html = $this->output->get_output();
       $this->dompdf->set_paper($paper_size, $oriantation);
 
       $this->dompdf->load_html($html);
       $this->dompdf->render();
-      $this->dompdf->stream("laporan_transaksi_".date('Y-m-d_H-i-s').".pdf", array('Attachment' => 0));
-    }
-        
-      );
-      this->load->view('transaksi/nota');
+      $this->dompdf->stream("laporan_nota_".date('Y-m-d_H-i-s').".pdf", array('Attachment' => 0));
     }
     
 

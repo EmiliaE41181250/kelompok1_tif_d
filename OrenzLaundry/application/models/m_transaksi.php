@@ -48,14 +48,25 @@ class M_transaksi extends CI_Model{
     return $query;
   }
 
-  public function get_sale($id=null)
-  {
-    $this->db->select('*, user.nama_user as us_name, admin.username as user_name
-                      transaksi.updated_by as updt_by');
-    $this-?db->from('transaksi');
-    $this-?db->join('user' , 'transaksi.id_admin = admin.id_admin' , 'left');
-    $this->db->join('admin' , 'transaksi.id_admin')
+  // public function get_sale($id=null)
+  // {
+  //   $this->db->select('*, user.nama_user as us_name, admin.username as user_name
+  //                     transaksi.updated_by as updt_by');
+  //   $this-?db->from('transaksi');
+  //   $this-?db->join('user' , 'transaksi.id_user = user.id_user' , 'left');
+  //   $this->db->join('admin' , 'transaksi.id_admin = admin.id_admin');
+  //   if ($id != null) {
+  //     $this->db->where->('sale_id' , $id);
+  //   }
 
-  }
+  //   $query = $this->db->get();
+  //   return $query;
+
+  // }
+
+  // public function get_sale_detail($id_transaksi = null)
+  // {
+  //   $this->db->from()
+  // }
 
 }

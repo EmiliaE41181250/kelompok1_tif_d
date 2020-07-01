@@ -1,5 +1,5 @@
-<html mozmonarginboxes mozdisallowselectionprint>
-<head>
+<!DOCTYPE html>
+<html><head>
   <title> Nota </title>
   <style type="text/css">
     htlm { font-family: "Verdana, Arial"; }
@@ -38,8 +38,7 @@
 
     }
     </style>
-    </head>
-    <body onload="window.print()">
+    </head><body">
       <div class="content">
         <div class="title">
         <b> Orenz Laundry Jember </b>
@@ -51,13 +50,70 @@
 
         <div class="head">
           <table cellspacing="0" cellpading="0">
+          <?php foreach($transaksi as $trs){ ?>
           <tr>
-          <td style ="width:200px">
-          <?php
-            echo Date("d/m/Y, strtotime($sale->date))." ". Date("H:i", strtotime($scale->sale_created));
-            ?>
+            <td style ="width:200px">
+            <?php echo date("d-m-Y H:i:s");?>
             </td>
             <td> Cashier </td>
-            <td style="text-align:center; width:10px">:</td>
+            <td style="text-align:center;">:</td>
             <td syle="text-align:right">
-                <?=ucfirst(
+              <?php foreach($admin as $adm){ if($trs->id_admin == $adm->id_admin){ echo $adm->nama_admin;} } ?>
+            </td>
+            </tr>
+            <tr>
+              <td>
+              <?=$trs->id_transaksi?>
+              </td>
+              <td> Customer </td>
+              <td style="text-align:center">:</td>
+              <td style="text-align:right">
+              <?php foreach($user as $usr){ if($trs->id_user == $usr->id_user){ echo $usr->username;} } ?>
+              </td>
+            </tr>
+          </table>
+        </div>
+        
+        <div class="transaction">
+          <table class="transacion-table" cellspacing="0" cellpading="0">
+
+          <tr>
+              <td style="width:165px">Nama Paket</td>
+              <td>Berat</td>
+              <td style="text-align:right: width:60px">Harga</td>
+              <td style="text-align-right: width:60px">
+              Subtotal
+              </td>
+          </tr>
+
+
+          <?php foreach($detail as $dt){?>
+          <tr>
+              <td style="width:165px"><?php foreach($paket as $pkt){ if($dt->id_paket == $pkt->id_paket){ echo $pkt->nama_paket;} }?></td>
+              <td><?=$dt->berat?></td>
+              <td style="text-align:right: width:60px">
+              <?php foreach($paket as $pkt){ if($dt->id_paket == $pkt->id_paket){ echo $pkt->harga;} }?></td>
+              <td style="text-align-right: width:60px">
+              <?=$dt->sub_total?>
+              </td>
+          </tr>
+          <?php } ?>
+          
+           <tr>
+              <td colspan="1"></td>
+              <td colspan="2" style="border-top:1px dashed; text-align:right; padding:5px 0"> Grand Total </td>
+              <td style="border-top:1px dashed; text-align:right; padding:5px 0">
+                <?=$trs->total_harga?>
+              </td>
+          </tr>
+         
+          <?php } ?>
+          </table>
+          </div>
+          <div class="thanks">
+          ---- Thank You ----
+          </div>
+          </div>
+          </body></html>
+
+          
