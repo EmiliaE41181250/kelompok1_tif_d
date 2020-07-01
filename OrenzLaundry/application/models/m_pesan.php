@@ -1,6 +1,6 @@
 <?php
 
-class M_isipaket extends CI_Model 
+class M_pesan extends CI_Model 
 {
   // Mengambil keseluruhan data === SELECT * FROM $table
   public function getAll($table)

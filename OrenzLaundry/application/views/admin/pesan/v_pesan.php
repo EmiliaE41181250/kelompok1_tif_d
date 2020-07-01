@@ -36,7 +36,8 @@
                 <tbody>
                     <?php
                     $no = 1;
-                    foreach ($pesan as $psn) { ?>
+                    foreach ($pesan as $psn) { 
+                        ?> 
                         <tr>
                             <td><?= $no++ ?></td>
                             <td><?php foreach ($user as $us){ echo $us->id_user == $psn->id_user ? $us->nama_user : ""; }?></td>
@@ -45,7 +46,7 @@
                             <td class="text-center">
                             <a href="<?=base_url('admin/C_pesan/detail/' . $psn->id_pesan)?>" 
                             class="btn btn-info mb-2 btn-sm"><i class="px-1 fa fa-info"></i></a>
-                            <a onclick="return confirm('Apakah anda yakin ingin menghapus item ini ?');" href="<?=base_url('admin/C_pesan/destroy/' . $psn->id_ipesan)?>" 
+                            <a onclick="return confirm('Apakah anda yakin ingin menghapus item ini ?');" href="<?=base_url('admin/C_pesan/destroy/' . $psn->id_pesan)?>" 
                             class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
 
                             </td>
