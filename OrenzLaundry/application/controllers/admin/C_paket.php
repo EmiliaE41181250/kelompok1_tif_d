@@ -117,6 +117,10 @@ class C_paket extends CI_Controller {
           $this->load->model('m_data_paket');
           $detail = $this->m_data_paket->detail_data($id);
           $data['detail'] = $detail;
+          $data['jenis'] = $this->db->get('jenis_paket')->result();
+          $data['isi'] = $this->db->get('isi_paket')->result();
+          $data['durasi'] = $this->db->get('durasi_paket')->result();
+          $data['barang'] = $this->db->get('barang')->result();
           
           $this->load->view('templates/header');
           $this->load->view('templates/sidebar');

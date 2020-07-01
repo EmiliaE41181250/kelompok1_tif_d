@@ -75,10 +75,20 @@
             <td class="border-0"> </td>
             <td class="text-right ">Status : </td>
             <td colspan="3" class="text-right " >
-                <?php if($trs->status == "Aktif"){?>
-                <span class="badge badge-pill px-4 badge-warning"><?=$trs->status?></span>
-                <?php }else{ ?>
-                <span class="badge badge-pill px-4 badge-secondary"><?=$trs->status?></span>
+            <?php if($trs->status == 0){?>
+                <span class="badge badge-pill px-4 badge-secondary">Penjemputan Cucian</span>
+                <?php }else if($trs->status == 1){ ?>
+                <span class="badge badge-pill px-4 badge-secondary">Proses Sorting dan Timbang</span>
+                <?php }else if($trs->status == 2){?>
+                <span class="badge badge-pill px-4 badge-warning">Permohonan Konfirmasi Customer</span>
+                <?php }else if($trs->status == 3){?>
+                <span class="badge badge-pill px-4 badge-warning">Sedang Memproses Pesanan</span>
+                <?php }else if($trs->status == 4){?>
+                <span class="badge badge-pill px-4 badge-primary">Cucian siap diantar</span>
+                <?php }else if($trs->status == 5){?>
+                <span class="badge badge-pill px-4 badge-primary">Pesanan telah diantar</span>
+                <?php }else if($trs->status == 6){?>
+                <span class="badge badge-pill px-4 badge-danger">Pesanan dibatalkan</span>
                 <?php }?>
             </td>
           <tr>

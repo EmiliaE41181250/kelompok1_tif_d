@@ -42,9 +42,10 @@
                             <td class="text-center">
 
                                 <?php echo anchor('admin/C_jenispaket/edit/' . $jp->id_jenis_paket, '
-                <div class="btn btn-primary mb-2 btn-sm mr-2"><i class="fa fa-edit"></i></div>') ?>
-                                <?php echo anchor('admin/C_jenispaket/destroy/' . $jp->id_jenis_paket, '
-                <div class="btn btn-danger mb-2 btn-sm"><i class="fa fa-trash"></i></div>') ?>
+                                <div class="btn btn-primary mb-2 btn-sm mr-2"><i class="fa fa-edit"></i></div>') ?>
+                                <a onclick="return confirm('Apakah anda yakin ingin menghapus item ini?');" href="<?=base_url('admin/C_jenispaket/destroy/' . $jp->id_jenis_paket)?>" 
+                                class="btn btn-danger mb-2 btn-sm"><i class="fa fa-trash"></i></a>
+
 
                             </td>
                         </tr>

@@ -5,20 +5,16 @@
     <div class="block-header">
         <div class="row">
             <div class="col-12">
-                <h2 class="font-weight-bolder">Data Isi Paket</h2>
+                <h2 class="font-weight-bolder">Data Pesan</h2>
                 <ul class="breadcrumb bg-transparent ml-n3 mt-n4 mb-0">
                     <li class="breadcrumb-item"><a href="<?= base_url() ?>admin/dashboard"><i class="fa fa-home"></i> OrenzLaundry</a></li>
-                    <li class="breadcrumb-item active">Isi Paket</li>
+                    <li class="breadcrumb-item active">Pesan</li>
                 </ul>
             </div>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-6">
-            <button class="btn btn-sm btn-ijo mb-2" data-toggle="modal" data-target="#tambah_barang"><i class="fas fa-plus fa-sm mr-2"></i>Tambah Isi Paket</button>
-        </div>
-    </div>
+    
 
     <?php echo $this->session->flashdata('pesan'); ?>
     <div class="row card shadow">
@@ -46,9 +42,7 @@
                             <td class="text-center">
                             <a href="<?=base_url('admin/C_pesan/detail/' . $psn->id_pesan)?>" 
                             class="btn btn-info mb-2 btn-sm"><i class="px-1 fa fa-info"></i></a>
-                            <a onclick="return confirm('Apakah anda yakin ingin menghapus item ini ?');" href="<?=base_url('admin/C_pesan/destroy/' . $psn->id_pesan)?>" 
-                            class="btn btn-danger mb-2 btn-sm"><i class="fa fa-trash"></i></a>
-
+                            
                             </td>
                         </tr>
                     <?php } ?>

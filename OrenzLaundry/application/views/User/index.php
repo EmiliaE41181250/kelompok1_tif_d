@@ -282,7 +282,7 @@
             
                         <h3>Orenz Laundry</h3>
                         <p><?php echo $this->db->get_where('admin', array('id_admin' => 'ADM000000000001'))->row()->alamat;?></p>
-                        <p><?php echo $this->db->get_where('admin', array('id_admin'=> 'ADM000000000001'))->row()->no_hp;?></p>
+                        <p>No Hp : <?php echo $this->db->get_where('admin', array('id_admin'=> 'ADM000000000001'))->row()->no_hp;?></p>
                     
                     </div>
                 </div>

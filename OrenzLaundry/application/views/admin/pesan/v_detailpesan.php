@@ -2,11 +2,11 @@
   <div class="row justify-content-center py-3">
     <div class="col-md-8 card p-0 shadow mb-4">
       <div class="card-header pb-0">
-        <h2 class="font-weight-bolder mb-0">Detail Data Promo</h2>
+        <h2 class="font-weight-bolder mb-0">Detail Data Pesan</h2>
         <ul class="breadcrumb bg-transparent ml-n3 mt-n3 mb-0">
             <li class="breadcrumb-item"><a href="<?=base_url()?>admin/dashboard"><i class="fa fa-home"></i> OrenzLaundry</a></li>
-            <li class="breadcrumb-item"><a href="<?=base_url()?>admin/promo"></i> Promo</a></li>
-            <li class="breadcrumb-item active">Detail Promo</li>
+            <li class="breadcrumb-item"><a href="<?=base_url()?>admin/c_pesan"></i> Pesan</a></li>
+            <li class="breadcrumb-item active">Detail Pesan</li>
         </ul>
       </div>
       <div class="card-body">

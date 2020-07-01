@@ -33,12 +33,12 @@
 
                         <div class="form-group">
                             <label for="judul_promo">No. Telp</label>
-                            <input value="<?= $adm->no_telp ?>" type="text" name="no_telp" id="no_telp" class="form-control" placeholder="Masukkan Nama Anda.." aria-describedby="Nama" maxlength="100" required>
+                            <input value="<?= $adm->no_telp ?>" type="text" name="no_telp" id="no_telp" class="form-control" placeholder="Masukkan Telepon Anda.." aria-describedby="Nama" maxlength="100">
                         </div>
 
                         <div class="form-group">
                             <label for="judul_promo">Username</label>
-                            <input value="<?= $adm->username ?>" type="text" name="username" id="username" class="form-control" placeholder="Masukkan Nama Anda.." aria-describedby="Nama" maxlength="100" required>
+                            <input value="<?= $adm->username ?>" type="text" name="username" id="username" class="form-control" placeholder="Masukkan Username Anda.." aria-describedby="Nama" maxlength="100" required>
                         </div>
 
                         <div class="form-group">

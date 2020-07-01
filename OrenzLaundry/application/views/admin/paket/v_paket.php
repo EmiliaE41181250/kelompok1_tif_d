@@ -54,8 +54,9 @@
                 <div class="btn mb-2 btn-info btn-sm mr-2 pr-3 pl-3"><i class="fa fa-info"></i></div>')?>
                 <?php echo anchor('admin/C_paket/edit/' . $pk->id_paket, '
                 <div class="btn mb-2 btn-primary btn-sm mr-2"><i class="fa fa-edit"></i></div>')?>
-                <?php echo anchor('admin/C_paket/destroy/' . $pk->id_paket, '
-                <div class="btn mb-2 btn-danger btn-sm"><i class="fa fa-trash"></i></div>')?>
+  
+                <a onclick="return confirm('Apakah anda yakin ingin menghapus item ini?');" href="<?=base_url('admin/C_paket/destroy/' . $pk->id_paket)?>" 
+                                class="btn btn-danger mb-2 btn-sm"><i class="fa fa-trash"></i></a>
                 
               </td>
           </tr>
@@ -104,7 +105,7 @@
         </div>
         <div class="form-group">
           <label for="harga">Harga Paket</label><br>
-          <input required type="text" name="harga" id="harga" class="form-control d-inline w-25" placeholder="Harga . ." aria-describedby="jumlahharga">
+          <input required type="number" min="0" name="harga" id="harga" class="form-control d-inline w-25" placeholder="Harga . ." aria-describedby="jumlahharga">
           <small id="jumlahharga" class="text-muted">Jumlah Harga</small>
         </div>
         <div class="form-group">

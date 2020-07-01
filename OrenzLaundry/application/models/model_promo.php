@@ -32,6 +32,8 @@ class Model_promo extends CI_Model
 
   function getPromoTokenMobile($token)  
   {
+    $hariini=date('Y-m-d');
+    $this->db->where("promo.akhir >", $hariini);
     $this->db->where("kode", $token);
 		$data = $this->db->get("promo")->result();
     $response['status']=200;

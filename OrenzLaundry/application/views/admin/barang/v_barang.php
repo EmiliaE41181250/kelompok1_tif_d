@@ -49,8 +49,8 @@
                             <td class="text-center">
                                 <?php echo anchor('admin/C_barang/edit/' . $brg->id_barang, '
                                 <div class="btn btn-primary btn-sm mb-2 mr-2"><i class="fa fa-edit"></i></div>') ?>
-                                <?php echo anchor('admin/C_barang/destroy/' . $brg->id_barang, '
-                                <div class="btn btn-danger mb-2 btn-sm"><i class="fa fa-trash"></i></div>') ?>
+                                <a onclick="return confirm('Apakah anda yakin ingin menghapus item ini?');" href="<?=base_url('admin/C_barang/destroy/' . $brg->id_barang)?>" 
+                                class="btn btn-danger mb-2 btn-sm"><i class="fa fa-trash"></i></a>
 
                             </td>
                         </tr>

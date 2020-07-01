@@ -78,7 +78,9 @@
                       <div class="h5 mb-0 font-weight-bold text-gray-800"> <?= number_format($history, 0, ',', '.'); ?></div>
                     </div>
                     <div class="col-auto">
-                      <i class="fas fa-comments fa-2x text-gray-300"></i>
+                    <a href="<?= base_url('admin/c_transaksi');?>">
+                      <i class="fas fa-fw fa-chart-area fa-2x text-gray-300"></i>
+                    </a>
                     </div>
                   </div>
                 </div>
@@ -119,7 +121,7 @@
             </div>
 
             <?php
-
+                
                 foreach ($grafik as $data){
           
                   $tgl_transaksi[] = substr($data->tgl_transaksi, 0, 10);

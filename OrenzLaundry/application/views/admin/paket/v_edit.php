@@ -50,7 +50,7 @@
         </div>
         <div class="form-group">
           <label for="harga">Harga Paket</label><br>
-          <input required value="<?=$pk->harga?>" type="text" name="harga" id="harga" class="form-control d-inline w-25" placeholder="Harga . ." aria-describedby="jumlahharga">
+          <input required value="<?=$pk->harga?>" type="number" min="0" name="harga" id="harga" class="form-control d-inline w-25" placeholder="Harga . ." aria-describedby="jumlahharga">
           <small id="jumlahharga" class="text-muted">Jumlah Harga</small>
         </div>
         <div class="form-group">

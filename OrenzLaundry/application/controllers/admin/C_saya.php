@@ -74,7 +74,7 @@ class C_saya extends CI_Controller
                 'alamat' => $this->input->post('alamat'),
                 'no_hp' => $this->input->post('no_hp'),
                 'no_telp' => $this->input->post('no_telp'),
-                'username' => $this->input->post('admin'),
+                'username' => $this->input->post('username'),
                 'logo' => $logo,
     
                 'updated_by' => $updated_by,
@@ -89,7 +89,7 @@ class C_saya extends CI_Controller
                 'alamat' => $this->input->post('alamat'),
                 'no_hp' => $this->input->post('no_hp'),
                 'no_telp' => $this->input->post('no_telp'),
-                'username' => $this->input->post('admin'),
+                'username' => $this->input->post('username'),
 
                 'updated_by' => $updated_by,
                 'updated_at' => $updated_at

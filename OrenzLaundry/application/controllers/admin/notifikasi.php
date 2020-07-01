@@ -20,6 +20,7 @@ class notifikasi extends CI_Controller
         // ini adalah variabel array $data yang memiliki index user, berguna untuk menyimpan data 
 
         $data['detail_transaksi'] = $this->m_notif->getAll('detail_transaksi')->result();
+        $this->db->order_by('tgl_transaksi', 'DESC');
         $data['transaksi'] = $this->m_notif->tampil_data('transaksi')->result();
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
