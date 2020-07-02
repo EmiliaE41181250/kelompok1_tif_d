@@ -11,8 +11,8 @@ class History extends REST_Controller{
     {
       // Construct the parent class
         parent::__construct();
-        $this->load->model('m_history');
-        $this->load->library('primslib');
+        $this->load->model('M_history');
+        $this->load->library('PrimsLib');
         $this->methods['users_get']['limit'] = 500; // 500 requests per hour per user/key
         $this->methods['users_post']['limit'] = 100; // 100 requests per hour per user/key
         $this->methods['users_delete']['limit'] = 50; // 50 requests per hour per user/key
@@ -21,7 +21,7 @@ class History extends REST_Controller{
     function getAllHistory_post()
     {
         $user = $this->post("user");
-        $response = $this->m_history->getAllHistory($user);
+        $response = $this->M_history->getAllHistory($user);
         if ($response['data']!=null) {
             $this->response($response);
         }else{
@@ -35,7 +35,7 @@ class History extends REST_Controller{
     public function getHistoryId_post()
     {
         $id = $this->post('id');
-        $response = $this->m_history->getHistoryId($id);
+        $response = $this->M_history->getHistoryId($id);
         if ($response['data']!=null) {
             $this->response($response);
         }else{
@@ -49,7 +49,7 @@ class History extends REST_Controller{
     public function getAllTransaksi_post()
     {
         $user = $this->post("user");
-        $response = $this->m_history->getAllTransaksi($user);
+        $response = $this->M_history->getAllTransaksi($user);
         if ($response['data']!=null) {
             $this->response($response);
         }else{
@@ -63,7 +63,7 @@ class History extends REST_Controller{
     public function getTransaksiId_post()
     {
         $id = $this->post('id');
-        $response = $this->m_history->getTransaksiId($id);
+        $response = $this->M_history->getTransaksiId($id);
         if ($response['data']!=null) {
             $this->response($response);
         }else{
@@ -77,7 +77,7 @@ class History extends REST_Controller{
     public function deleteHistoryId_post()
     {
         $id = $this->post("id");
-        $response = $this->m_history->deleteHistoryId($id);
+        $response = $this->M_history->deleteHistoryId($id);
         if ($response['data']==true) {
             $this->response($response);
         }else{
@@ -91,7 +91,7 @@ class History extends REST_Controller{
     public function deleteTransaksiId_post()
     {
         $id = $this->post("id");
-        $response = $this->m_history->deleteTransaksiId($id);
+        $response = $this->M_history->deleteTransaksiId($id);
         if ($response['data']==true) {
             $this->response($response);
         }else{

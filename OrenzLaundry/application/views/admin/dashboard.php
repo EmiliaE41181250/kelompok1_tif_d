@@ -59,7 +59,7 @@
                       </div>
                     </div>
                     <div class="col-auto">
-                      <a href="<?= base_url('admin/user');?>">
+                      <a href="<?= base_url('admin/User');?>">
                         <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
                       </a>
                     </div>
@@ -78,7 +78,7 @@
                       <div class="h5 mb-0 font-weight-bold text-gray-800"> <?= number_format($history, 0, ',', '.'); ?></div>
                     </div>
                     <div class="col-auto">
-                    <a href="<?= base_url('admin/c_transaksi');?>">
+                    <a href="<?= base_url('admin/C_transaksi');?>">
                       <i class="fas fa-fw fa-chart-area fa-2x text-gray-300"></i>
                     </a>
                     </div>

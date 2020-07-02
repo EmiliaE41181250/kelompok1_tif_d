@@ -5,7 +5,7 @@
         <h2 class="font-weight-bolder mb-0">Detail Data Pesan</h2>
         <ul class="breadcrumb bg-transparent ml-n3 mt-n3 mb-0">
             <li class="breadcrumb-item"><a href="<?=base_url()?>admin/dashboard"><i class="fa fa-home"></i> OrenzLaundry</a></li>
-            <li class="breadcrumb-item"><a href="<?=base_url()?>admin/c_pesan"></i> Pesan</a></li>
+            <li class="breadcrumb-item"><a href="<?=base_url()?>admin/C_pesan"></i> Pesan</a></li>
             <li class="breadcrumb-item active">Detail Pesan</li>
         </ul>
       </div>

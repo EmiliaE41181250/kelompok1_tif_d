@@ -43,7 +43,7 @@
 
                             <td><?= $pk->nama_paket ?></td>
                             <td class="text-center">
-                                <?php echo anchor('admin/notifikasi/detail/' . $trs->id_transaksi, '
+                                <?php echo anchor('admin/Notifikasi/detail/' . $trs->id_transaksi, '
                 <div class="btn btn-info btn-sm mr-2 pr-3 pl-3"><i class="fa fa-info"></i></div>') ?>
                             </td>
                         </tr>

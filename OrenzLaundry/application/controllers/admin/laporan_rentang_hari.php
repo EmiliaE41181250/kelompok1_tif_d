@@ -4,11 +4,11 @@ class laporan_rentang_hari extends CI_Controller
     function __construct()
     {
         parent::__construct();
-        $this->load->model('m_rentang_hari');
+        $this->load->model('M_rentang_hari');
     }
     function index()
     {
-        $x['data'] = $this->m_rentang_hari->get_data_transaksi();
+        $x['data'] = $this->M_rentang_hari->get_data_transaksi();
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
         $this->load->view('admin/laporan/v_rentang_hari', $x);
@@ -51,18 +51,18 @@ class laporan_rentang_hari extends CI_Controller
         WHERE 
         transaksi.tgl_transaksi LIKE '%$hasil_cari%' GROUP BY day(transaksi.tgl_transaksi) ORDER BY tgl_transaksi ASC")->result();
 
-        $this->load->library('dompdf_gen');
+        $this->load->library('Dompdf_gen');
 
         $this->load->view('admin/laporan/laporan_pdf_bulanan', $data);
 
         $paper_size = 'A4';
         $oriantation = 'potrait';
         $html = $this->output->get_output();
-        $this->dompdf->set_paper($paper_size, $oriantation);
+        $this->Dompdf->set_paper($paper_size, $oriantation);
 
-        $this->dompdf->load_html($html);
-        $this->dompdf->render();
-        $this->dompdf->stream("laporan_bulanan_".date('Y-m-d_H-i-s').".pdf", array('Attachment' => 0));
+        $this->Dompdf->load_html($html);
+        $this->Dompdf->render();
+        $this->Dompdf->stream("laporan_bulanan_".date('Y-m-d_H-i-s').".pdf", array('Attachment' => 0));
     }
 
     function tahunan_report()
@@ -101,18 +101,18 @@ class laporan_rentang_hari extends CI_Controller
         WHERE 
         transaksi.tgl_transaksi LIKE '%$hasil_cari%' GROUP BY month(transaksi.tgl_transaksi) ORDER BY tgl_transaksi ASC")->result();
 
-        $this->load->library('dompdf_gen');
+        $this->load->library('Dompdf_gen');
 
         $this->load->view('admin/laporan/laporan_pdf_tahunan', $data);
 
         $paper_size = 'A4';
         $oriantation = 'potrait';
         $html = $this->output->get_output();
-        $this->dompdf->set_paper($paper_size, $oriantation);
+        $this->Dompdf->set_paper($paper_size, $oriantation);
 
-        $this->dompdf->load_html($html);
-        $this->dompdf->render();
-        $this->dompdf->stream("laporan_bulanan_".date('Y-m-d_H-i-s').".pdf", array('Attachment' => 0));
+        $this->Dompdf->load_html($html);
+        $this->Dompdf->render();
+        $this->Dompdf->stream("laporan_bulanan_".date('Y-m-d_H-i-s').".pdf", array('Attachment' => 0));
     }
 
     function harian_report()
@@ -156,17 +156,17 @@ class laporan_rentang_hari extends CI_Controller
         WHERE 
         transaksi.tgl_transaksi BETWEEN '$awal' AND '$akhir' GROUP BY day(transaksi.tgl_transaksi) ORDER BY tgl_transaksi ASC")->result();
 
-        $this->load->library('dompdf_gen');
+        $this->load->library('Dompdf_gen');
 
         $this->load->view('admin/laporan/laporan_pdf_rentang', $data);
 
         $paper_size = 'A4';
         $oriantation = 'potrait';
         $html = $this->output->get_output();
-        $this->dompdf->set_paper($paper_size, $oriantation);
+        $this->Dompdf->set_paper($paper_size, $oriantation);
 
-        $this->dompdf->load_html($html);
-        $this->dompdf->render();
-        $this->dompdf->stream("laporan_bulanan_".date('Y-m-d_H-i-s').".pdf", array('Attachment' => 0));
+        $this->Dompdf->load_html($html);
+        $this->Dompdf->render();
+        $this->Dompdf->stream("laporan_bulanan_".date('Y-m-d_H-i-s').".pdf", array('Attachment' => 0));
     }
 }

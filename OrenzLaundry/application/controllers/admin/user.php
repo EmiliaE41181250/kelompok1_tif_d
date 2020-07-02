@@ -8,14 +8,14 @@ class User extends CI_Controller
   {
     parent::__construct();
     // ini adalah function untuk memuat model bernama m_data
-    $this->load->model('m_data_user');
-    $this->load->library('primslib');
+    $this->load->model('M_data_user');
+    $this->load->library('PrimsLib');
   }
 
   function index()
   {
     // ini adalah variabel array $data yang memiliki index user, berguna untuk menyimpan data 
-    $data['user'] = $this->m_data_user->tampil_data()->result();
+    $data['user'] = $this->M_data_user->tampil_data()->result();
     $this->load->view('templates/header');
     $this->load->view('templates/sidebar');
     $this->load->view('admin/user/v_user', $data);
@@ -25,7 +25,7 @@ class User extends CI_Controller
   public function edit($id)
   {
     $where = array('id_user' => $id);
-    $data['user'] = $this->m_data_user->edit($where, 'user')->result();
+    $data['user'] = $this->M_data_user->edit($where, 'user')->result();
     $this->load->view('templates/header');
     $this->load->view('templates/sidebar');
     $this->load->view('admin/user/v_edit_user', $data);
@@ -35,7 +35,7 @@ class User extends CI_Controller
   public function detail($id)
   {
     $where = array('id_user' => $id);
-    $data['user'] = $this->m_data_user->getEdit($where, 'user')->result();
+    $data['user'] = $this->M_data_user->getEdit($where, 'user')->result();
     $this->load->view('templates/header');
     $this->load->view('templates/sidebar');
     $this->load->view('admin/User/v_detailuser', $data);
@@ -45,13 +45,13 @@ class User extends CI_Controller
   public function tambah()
   {
     // memeriksa apakah ada id pada database
-    $row_id = $this->m_data_user->getId()->num_rows();
+    $row_id = $this->M_data_user->getId()->num_rows();
     // mengambil 1 baris data terakhir
-    $old_id = $this->m_data_user->getId()->row();
+    $old_id = $this->M_data_user->getId()->row();
 
     if ($row_id > 0) {
       // melakukan auto number dari id terakhir
-      $id = $this->primslib->autonumber($old_id->id_user, 3, 12);
+      $id = $this->PrimsLib->autonumber($old_id->id_user, 3, 12);
     } else {
       // generate id pertama kali jika tidak ada data sama sekali di dalam database
       $id = 'USR000000000001';
@@ -77,7 +77,7 @@ class User extends CI_Controller
     );
 
     // menjalankan fungsi insert pada m_data_user untuk menambah data ke database
-    $this->m_data_user->insert($data, 'user');
+    $this->M_data_user->insert($data, 'user');
     // mengirim pesan berhasil dihapus
     $this->session->set_flashdata('pesan', '
           <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -114,7 +114,7 @@ class User extends CI_Controller
     );
 
     // menjalankan method update pada m_data_user
-    $this->m_data_user->update($where, $data, 'user');
+    $this->M_data_user->update($where, $data, 'user');
 
     // mengirim pesan berhasil update data
     $this->session->set_flashdata('pesan', '
@@ -135,7 +135,7 @@ class User extends CI_Controller
     // deklarasi $where by id
     $where = array('id_user' => $id);
     // menjalankan fungsi delete pada m_data_user
-    $this->m_data_user->delete($where, 'user');
+    $this->M_data_user->delete($where, 'user');
     // mengirim pesan berhasil dihapus
     $this->session->set_flashdata('pesan', '
     <div class="alert alert-danger alert-dismissible fade show" role="alert">

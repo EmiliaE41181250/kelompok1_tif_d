@@ -1,6 +1,6 @@
 <?php
 
-class M_History  extends CI_Model
+class M_history  extends CI_Model
 {
     public function getAllHistory($user)
     {

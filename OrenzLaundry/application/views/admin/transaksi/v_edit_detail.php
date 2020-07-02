@@ -5,7 +5,7 @@
         <h2 class="font-weight-bolder mb-0">Edit Data Detail Transaksi</h2>
         <ul class="breadcrumb bg-transparent ml-n3 mt-n3 mb-0">
             <li class="breadcrumb-item"><a href="<?=base_url()?>admin/dashboard"><i class="fa fa-home"></i> OrenzLaundry</a></li>
-            <li class="breadcrumb-item"><a href="<?=base_url()?>admin/c_transaksi"></i> Transaksi</a></li>
+            <li class="breadcrumb-item"><a href="<?=base_url()?>admin/C_transaksi"></i> Transaksi</a></li>
             <li class="breadcrumb-item active">Edit Data Detail Transaksi</li>
         </ul>
       </div>
@@ -13,7 +13,7 @@
 
         <?php foreach ($detail as $dt) { ?>
           
-          <form action="<?=  base_url() . 'admin/c_transaksi/updatedetail'?>" method="post" enctype="multipart/form-data">
+          <form action="<?=  base_url() . 'admin/C_transaksi/updatedetail'?>" method="post" enctype="multipart/form-data">
             <input type="hidden" name="id_transaksi" value="<?=$dt->id_transaksi?>">
             <input type="hidden" name="id_paket" value="<?=$dt->id_paket?>">
             <?php foreach($paket as $pk){ if($pk->id_paket == $dt->id_paket){?>

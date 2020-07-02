@@ -11,7 +11,7 @@ class Login extends CI_Controller{
 //fungsi construct yang digunakan untuk memanggil m_login yang merupakanmodel (berisi operasi database)
 	function __construct(){
 		parent::__construct();		
-		$this->load->model('m_login');
+		$this->load->model('M_login');
 	}
 
 //fungsi index untuk menampilkan view bernama v_login yang merupakan from untuk mengiputkan data saat login 
@@ -36,7 +36,7 @@ class Login extends CI_Controller{
 			);
 
 		//cek ketersediaan username dan pasword admin dengan fungsi cek login yang da di m_login
-		$cek = $this->m_login->cek_login("admin",$where);
+		$cek = $this->M_login->cek_login("admin",$where);
 
 		//jika hasil cek ternyata menyatakan username dan pasword tersedia maka dibuat sesion berisi username dan status login, kemudian akan di arahkan ke controller admin.
 		if($cek->num_rows() > 0){
@@ -79,10 +79,10 @@ class Login extends CI_Controller{
 		$repassword = $this->input->post('repass');
 
 		if ($password == $repassword) {
-			$result = $this->m_login->reset_pass($password, $id_admin);
+			$result = $this->M_login->reset_pass($password, $id_admin);
 
 			if ($result) {
-				redirect(base_url('admin/login/logout'));
+				redirect(base_url('admin/Login/logout'));
 			}else{
 				$this->session->set_flashdata('pesan', '
 				<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -93,7 +93,7 @@ class Login extends CI_Controller{
 				</div>
 				');
 	
-				redirect(base_url('admin/login/reset_pass_view'));
+				redirect(base_url('admin/Login/reset_pass_view'));
 			}
 		}else{
 			$this->session->set_flashdata('pesan', '
@@ -105,7 +105,7 @@ class Login extends CI_Controller{
 				</div>
 				');
 	
-				redirect(base_url('admin/login/reset_pass_view'));
+				redirect(base_url('admin/Login/reset_pass_view'));
 		}
 
 		

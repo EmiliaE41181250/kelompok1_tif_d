@@ -5,7 +5,7 @@
         <h2 class="font-weight-bolder mb-0">Edit Data Waktu Kurir</h2>
         <ul class="breadcrumb bg-transparent ml-n3 mt-n3 mb-0">
             <li class="breadcrumb-item"><a href="<?=base_url()?>admin/dashboard"><i class="fa fa-home"></i> OrenzLaundry</a></li>
-            <li class="breadcrumb-item"><a href="<?=base_url()?>admin/c_waktu"></i> Waktu Kurir</a></li>
+            <li class="breadcrumb-item"><a href="<?=base_url()?>admin/C_waktu"></i> Waktu Kurir</a></li>
             <li class="breadcrumb-item active">Edit Waktu Kurir</li>
         </ul>
       </div>
@@ -13,7 +13,7 @@
 
         <?php foreach ($waktu as $wkt) { ?>
           
-          <form action="<?=  base_url() . 'admin/c_waktu/update'?>" method="post" enctype="multipart/form-data">
+          <form action="<?=  base_url() . 'admin/C_waktu/update'?>" method="post" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?=$wkt->id?>">
 
             <div class="form-group">

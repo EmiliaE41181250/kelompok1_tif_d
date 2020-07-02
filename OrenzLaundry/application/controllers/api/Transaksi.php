@@ -11,9 +11,9 @@ class Transaksi extends REST_Controller {
   {
       // Construct the parent class
       parent::__construct();
-      $this->load->model('m_notif');
-      $this->load->library('primslib');
-      $this->load->library('configemail');
+      $this->load->model('M_notif');
+      $this->load->library('PrimsLib');
+      $this->load->library('ConfigEmail');
       $this->methods['users_get']['limit'] = 500; // 500 requests per hour per user/key
       $this->methods['users_post']['limit'] = 100; // 100 requests per hour per user/key
       $this->methods['users_delete']['limit'] = 50; // 50 requests per hour per user/key
@@ -100,7 +100,7 @@ class Transaksi extends REST_Controller {
 
     if($row_id>0){
       // melakukan auto number dari id terakhir
-    $id = $this->primslib->autonumber($old_id->id_transaksi, 3, 12);
+    $id = $this->PrimsLib->autonumber($old_id->id_transaksi, 3, 12);
     }else{
       // generate id pertama kali jika tidak ada data sama sekali di dalam database
     $id = 'TRS000000000001';
@@ -156,27 +156,27 @@ class Transaksi extends REST_Controller {
       $title = "Transaksi anda berhasil dilakukan!";
       $message = "Tunggu sebentar, kami akan menjemput cucian ke lokasi anda sesuai jadwal!";
       $payload = array('intent' => 'notifikasi');
-      $firebase = $this->primslib->SendNotification($tokenM, $title, $message, $payload);
+      $firebase = $this->PrimsLib->SendNotification($tokenM, $title, $message, $payload);
       $response['firebase']=$firebase;
 
       // kirim notif ke Email
-      $email = $datatoken->row()->email;
-      $this->load->library('configemail');
-      $config = $this->configemail->config_email();
-      $this->load->library('email', $config);
-      $this->email->from('admin@orenzlaundry.com', 'Orenz Laundry');
-      $this->email->to($email);
+      $email = $datatoken->row()->Email;
+      $this->load->library('ConfigEmail');
+      $config = $this->ConfigEmail->config_email();
+      $this->load->library('Email', $config);
+      $this->Email->from('admin@orenzlaundry.com', 'Orenz Laundry');
+      $this->Email->to($email);
       $subject = 'Transaksi anda berhasil | Orenz Laundry';
-      $this->email->subject($subject);
+      $this->Email->subject($subject);
       $nama_user = $datatoken->row()->nama_user;
       $pesan = 'Anda telah melakukan transaksi pemesanan di Orenz laundry, kami akan melanjutkan proses pesanan!<br> 
           Selanjutnya kami akan menjemput pesanan ke lokasi yang telah anda tentukan, ditunggu yahh!!';
       $message = '';
       $this->load->library('EmailtoUser');
-      $message = $this->emailtouser->transaksiberhasil($subject, $nama_user, $pesan);
-      $this->email->message($message);
+      $message = $this->EmailtoUser->transaksiberhasil($subject, $nama_user, $pesan);
+      $this->Email->message($message);
       
-      $response['gmail']=$this->email->send();
+      $response['gmail']=$this->Email->send();
       $response['data_email']=$email;
 
       $this->response($response);

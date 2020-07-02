@@ -8,8 +8,8 @@ class C_durasipaket extends CI_Controller
   {
     parent::__construct();
     // ini adalah function untuk memuat model bernama m_data
-    $this->load->model('m_durasipaket');
-    $this->load->library('primslib');
+    $this->load->model('M_durasipaket');
+    $this->load->library('PrimsLib');
     if ($this->session->userdata('nama') == '') {
       redirect('admin/login/');
     }
@@ -18,7 +18,7 @@ class C_durasipaket extends CI_Controller
   function index()
   {
     // ini adalah variabel array $data yang memiliki index user, berguna untuk menyimpan data 
-    $data['durasi_paket'] = $this->m_durasipaket->tampil_data()->result();
+    $data['durasi_paket'] = $this->M_durasipaket->tampil_data()->result();
     $this->load->view('templates/header');
     $this->load->view('templates/sidebar');
     $this->load->view('admin/durasipaket/v_durasipaket', $data);
@@ -28,7 +28,7 @@ class C_durasipaket extends CI_Controller
   public function edit($id)
   {
     $where = array('id_durasi' => $id);
-    $data['durasi_paket'] = $this->m_durasipaket->edit($where, 'durasi_paket')->result();
+    $data['durasi_paket'] = $this->M_durasipaket->edit($where, 'durasi_paket')->result();
     $this->load->view('templates/header');
     $this->load->view('templates/sidebar');
     $this->load->view('admin/durasipaket/v_edit', $data);
@@ -38,13 +38,13 @@ class C_durasipaket extends CI_Controller
   public function tambah()
   {
     // memeriksa apakah ada id pada database
-    $row_id = $this->m_durasipaket->getId()->num_rows();
+    $row_id = $this->M_durasipaket->getId()->num_rows();
     // mengambil 1 baris data terakhir
-    $old_id = $this->m_durasipaket->getId()->row();
+    $old_id = $this->M_durasipaket->getId()->row();
 
     if ($row_id > 0) {
       // melakukan auto number dari id terakhir
-      $id = $this->primslib->autonumber($old_id->id_durasi, 3, 12);
+      $id = $this->PrimsLib->autonumber($old_id->id_durasi, 3, 12);
     } else {
       // generate id pertama kali jika tidak ada data sama sekali di dalam database
       $id = 'DPK000000000001';
@@ -64,7 +64,7 @@ class C_durasipaket extends CI_Controller
     );
 
     // menjalankan fungsi insert pada m_data_jenispaket untuk menambah data ke database
-    $this->m_durasipaket->insert($data, 'durasi_paket');
+    $this->M_durasipaket->insert($data, 'durasi_paket');
     // mengirim pesan berhasil dihapus
     $this->session->set_flashdata('pesan', '
           <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -96,7 +96,7 @@ class C_durasipaket extends CI_Controller
     );
 
     // menjalankan method update pada m_data_durasi_paket
-    $this->m_durasipaket->update($where, $data, 'durasi_paket');
+    $this->M_durasipaket->update($where, $data, 'durasi_paket');
 
     // mengirim pesan berhasil update data
     $this->session->set_flashdata('pesan', '
@@ -117,7 +117,7 @@ class C_durasipaket extends CI_Controller
     // deklarasi $where by id
     $where = array('id_durasi' => $id);
     // menjalankan fungsi delete pada m_durasi_paket
-    $this->m_durasipaket->delete($where, 'durasi_paket');
+    $this->M_durasipaket->delete($where, 'durasi_paket');
     // mengirim pesan berhasil dihapus
     $this->session->set_flashdata('pesan', '
     <div class="alert alert-danger alert-dismissible fade show" role="alert">

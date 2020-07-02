@@ -6,8 +6,8 @@ class C_isipaket extends CI_Controller
   function __construct()
   {
     parent::__construct();
-    $this->load->model('m_isipaket');
-    $this->load->library('primslib');
+    $this->load->model('M_isipaket');
+    $this->load->library('PrimsLib');
     if ($this->session->userdata('nama') == '') {
       redirect('admin/login/');
     }
@@ -16,7 +16,7 @@ class C_isipaket extends CI_Controller
   // Menampilkan tabel Promo
   public function index()
   {
-    $data['isi_paket'] = $this->m_isipaket->getAll('isi_paket')->result();
+    $data['isi_paket'] = $this->M_isipaket->getAll('isi_paket')->result();
     $this->load->view('templates/header');
     $this->load->view('templates/sidebar');
     $this->load->view('admin/isipaket/v_isipaket', $data);
@@ -27,7 +27,7 @@ class C_isipaket extends CI_Controller
   public function edit()
   {
     $where = array('id_isi_paket');
-    $data['isi_paket'] = $this->m_isipaket->getEdit($where, 'isi_paket')->result();
+    $data['isi_paket'] = $this->M_isipaket->getEdit($where, 'isi_paket')->result();
     $this->load->view('templates/header');
     $this->load->view('templates/sidebar');
     $this->load->view('admin/isipaket/v_edit_ip', $data);
@@ -38,8 +38,8 @@ class C_isipaket extends CI_Controller
   public function detail($id)
   {
     $where = array('id_isi_paket');
-    $detail = $this->m_isipaket->detail_data($id);
-    $data['detail'] = $this->m_isipaket->detail_data($id);
+    $detail = $this->M_isipaket->detail_data($id);
+    $data['detail'] = $this->M_isipaket->detail_data($id);
     $this->load->view('templates/header');
     $this->load->view('templates/sidebar');
     $this->load->view('admin/isipaket/detail', $data);
@@ -49,13 +49,13 @@ class C_isipaket extends CI_Controller
   public function tambah()
   {
     // memeriksa apakah ada id pada database
-    $row_id = $this->m_isipaket->getId()->num_rows();
+    $row_id = $this->M_isipaket->getId()->num_rows();
     // mengambil 1 baris data terakhir
-    $old_id = $this->m_isipaket->getId()->row();
+    $old_id = $this->M_isipaket->getId()->row();
 
     if($row_id>0){
       // melakukan auto number dari id terakhir
-    $id = $this->primslib->autonumber($old_id->id_isi_paket, 3, 12);
+    $id = $this->PrimsLib->autonumber($old_id->id_isi_paket, 3, 12);
     }else{
       // generate id pertama kali jika tidak ada data sama sekali di dalam database
     $id = 'IPT000000000001';
@@ -76,7 +76,7 @@ class C_isipaket extends CI_Controller
     );
 
     // menjalankan fungsi insert pada model_promo untuk menambah data ke database
-    $this->m_isipaket->insert($data, 'isi_paket');
+    $this->M_isipaket->insert($data, 'isi_paket');
     // mengirim pesan berhasil dihapus
     $this->session->set_flashdata('pesan', '
     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -100,7 +100,7 @@ class C_isipaket extends CI_Controller
     
 
       $data = array(
-        'id_isi_paket' => $id,
+        'id_isi_paket' => $this->input->post('id_isi_paket'),
         'nama_isi_paket' => $this->input->post('nama_isi_paket'),
         'keterangan' => $this->input->post('keterangan', true),
         'status' => $this->input->post('status'),
@@ -110,7 +110,7 @@ class C_isipaket extends CI_Controller
     
 
     // menjalankan method update pada model isi paket
-    $this->m_isipaket->update($where, $data, 'isi_paket');
+    $this->M_isipaket->update($where, $data, 'isi_paket');
 
     // mengirim pesan berhasil update data
     $this->session->set_flashdata('pesan', '
@@ -131,7 +131,7 @@ class C_isipaket extends CI_Controller
     // deklarasi $where by id
     $where = array('id_isi_paket' => $id);
     // menjalankan fungsi delete pada model_isi paket
-    $this->m_isipaket->delete($where, 'isi_paket');
+    $this->M_isipaket->delete($where, 'isi_paket');
     // mengirim pesan berhasil dihapus
     $this->session->set_flashdata('pesan', '
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -148,19 +148,19 @@ class C_isipaket extends CI_Controller
   // method untuk melakukan print PDF
   public function pdf()
   {
-    $this->load->library('dompdf_gen');
+    $this->load->library('Dompdf_gen');
 
-    $data['isi_paket'] = $this->model_promo->getAll('isi_paket')->result();
+    $data['isi_paket'] = $this->Model_promo->getAll('isi_paket')->result();
 
     $this->load->view('admin/isipaket/laporan_pdf', $data);
 
     $paper_size = 'A4';
     $oriantation = 'landscape';
     $html = $this->output->get_output();
-    $this->dompdf->set_paper($paper_size, $oriantation);
+    $this->Dompdf->set_paper($paper_size, $oriantation);
 
-    $this->dompdf->load_html($html);
-    $this->dompdf->render();
-    $this->dompdf->stream("laporan_isi_paket_".date('Y-m-d_H-i-s').".pdf", array('Attachment' => 0));
+    $this->Dompdf->load_html($html);
+    $this->Dompdf->render();
+    $this->Dompdf->stream("laporan_isi_paket_".date('Y-m-d_H-i-s').".pdf", array('Attachment' => 0));
   }
 }

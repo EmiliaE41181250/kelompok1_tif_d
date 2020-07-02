@@ -5,7 +5,7 @@
         <h2 class="font-weight-bolder mb-0">Tambah Data Detail Transaksi</h2>
         <ul class="breadcrumb bg-transparent ml-n3 mt-n3 mb-0">
             <li class="breadcrumb-item"><a href="<?=base_url()?>admin/dashboard"><i class="fa fa-home"></i> OrenzLaundry</a></li>
-            <li class="breadcrumb-item"><a href="<?=base_url()?>admin/c_transaksi"></i> Transaksi</a></li>
+            <li class="breadcrumb-item"><a href="<?=base_url()?>admin/C_transaksi"></i> Transaksi</a></li>
             <li class="breadcrumb-item active">Edit Detail Transaksi</li>
         </ul>
       </div>
@@ -13,7 +13,7 @@
 
         <?php foreach ($transaksi as $trs) { ?>
           
-          <form action="<?=  base_url() . 'admin/c_transaksi/tambahdetail'?>" method="post" enctype="multipart/form-data">
+          <form action="<?=  base_url() . 'admin/C_transaksi/tambahdetail'?>" method="post" enctype="multipart/form-data">
             <input type="hidden" name="id_transaksi" value="<?=$trs->id_transaksi?>">
 
             <div class="form-group">

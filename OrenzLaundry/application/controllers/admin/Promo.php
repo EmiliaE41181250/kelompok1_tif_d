@@ -6,8 +6,8 @@ class Promo extends CI_Controller
   function __construct()
   {
     parent::__construct();
-    $this->load->model('model_promo');
-    $this->load->library('primslib');
+    $this->load->model('Model_promo');
+    $this->load->library('PrimsLib');
     if ($this->session->userdata('nama') == '') {
       redirect('admin/login/');
     }
@@ -16,7 +16,7 @@ class Promo extends CI_Controller
   // Menampilkan tabel Promo
   public function index()
   {
-    $data['promo'] = $this->model_promo->getAll('promo')->result();
+    $data['promo'] = $this->Model_promo->getAll('promo')->result();
     $this->load->view('templates/header');
     $this->load->view('templates/sidebar');
     $this->load->view('admin/promo/index', $data);
@@ -27,7 +27,7 @@ class Promo extends CI_Controller
   public function edit($id)
   {
     $where = array('id_promo' => $id);
-    $data['promo'] = $this->model_promo->getEdit($where, 'promo')->result();
+    $data['promo'] = $this->Model_promo->getEdit($where, 'promo')->result();
     $this->load->view('templates/header');
     $this->load->view('templates/sidebar');
     $this->load->view('admin/promo/edit', $data);
@@ -38,7 +38,7 @@ class Promo extends CI_Controller
   public function detail($id)
   {
     $where = array('id_promo' => $id);
-    $data['promo'] = $this->model_promo->getEdit($where, 'promo')->result();
+    $data['promo'] = $this->Model_promo->getEdit($where, 'promo')->result();
     $this->load->view('templates/header');
     $this->load->view('templates/sidebar');
     $this->load->view('admin/promo/detail', $data);
@@ -48,13 +48,13 @@ class Promo extends CI_Controller
   public function tambah()
   {
     // memeriksa apakah ada id pada database
-    $row_id = $this->model_promo->getId()->num_rows();
+    $row_id = $this->Model_promo->getId()->num_rows();
     // mengambil 1 baris data terakhir
-    $old_id = $this->model_promo->getId()->row();
+    $old_id = $this->Model_promo->getId()->row();
 
     if($row_id>0){
       // melakukan auto number dari id terakhir
-    $id = $this->primslib->autonumber($old_id->id_promo, 3, 12);
+    $id = $this->PrimsLib->autonumber($old_id->id_promo, 3, 12);
     }else{
       // generate id pertama kali jika tidak ada data sama sekali di dalam database
     $id = 'PRM000000000001';
@@ -86,7 +86,7 @@ class Promo extends CI_Controller
     );
 
     // menjalankan fungsi insert pada model_promo untuk menambah data ke database
-    $this->model_promo->insert($data, 'promo');
+    $this->Model_promo->insert($data, 'promo');
     // mengirim pesan berhasil dihapus
     $this->session->set_flashdata('pesan', '
     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -174,7 +174,7 @@ class Promo extends CI_Controller
     }
 
     // menjalankan method update pada model promo
-    $this->model_promo->update($where, $data, 'promo');
+    $this->Model_promo->update($where, $data, 'promo');
 
     // mengirim pesan berhasil update data
     $this->session->set_flashdata('pesan', '
@@ -200,7 +200,7 @@ class Promo extends CI_Controller
     array_map('unlink', glob(FCPATH."assets/files/gambar_promo/$filename.*"));
     
     // menjalankan fungsi delete pada model_promo
-    $this->model_promo->delete($where, 'promo');
+    $this->Model_promo->delete($where, 'promo');
     // mengirim pesan berhasil dihapus
     $this->session->set_flashdata('pesan', '
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -217,19 +217,19 @@ class Promo extends CI_Controller
   // method untuk melakukan print PDF
   public function pdf()
   {
-    $this->load->library('dompdf_gen');
+    $this->load->library('Dompdf_gen');
 
-    $data['promo'] = $this->model_promo->getAll('promo')->result();
+    $data['promo'] = $this->Model_promo->getAll('promo')->result();
 
     $this->load->view('admin/promo/laporan_pdf', $data);
 
     $paper_size = 'A4';
     $oriantation = 'landscape';
     $html = $this->output->get_output();
-    $this->dompdf->set_paper($paper_size, $oriantation);
+    $this->Dompdf->set_paper($paper_size, $oriantation);
 
-    $this->dompdf->load_html($html);
-    $this->dompdf->render();
-    $this->dompdf->stream("laporan_promo_".date('Y-m-d_H-i-s').".pdf", array('Attachment' => 0));
+    $this->Dompdf->load_html($html);
+    $this->Dompdf->render();
+    $this->Dompdf->stream("laporan_promo_".date('Y-m-d_H-i-s').".pdf", array('Attachment' => 0));
   }
 }

@@ -6,8 +6,8 @@ class C_paket extends CI_Controller {
     function __construct(){
         parent::__construct();	
             // ini adalah function untuk memuat model bernama m_data
-        $this->load->model('m_data_paket');
-        $this->load->library('primslib');
+        $this->load->model('M_data_paket');
+        $this->load->library('PrimsLib');
         if ($this->session->userdata('nama') == '') {
           redirect('admin/login/');
         }
@@ -15,11 +15,11 @@ class C_paket extends CI_Controller {
 
         function index(){
             // ini adalah variabel array $data yang memiliki index user, berguna untuk menyimpan data 
-            $data['jenis_paket'] = $this->m_data_paket->getAll('jenis_paket')->result();
-            $data['isi_paket'] = $this->m_data_paket->getAll('isi_paket')->result();
-            $data['durasi_paket'] = $this->m_data_paket->getAll('durasi_paket')->result();
-            $data['barang'] = $this->m_data_paket->getAll('barang')->result();
-            $data['paket'] = $this->m_data_paket->tampil_data('paket')->result();
+            $data['jenis_paket'] = $this->M_data_paket->getAll('jenis_paket')->result();
+            $data['isi_paket'] = $this->M_data_paket->getAll('isi_paket')->result();
+            $data['durasi_paket'] = $this->M_data_paket->getAll('durasi_paket')->result();
+            $data['barang'] = $this->M_data_paket->getAll('barang')->result();
+            $data['paket'] = $this->M_data_paket->tampil_data('paket')->result();
 
             $this->load->view('templates/header');
             $this->load->view('templates/sidebar');
@@ -30,11 +30,11 @@ class C_paket extends CI_Controller {
         public function edit($id)
         {
           $where = array('id_paket' => $id);
-          $data['jenis_paket'] = $this->m_data_paket->getAll('jenis_paket')->result();
-          $data['isi_paket'] = $this->m_data_paket->getAll('isi_paket')->result();
-          $data['durasi_paket'] = $this->m_data_paket->getAll('durasi_paket')->result();
-          $data['barang'] = $this->m_data_paket->getAll('barang')->result();
-          $data['paket'] = $this->m_data_paket->edit($where, 'paket')->result();
+          $data['jenis_paket'] = $this->M_data_paket->getAll('jenis_paket')->result();
+          $data['isi_paket'] = $this->M_data_paket->getAll('isi_paket')->result();
+          $data['durasi_paket'] = $this->M_data_paket->getAll('durasi_paket')->result();
+          $data['barang'] = $this->M_data_paket->getAll('barang')->result();
+          $data['paket'] = $this->M_data_paket->edit($where, 'paket')->result();
           
           $this->load->view('templates/header');
           $this->load->view('templates/sidebar');
@@ -45,13 +45,13 @@ class C_paket extends CI_Controller {
         public function tambah()
         {
           // memeriksa apakah ada id pada database
-          $row_id = $this->m_data_paket->getId()->num_rows();
+          $row_id = $this->M_data_paket->getId()->num_rows();
           // mengambil 1 baris data terakhir
-          $old_id = $this->m_data_paket->getId()->row();
+          $old_id = $this->M_data_paket->getId()->row();
       
           if($row_id>0){
             // melakukan auto number dari id terakhir
-          $id = $this->primslib->autonumber($old_id->id_paket, 3, 12);
+          $id = $this->PrimsLib->autonumber($old_id->id_paket, 3, 12);
           }else{
             // generate id pertama kali jika tidak ada data sama sekali di dalam database
           $id = 'PKT000000000001';
@@ -99,7 +99,7 @@ class C_paket extends CI_Controller {
           );
       
           // menjalankan fungsi insert pada model_promo untuk menambah data ke database
-          $this->m_data_paket->insert($data, 'paket');
+          $this->M_data_paket->insert($data, 'paket');
           // mengirim pesan berhasil dihapus
           $this->session->set_flashdata('pesan', '
           <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -114,8 +114,8 @@ class C_paket extends CI_Controller {
         }
 
         public function detail($id){
-          $this->load->model('m_data_paket');
-          $detail = $this->m_data_paket->detail_data($id);
+          $this->load->model('M_data_paket');
+          $detail = $this->M_data_paket->detail_data($id);
           $data['detail'] = $detail;
           $data['jenis'] = $this->db->get('jenis_paket')->result();
           $data['isi'] = $this->db->get('isi_paket')->result();
@@ -183,7 +183,7 @@ class C_paket extends CI_Controller {
           
       
           // menjalankan method update pada model promo
-          $this->m_data_paket->update($where, $data, 'paket');
+          $this->M_data_paket->update($where, $data, 'paket');
       
           // mengirim pesan berhasil update data
           $this->session->set_flashdata('pesan', '
@@ -204,7 +204,7 @@ class C_paket extends CI_Controller {
           // deklarasi $where by id
           $where = array('id_paket' => $id);
           // menjalankan fungsi delete pada model_promo
-          $this->m_data_paket->delete($where, 'paket');
+          $this->M_data_paket->delete($where, 'paket');
           // mengirim pesan berhasil dihapus
           $this->session->set_flashdata('pesan', '
           <div class="alert alert-danger alert-dismissible fade show" role="alert">

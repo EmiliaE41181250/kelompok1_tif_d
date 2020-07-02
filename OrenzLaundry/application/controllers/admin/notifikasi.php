@@ -8,8 +8,8 @@ class Notifikasi extends CI_Controller
     {
         parent::__construct();
         // ini adalah function untuk memuat model bernama m_data
-        $this->load->model('m_notif');
-        $this->load->library('primslib');
+        $this->load->model('M_notif');
+        $this->load->library('PrimsLib');
         if ($this->session->userdata('nama') == '') {
             redirect('admin/login/');
         }
@@ -19,9 +19,9 @@ class Notifikasi extends CI_Controller
     {
         // ini adalah variabel array $data yang memiliki index user, berguna untuk menyimpan data 
 
-        $data['detail_transaksi'] = $this->m_notif->getAll('detail_transaksi')->result();
+        $data['detail_transaksi'] = $this->M_notif->getAll('detail_transaksi')->result();
         $this->db->order_by('tgl_transaksi', 'DESC');
-        $data['transaksi'] = $this->m_notif->tampil_data('transaksi')->result();
+        $data['transaksi'] = $this->M_notif->tampil_data('transaksi')->result();
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
         $this->load->view('admin/notif/v_notif', $data);
@@ -31,10 +31,10 @@ class Notifikasi extends CI_Controller
 
     public function detail($id)
     {
-        $this->load->model('m_notif');
+        $this->load->model('M_notif');
         $detail = $this->db->get_where('detail_transaksi', array('id_transaksi' => $id))->result();
         $data['detail'] = $detail;
-        $data['transaksi'] = $this->m_notif->detail_data($id);
+        $data['transaksi'] = $this->M_notif->detail_data($id);
 
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
@@ -62,7 +62,7 @@ class Notifikasi extends CI_Controller
                 }
 
                 $output .= '
-                <a class="dropdown-item d-flex align-items-center '.$bg.'" href="'. base_url() .'admin/c_transaksi/edit/'.$result->id_transaksi.'">
+                <a class="dropdown-item d-flex align-items-center '.$bg.'" href="'. base_url() .'admin/C_transaksi/edit/'.$result->id_transaksi.'">
                     <div class="mr-3">
                     <div class="icon-circle bg-primary">
                         <i class="fas fa-file-alt text-white"></i>

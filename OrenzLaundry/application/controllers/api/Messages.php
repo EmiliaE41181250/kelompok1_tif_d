@@ -11,8 +11,8 @@ class Messages extends REST_Controller {
   {
       // Construct the parent class
       parent::__construct();
-      $this->load->model('m_messages');
-      $this->load->library('primslib');
+      $this->load->model('M_messages');
+      $this->load->library('PrimsLib');
       $this->methods['users_get']['limit'] = 500; // 500 requests per hour per user/key
       $this->methods['users_post']['limit'] = 100; // 100 requests per hour per user/key
       $this->methods['users_delete']['limit'] = 50; // 50 requests per hour per user/key
@@ -125,7 +125,7 @@ class Messages extends REST_Controller {
 
     if($row_id>0){
       // melakukan auto number dari id terakhir
-    $id = $this->primslib->autonumber($old_id->id_pesan, 3, 12);
+    $id = $this->PrimsLib->autonumber($old_id->id_pesan, 3, 12);
     }else{
       // generate id pertama kali jika tidak ada data sama sekali di dalam database
     $id = 'PSN000000000001';

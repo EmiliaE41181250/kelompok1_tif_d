@@ -24,7 +24,7 @@ class VerifAkun extends REST_Controller {
   {
     // Construct the parent class
     parent::__construct();
-    $this->load->model('m_login');
+    $this->load->model('M_login');
     $this->methods['users_get']['limit'] = 500; // 500 requests per hour per user/key
     $this->methods['users_post']['limit'] = 100; // 100 requests per hour per user/key
     $this->methods['users_delete']['limit'] = 50; // 50 requests per hour per user/key
@@ -73,19 +73,19 @@ class VerifAkun extends REST_Controller {
 
     if($response){
 
-      $this->load->library('configemail');
-      $config = $this->configemail->config_email();
+      $this->load->library('ConfigEmail');
+      $config = $this->ConfigEmail->config_email();
       // Load library email dan konfigurasinya
-      $this->load->library('email', $config);
+      $this->load->library('Email', $config);
       // Email dan nama pengirim
-      $this->email->from('admin@orenzlaundry.com', 'Orenz Laundry');
+      $this->Email->from('admin@orenzlaundry.com', 'Orenz Laundry');
       // Email penerima
-      $this->email->to($email); // Ganti dengan email tujuan
+      $this->Email->to($email); // Ganti dengan email tujuan
       // Lampiran email, isi dengan url/path file
-      // $this->email->attach('https://masrud.com/content/images/20181215150137-codeigniter-smtp-gmail.png');
+      // $this->Email->attach('https://masrud.com/content/images/20181215150137-codeigniter-smtp-gmail.png');
       // Subject email
       $subject = 'Verifikasi Email Anda | Orenz Laundry';
-      $this->email->subject($subject);
+      $this->Email->subject($subject);
       // Isi email
       $this->db->where('email', $email);
       $get_user = $this->db->query("SELECT * FROM user WHERE email = '$email'")->row();
@@ -95,10 +95,10 @@ class VerifAkun extends REST_Controller {
           Silahkan verifikasi email anda dengan kode dibawah ini.';
       $message = '';
       $this->load->library('EmailtoUser');
-      $message = $this->emailtouser->verifikasiakun($subject, $nama_user, $pesan, $kode_token, $email);
-      $this->email->message($message);
+      $message = $this->EmailtoUser->verifikasiakun($subject, $nama_user, $pesan, $kode_token, $email);
+      $this->Email->message($message);
       // Tampilkan pesan sukses atau error
-      $this->email->send();
+      $this->Email->send();
 
     }
   }

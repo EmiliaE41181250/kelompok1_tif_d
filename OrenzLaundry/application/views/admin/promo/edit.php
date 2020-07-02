@@ -13,7 +13,7 @@
 
         <?php foreach ($promo as $prm) { ?>
           
-          <form action="<?=  base_url() . 'admin/promo/update'?>" method="post" enctype="multipart/form-data">
+          <form action="<?=  base_url() . 'admin/Promo/update'?>" method="post" enctype="multipart/form-data">
             <input type="hidden" name="id_promo" value="<?=$prm->id_promo?>">
 
             <div class="form-group">

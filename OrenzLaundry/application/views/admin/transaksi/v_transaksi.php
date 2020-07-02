@@ -14,7 +14,7 @@
             <div class="col-md-6 col-sm-12">
               <div class="row">
                 <div class="col-12 text-right pt-4">
-                  <a class="btn btn-sm btn-warning mb-2" href="<?=base_url()?>admin/c_transaksi/cetak_pdf"><i class="fas fa-file-pdf fa-sm mr-2"></i>Cetak Pdf</a>
+                  <a class="btn btn-sm btn-warning mb-2" href="<?=base_url()?>admin/C_transaksi/cetak_pdf"><i class="fas fa-file-pdf fa-sm mr-2"></i>Cetak Pdf</a>
                 </div>
               </div>
             </div>

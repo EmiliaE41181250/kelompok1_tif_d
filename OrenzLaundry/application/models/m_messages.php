@@ -1,6 +1,6 @@
 <?php
 
-class M_Messages extends CI_Model 
+class M_messages extends CI_Model 
 {
   public function getId()
   {

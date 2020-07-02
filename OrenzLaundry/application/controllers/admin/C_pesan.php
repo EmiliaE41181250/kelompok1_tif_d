@@ -6,8 +6,8 @@ class C_pesan extends CI_Controller
   function __construct()
   {
     parent::__construct();
-    $this->load->model('m_pesan');
-    $this->load->library('primslib');
+    $this->load->model('M_pesan');
+    $this->load->library('PrimsLib');
     if ($this->session->userdata('nama') == '') {
       redirect('admin/login/');
     }
@@ -16,8 +16,8 @@ class C_pesan extends CI_Controller
   // Menampilkan tabel Promo
   public function index()
   {
-    $data['pesan'] = $this->m_pesan->getAll('pesan')->result();
-    $data['user'] = $this->m_pesan->getAll('user')->result();
+    $data['pesan'] = $this->M_pesan->getAll('pesan')->result();
+    $data['user'] = $this->M_pesan->getAll('user')->result();
     $this->load->view('templates/header');
     $this->load->view('templates/sidebar');
     $this->load->view('admin/pesan/v_pesan', $data);
@@ -28,8 +28,8 @@ class C_pesan extends CI_Controller
   public function detail($id)
   {
     $where = array('id_pesan');
-    $detail = $this->m_pesan->detail_data($id);
-    $data['detail'] = $this->m_pesan->detail_data($id);
+    $detail = $this->M_pesan->detail_data($id);
+    $data['detail'] = $this->M_pesan->detail_data($id);
     $this->load->view('templates/header');
     $this->load->view('templates/sidebar');
     $this->load->view('admin/pesan/v_detailpesan', $data);
@@ -42,7 +42,7 @@ class C_pesan extends CI_Controller
      // deklarasi $where by id
      $where = array('id_pesan' => $id);
      // menjalankan fungsi delete pada model_isi paket
-     $this->m_pesan->delete($where, 'pesant');
+     $this->M_pesan->delete($where, 'pesan');
      // mengirim pesan berhasil dihapus
      $this->session->set_flashdata('pesan', '
      <div class="alert alert-danger alert-dismissible fade show" role="alert">

@@ -81,7 +81,7 @@
           <tr>
               <td style="width:145px">Nama Paket</td>
               <td>Berat</td>
-              <td style="text-align:right:">Harga</td>
+              <td style="text-align:right;">Harga</td>
               <td style="text-align:right;">
               Subtotal
               </td>
@@ -92,7 +92,7 @@
           <tr>
               <td style="width:145px"><?php foreach($paket as $pkt){ if($dt->id_paket == $pkt->id_paket){ echo $pkt->nama_paket;} }?></td>
               <td><?=$dt->berat?></td>
-              <td style="text-align:right:">
+              <td style="text-align:right;">
               <?php foreach($paket as $pkt){ if($dt->id_paket == $pkt->id_paket){ echo $pkt->harga;} }?></td>
               <td style="text-align:right;">
                 Rp. <?=number_format($dt->sub_total, 0, ",", ".")?>

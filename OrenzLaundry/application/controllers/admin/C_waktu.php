@@ -8,17 +8,17 @@ class C_waktu extends CI_Controller
   {
     parent::__construct();
     // ini adalah function untuk memuat model bernama m_data
-    $this->load->model('m_data_waktu');
-    $this->load->library('primslib');
+    $this->load->model('M_data_waktu');
+    $this->load->library('PrimsLib');
     if ($this->session->userdata('nama') == '') {
-      redirect('admin/login/');
+      redirect('admin/Login/');
     }
   }
 
   function index()
   {
     // ini adalah variabel array $data yang memiliki index user, berguna untuk menyimpan data 
-    $data['waktu'] = $this->m_data_waktu->tampil_data()->result();
+    $data['waktu'] = $this->M_data_waktu->tampil_data()->result();
     $this->load->view('templates/header');
     $this->load->view('templates/sidebar');
     $this->load->view('admin/waktu/index', $data);
@@ -27,7 +27,7 @@ class C_waktu extends CI_Controller
 
   function edit($id)
   {
-    $data['waktu'] = $this->m_data_waktu->tampil_data_edit($id)->result();
+    $data['waktu'] = $this->M_data_waktu->tampil_data_edit($id)->result();
     $this->load->view('templates/header');
     $this->load->view('templates/sidebar');
     $this->load->view('admin/waktu/edit', $data);
@@ -36,11 +36,11 @@ class C_waktu extends CI_Controller
 
   public function tambah()
   {
-    $row_id = $this->m_data_waktu->getId()->num_rows();
-    $old_id = $this->m_data_waktu->getId()->row();
+    $row_id = $this->M_data_waktu->getId()->num_rows();
+    $old_id = $this->M_data_waktu->getId()->row();
 
     if($row_id>0){
-    $id = $this->primslib->autonumber($old_id->id, 3, 12);
+    $id = $this->PrimsLib->autonumber($old_id->id, 3, 12);
     }else{
     $id = 'KRR000000000001';
     }
@@ -50,7 +50,7 @@ class C_waktu extends CI_Controller
       'waktu' => $this->input->post('waktu')
     );
 
-    $this->m_data_waktu->insert($data, 'waktujemput');
+    $this->M_data_waktu->insert($data, 'waktujemput');
     $this->session->set_flashdata('pesan', '
     <div class="alert alert-success alert-dismissible fade show" role="alert">
       <strong>Selamat!</strong> Anda berhasil menambahkan data.
@@ -71,7 +71,7 @@ class C_waktu extends CI_Controller
     $where = array('id' => $id);
     $data = array('waktu' => $waktu);
 
-    $this->m_data_waktu->update($where, $data, 'waktujemput');
+    $this->M_data_waktu->update($where, $data, 'waktujemput');
 
     $this->session->set_flashdata('pesan', '
     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -88,7 +88,7 @@ class C_waktu extends CI_Controller
   function destroy($id)
   {
     $where = array('id' => $id);
-    $this->m_data_waktu->delete($where, 'waktujemput');
+    $this->M_data_waktu->delete($where, 'waktujemput');
     $this->session->set_flashdata('pesan', '
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
       Anda <strong>berhasil</strong> menghapus data.

@@ -49,11 +49,11 @@
                 <?php }?>
               </td>
               <td class="text-center">
-                <a href="<?=base_url('admin/promo/detail/' . $prm->id_promo)?>" 
+                <a href="<?=base_url('admin/Promo/detail/' . $prm->id_promo)?>" 
                 class="btn btn-info mb-2 btn-sm"><i class="px-1 fa fa-info"></i></a>
-                <a href="<?=base_url('admin/promo/edit/' . $prm->id_promo)?>" 
+                <a href="<?=base_url('admin/Promo/edit/' . $prm->id_promo)?>" 
                 class="btn btn-primary mb-2 btn-sm"><i class="fa fa-edit"></i></a>
-                <a onclick="return confirm('Apakah anda yakin ingin menghapus item ini (<?=$prm->judul_promo?>)?');" href="<?=base_url('admin/promo/destroy/' . $prm->id_promo)?>" 
+                <a onclick="return confirm('Apakah anda yakin ingin menghapus item ini (<?=$prm->judul_promo?>)?');" href="<?=base_url('admin/Promo/destroy/' . $prm->id_promo)?>" 
                 class="btn btn-danger mb-2 btn-sm"><i class="fa fa-trash"></i></a>
               </td>
             </tr>
@@ -69,7 +69,7 @@
 <div class="modal fade" id="tambah_barang" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
-    <form action="<?= base_url() . 'admin/promo/tambah'; ?>" method="post" enctype="multipart/form-data">
+    <form action="<?= base_url() . 'admin/Promo/tambah'; ?>" method="post" enctype="multipart/form-data">
       <div class="modal-header">
         <h5 class="modal-title font-weight-bolder text-ijo">Tambah Data</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">

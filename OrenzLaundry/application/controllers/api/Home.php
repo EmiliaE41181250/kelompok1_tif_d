@@ -11,8 +11,8 @@ class Home extends REST_Controller {
   {
       // Construct the parent class
       parent::__construct();
-      $this->load->model('m_home');
-      $this->load->library('primslib');
+      $this->load->model('M_home');
+      $this->load->library('PrimsLib');
       $this->methods['users_get']['limit'] = 500; // 500 requests per hour per user/key
       $this->methods['users_post']['limit'] = 100; // 100 requests per hour per user/key
       $this->methods['users_delete']['limit'] = 50; // 50 requests per hour per user/key
@@ -20,7 +20,7 @@ class Home extends REST_Controller {
 
   function getGambarPromosi_get()
   {
-    $response = $this->m_home->getAllpromosi();
+    $response = $this->M_home->getAllpromosi();
     if ($response['data']!=null) {
       $this->response($response);
     }else{
@@ -34,7 +34,7 @@ class Home extends REST_Controller {
   public function getUser_post()
   {
     $id = $this->post("id");
-    $response = $this->m_home->getUsermobile($id);
+    $response = $this->M_home->getUsermobile($id);
     if ($response['data']!=null) {
       $this->response($response);
     }else{
@@ -52,7 +52,7 @@ class Home extends REST_Controller {
 
     $data = array('device_token' => $device_token);
     $where = array('id_user' => $id_user);
-    $response = $this->m_home->update_tokendevice($data, $where);
+    $response = $this->M_home->update_tokendevice($data, $where);
     if ($response['data']==true) {
       $this->response($response);
     }else{
@@ -65,25 +65,25 @@ class Home extends REST_Controller {
 
   public function login_post()
   {
-    $response = $this->m_home->auth_login($this->post('email'),$this->post('password'));
+    $response = $this->M_home->auth_login($this->post('email'),$this->post('password'));
     $this->response($response);
   }
 
   public function register_post(){
 
-    $row_id = $this->m_home->getId()->num_rows();
+    $row_id = $this->M_home->getId()->num_rows();
     // mengambil 1 baris data terakhir
-    $old_id = $this->m_home->getId()->row();
+    $old_id = $this->M_home->getId()->row();
 
     if($row_id>0){
       // melakukan auto number dari id terakhir
-    $id = $this->primslib->autonumber($old_id->id_user, 3, 12);
+    $id = $this->PrimsLib->autonumber($old_id->id_user, 3, 12);
     }else{
       // generate id pertama kali jika tidak ada data sama sekali di dalam database
     $id = 'USR000000000001';
     }
 
-    $response = $this->m_home->add_login(
+    $response = $this->M_home->add_login(
         $id,
         $this->input->post('nama'),
         $this->input->post('email'),
@@ -93,7 +93,7 @@ class Home extends REST_Controller {
       
     $datatoken = $this->db->get_where('user',array('email' => $this->input->post('email')));
     $tokenM = $datatoken->row()->device_token;
-    $firebase = $this->primslib->SendNotification($tokenM, '', '', '');
+    $firebase = $this->PrimsLib->SendNotification($tokenM, '', '', '');
     $response['firebase']=$firebase;
     $this->response($response);
   }

@@ -8,8 +8,8 @@ class C_saya extends CI_Controller
     {
         parent::__construct();
         // ini adalah function untuk memuat model bernama m_data
-        $this->load->model('m_data_saya');
-        $this->load->library('primslib');
+        $this->load->model('M_data_saya');
+        $this->load->library('PrimsLib');
         if ($this->session->userdata('nama') == '') {
             redirect('admin/login/');
         }
@@ -18,7 +18,7 @@ class C_saya extends CI_Controller
     function index()
     {
         // ini adalah variabel array $data yang memiliki index user, berguna untuk menyimpan data 
-        $data['admin'] = $this->m_data_saya->tampil_data()->result();
+        $data['admin'] = $this->M_data_saya->tampil_data()->result();
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
         $this->load->view('admin/saya/v_saya', $data);
@@ -28,7 +28,7 @@ class C_saya extends CI_Controller
     public function edit($id)
     {
         $where = array('id_admin' => $id);
-        $data['admin'] = $this->m_data_saya->edit($where, 'admin')->result();
+        $data['admin'] = $this->M_data_saya->edit($where, 'admin')->result();
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
         $this->load->view('admin/saya/v_edit_saya', $data);
@@ -49,7 +49,7 @@ class C_saya extends CI_Controller
             $logo = $_FILES['logo']['name'];
 
             if ($logo != '') {
-                redirect('admin/c_saya');
+                redirect('admin/C_saya');
             }else{
                 $config['upload_path'] = './assets/files/';
                 $config['allowed_types'] = 'jpg|jpeg|png';
@@ -57,11 +57,11 @@ class C_saya extends CI_Controller
                 $config['overwrite'] = true;
                 $config['file_name'] = $this->db->get_where('admin', $where)->row()->logo;
 
-                $this->load->library('upload', $config);
+                $this->load->library('Upload', $config);
                 
-                if (!$this->upload->do_upload('logo'))
+                if (!$this->Upload->do_upload('logo'))
                 {
-                    redirect('admin/c_saya/edit/'. $this->input->post('id_admin'));
+                    redirect('admin/C_saya/edit/'. $this->input->post('id_admin'));
                 }
                 else
                 {
@@ -98,7 +98,7 @@ class C_saya extends CI_Controller
         }
 
         // menjalankan method update pada m_data_saya
-        $this->m_data_saya->update($where, $data, 'admin');
+        $this->M_data_saya->update($where, $data, 'admin');
 
         // mengirim pesan berhasil update data
         $this->session->set_flashdata('pesan', '

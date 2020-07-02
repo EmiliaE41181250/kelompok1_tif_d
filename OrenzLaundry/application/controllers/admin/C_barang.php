@@ -8,17 +8,17 @@ class C_barang extends CI_Controller
   {
     parent::__construct();
     // ini adalah function untuk memuat model bernama m_data
-    $this->load->model('m_data_barang');
-    $this->load->library('primslib');
+    $this->load->model('M_data_barang');
+    $this->load->library('PrimsLib');
     if ($this->session->userdata('nama') == '') {
-      redirect('admin/login/');
+      redirect('admin/Login/');
     }
   }
 
   function index()
   {
     // ini adalah variabel array $data yang memiliki index user, berguna untuk menyimpan data 
-    $data['barang'] = $this->m_data_barang->tampil_data()->result();
+    $data['barang'] = $this->M_data_barang->tampil_data()->result();
     $this->load->view('templates/header');
     $this->load->view('templates/sidebar');
     $this->load->view('admin/barang/v_barang', $data);
@@ -28,7 +28,7 @@ class C_barang extends CI_Controller
   public function edit($id)
   {
     $where = array('id_barang' => $id);
-    $data['barang'] = $this->m_data_barang->edit($where, 'barang')->result();
+    $data['barang'] = $this->M_data_barang->edit($where, 'barang')->result();
     $this->load->view('templates/header');
     $this->load->view('templates/sidebar');
     $this->load->view('admin/barang/v_edit_barang', $data);
@@ -38,13 +38,13 @@ class C_barang extends CI_Controller
   public function tambah()
   {
     // memeriksa apakah ada id pada database
-    $row_id = $this->m_data_barang->getId()->num_rows();
+    $row_id = $this->M_data_barang->getId()->num_rows();
     // mengambil 1 baris data terakhir
-    $old_id = $this->m_data_barang->getId()->row();
+    $old_id = $this->M_data_barang->getId()->row();
 
     if ($row_id > 0) {
       // melakukan auto number dari id terakhir
-      $id = $this->primslib->autonumber($old_id->id_barang, 3, 12);
+      $id = $this->PrimsLib->autonumber($old_id->id_barang, 3, 12);
     } else {
       // generate id pertama kali jika tidak ada data sama sekali di dalam database
       $id = 'BRG000000000001';
@@ -64,7 +64,7 @@ class C_barang extends CI_Controller
     );
 
     // menjalankan fungsi insert pada m_data_jenispaket untuk menambah data ke database
-    $this->m_data_barang->insert($data, 'barang');
+    $this->M_data_barang->insert($data, 'barang');
     // mengirim pesan berhasil dihapus
     $this->session->set_flashdata('pesan', '
           <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -96,7 +96,7 @@ class C_barang extends CI_Controller
     );
 
     // menjalankan method update pada m_data_jenis_paket
-    $this->m_data_barang->update($where, $data, 'barang');
+    $this->M_data_barang->update($where, $data, 'barang');
 
     // mengirim pesan berhasil update data
     $this->session->set_flashdata('pesan', '
@@ -117,7 +117,7 @@ class C_barang extends CI_Controller
     // deklarasi $where by id
     $where = array('id_barang' => $id);
     // menjalankan fungsi delete pada m_data_jenis_paket
-    $this->m_data_barang->delete($where, 'barang');
+    $this->M_data_barang->delete($where, 'barang');
     // mengirim pesan berhasil dihapus
     $this->session->set_flashdata('pesan', '
     <div class="alert alert-danger alert-dismissible fade show" role="alert">

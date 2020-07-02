@@ -1,6 +1,6 @@
 <?php
 
-class M_Home extends CI_Model 
+class M_home extends CI_Model 
 {
   public function empty_response(){
     $response['status']=502;

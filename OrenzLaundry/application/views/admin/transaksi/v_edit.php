@@ -15,7 +15,7 @@
               <?php foreach ($transaksi as $trs) {  ?>
               <div class="row">
                 <div class="col-12 text-right pt-4">
-                  <a class="btn btn-sm btn-ijo mb-2" href="<?=base_url()?>admin/notifikasi/detail/<?=$trs->id_transaksi?>"><i class="fas fa-clipboard-list fa-sm mr-2"></i>Detail Transaksi</a>
+                  <a class="btn btn-sm btn-ijo mb-2" href="<?=base_url()?>admin/Notifikasi/detail/<?=$trs->id_transaksi?>"><i class="fas fa-clipboard-list fa-sm mr-2"></i>Detail Transaksi</a>
                   <a class="btn btn-sm btn-warning mb-2" href="<?=base_url()?>admin/C_transaksi/nota/<?=$trs->id_transaksi?>"><i class="fas fa-file-pdf fa-sm mr-2"></i>Nota Transaksi</a>
                 </div>
               </div>
@@ -221,7 +221,7 @@
             <td>Rp. <?=number_format($dt->sub_total, 0, ",", ".")?></td>
             <td class="text-center">
               <?php echo anchor('admin/C_transaksi/editdetail/' . $dt->id_paket . "/" . $trs->id_transaksi, '<div class="btn btn-primary btn-sm mb-2 mr-2"><i class="fa fa-edit"></i></div>')?>
-              <a onclick="return confirm('Apakah anda yakin ingin menghapus item ini (<?=$pk->nama_paket?>)?');" href="<?=base_url('admin/c_transaksi/destroydetail/' . $dt->id_paket . "/" . $trs->id_transaksi)?>" class="btn btn-danger mb-2 btn-sm"><i class="fa fa-trash"></i></a>
+              <a onclick="return confirm('Apakah anda yakin ingin menghapus item ini (<?=$pk->nama_paket?>)?');" href="<?=base_url('admin/C_transaksi/destroydetail/' . $dt->id_paket . "/" . $trs->id_transaksi)?>" class="btn btn-danger mb-2 btn-sm"><i class="fa fa-trash"></i></a>
             </td>
           </tr>
         <?php } ?>
