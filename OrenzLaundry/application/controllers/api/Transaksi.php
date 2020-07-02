@@ -160,23 +160,23 @@ class Transaksi extends REST_Controller {
       $response['firebase']=$firebase;
 
       // kirim notif ke Email
-      $email = $datatoken->row()->Email;
+      $email = $datatoken->row()->email;
       $this->load->library('ConfigEmail');
       $config = $this->configemail->config_email();
       $this->load->library('Email', $config);
-      $this->Email->from('admin@orenzlaundry.com', 'Orenz Laundry');
-      $this->Email->to($email);
+      $this->email->from('admin@orenzlaundry.com', 'Orenz Laundry');
+      $this->email->to($email);
       $subject = 'Transaksi anda berhasil | Orenz Laundry';
-      $this->Email->subject($subject);
+      $this->email->subject($subject);
       $nama_user = $datatoken->row()->nama_user;
       $pesan = 'Anda telah melakukan transaksi pemesanan di Orenz laundry, kami akan melanjutkan proses pesanan!<br> 
           Selanjutnya kami akan menjemput pesanan ke lokasi yang telah anda tentukan, ditunggu yahh!!';
       $message = '';
       $this->load->library('EmailtoUser');
       $message = $this->emailtouser->transaksiberhasil($subject, $nama_user, $pesan);
-      $this->Email->message($message);
+      $this->email->message($message);
       
-      $response['gmail']=$this->Email->send();
+      $response['gmail']=$this->email->send();
       $response['data_email']=$email;
 
       $this->response($response);

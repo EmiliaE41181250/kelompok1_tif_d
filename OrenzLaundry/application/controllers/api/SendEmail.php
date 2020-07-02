@@ -71,14 +71,14 @@ class SendEmail extends REST_Controller {
       // Load library email dan konfigurasinya
       $this->load->library('Email', $config);
       // Email dan nama pengirim
-      $this->Email->from('admin@orenzlaundry.com', 'Orenz Laundry');
+      $this->email->from('admin@orenzlaundry.com', 'Orenz Laundry');
       // Email penerima
-      $this->Email->to($email); // Ganti dengan email tujuan
+      $this->email->to($email); // Ganti dengan email tujuan
       // Lampiran email, isi dengan url/path file
-      // $this->Email->attach('https://masrud.com/content/images/20181215150137-codeigniter-smtp-gmail.png');
+      // $this->email->attach('https://masrud.com/content/images/20181215150137-codeigniter-smtp-gmail.png');
       // Subject email
       $subject = 'Lupa Password | Orenz Laundry';
-      $this->Email->subject($subject);
+      $this->email->subject($subject);
       // Isi email
       $this->db->where('email', $email);
       $get_user = $this->db->query("SELECT * FROM user WHERE email = '$email'")->row();
@@ -89,9 +89,9 @@ class SendEmail extends REST_Controller {
       $message = '';
       $this->load->library('LupaPassword');
       $message = $this->lupapassword->verifikasiakun($subject, $nama_user, $pesan, $kode_token, $email);
-      $this->Email->message($message);
+      $this->email->message($message);
       // Tampilkan pesan sukses atau error
-      $this->Email->send();
+      $this->email->send();
 
     }
   }

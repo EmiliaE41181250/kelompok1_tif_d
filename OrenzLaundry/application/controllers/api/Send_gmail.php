@@ -86,14 +86,14 @@ class Send_gmail extends REST_Controller {
         // Load library email dan konfigurasinya
         $this->load->library('Email', $config);
         // Email dan nama pengirim
-        $this->Email->from('admin@orenzlaundry.com', 'Orenz Laundry');
+        $this->email->from('admin@orenzlaundry.com', 'Orenz Laundry');
         // Email penerima
-        $this->Email->to($email); // Ganti dengan email tujuan
+        $this->email->to($email); // Ganti dengan email tujuan
         // Lampiran email, isi dengan url/path file
-        // $this->Email->attach('https://masrud.com/content/images/20181215150137-codeigniter-smtp-gmail.png');
+        // $this->email->attach('https://masrud.com/content/images/20181215150137-codeigniter-smtp-gmail.png');
         // Subject email
         $subject = 'Lupa Password | Orenz Laundry';
-        $this->Email->subject($subject);
+        $this->email->subject($subject);
         // Isi email
         $nama_user = $get_user->nama_user;
         $kode_token = $get_user->token;
@@ -102,9 +102,9 @@ class Send_gmail extends REST_Controller {
         $message = '';
         $this->load->library('EmailtoUser');
         $message = $this->emailtouser->verifikasiakun($subject, $nama_user, $pesan, $kode_token, $email);
-        $this->Email->message($message);
+        $this->email->message($message);
         // Tampilkan pesan sukses atau error
-        $this->Email->send();
+        $this->email->send();
 
         }
     }

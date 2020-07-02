@@ -91,10 +91,38 @@ class Home extends REST_Controller {
         $this->input->post('token_device')
       );
       
-    $datatoken = $this->db->get_where('user',array('email' => $this->input->post('email')));
-    $tokenM = $datatoken->row()->device_token;
-    $firebase = $this->primslib->SendNotification($tokenM, '', '', '');
-    $response['firebase']=$firebase;
+      if($response){
+
+        $email = $this->post('email');
+
+        $this->load->library('ConfigEmail');
+        $config = $this->configemail->config_email();
+        // Load library email dan konfigurasinya
+        $this->load->library('Email', $config);
+        // Email dan nama pengirim
+        $this->email->from('admin@orenzlaundry.com', 'Orenz Laundry');
+        // Email penerima
+        $this->email->to($email); // Ganti dengan email tujuan
+        // Lampiran email, isi dengan url/path file
+        // $this->email->attach('https://masrud.com/content/images/20181215150137-codeigniter-smtp-gmail.png');
+        // Subject email
+        $subject = 'Verifikasi Email Anda | Orenz Laundry';
+        $this->email->subject($subject);
+        // Isi email
+        $this->db->where('email', $email);
+        $get_user = $this->db->query("SELECT * FROM user WHERE email = '$email'")->row();
+        $nama_user = $get_user->nama_user;
+        $kode_token = $get_user->token;
+        $pesan = 'Terimakasih telah mendaftar dan bergabung dengan kami! Mohon verifikasi akun anda untuk memaksimalkan fitur dari aplikasi kami,<br> 
+            Silahkan verifikasi email anda dengan kode dibawah ini.';
+        $message = '';
+        $this->load->library('EmailtoUser');
+        $message = $this->emailtouser->verifikasiakun($subject, $nama_user, $pesan, $kode_token, $email);
+        $this->email->message($message);
+        // Tampilkan pesan sukses atau error
+        $this->email->send();
+  
+      }
     $this->response($response);
   }
 
