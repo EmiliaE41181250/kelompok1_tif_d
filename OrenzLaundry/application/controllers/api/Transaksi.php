@@ -135,7 +135,7 @@ class Transaksi extends REST_Controller {
                       "total_harga" => $harga,
                       "tgl_transaksi" => $tgl_transaksi,
                       "tgl_jemput" => $tglJemput,
-                      "alamat_jemput" => $alamat . ',' . $lat . ',' . $lang,
+                      "alamat_jemput" => $alamat . '?' . $lat . '?' . $lang,
                       "status" => $status,
                       "catatan" => $catatan
     );

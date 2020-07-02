@@ -109,7 +109,7 @@
         <div class="input-group-prepend">
           <span class="input-group-text">Maps Alamat Antar</span>
         </div>
-        <a class="form-control" target="_blank" href="https://www.google.com/maps/?q=<?=$arr_almantar[1]?>,<?=$arr_almantar[2]?>">Link Maps</a>
+        <a class="form-control" target="_blank" href="https://www.google.com/maps/search/?api=1&query=<?=$arr_almantar[1]?>,<?=$arr_almantar[2]?>">Link Maps</a>
       </div>
 
       <?php }else{?>
@@ -130,7 +130,7 @@
 
       <?php }?>
 
-      <?php if($trs->alamat_jemput != '') { $arr_almjemput = preg_split ("/\,/", $trs->alamat_jemput);?>
+      <?php if($trs->alamat_jemput != '') { $arr_almjemput = preg_split ("/\?/", $trs->alamat_jemput);?>
       <div class="input-group mb-2">
         <div class="input-group-prepend">
           <span class="input-group-text">Alamat Jemput</span>
@@ -143,6 +143,7 @@
           <span class="input-group-text">Maps Alamat Jemput</span>
         </div>
         <a class="form-control" target="_blank" href="https://www.google.com/maps/?q=<?=$arr_almjemput[1]?>,<?=$arr_almjemput[2]?>">Link Maps</a>
+        <a class="form-control" target="_blank" href="https://www.google.com/maps/search/?api=1&query=<?=$arr_almjemput[1]?>,<?=$arr_almjemput[2]?>">Link Maps</a>
       </div>
 
       <?php }else{?>
