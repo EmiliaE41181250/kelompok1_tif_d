@@ -21,7 +21,7 @@ class Messages extends REST_Controller {
   function getAllMessages_post()
   {
     $user = $this->post("user");
-    $response = $this->m_messages->getAllMessages($user);
+    $response = $this->M_messages->getAllMessages($user);
     if ($response['data']!=null) {
       $this->response($response);
     }else{
@@ -35,7 +35,7 @@ class Messages extends REST_Controller {
   public function getMessageId_post()
   {
     $id = $this->post('id');
-    $response = $this->m_messages->getMessagesId($id);
+    $response = $this->M_messages->getMessagesId($id);
     if ($response['data']!=null) {
       $this->response($response);
     }else{
@@ -49,7 +49,7 @@ class Messages extends REST_Controller {
   function getAllNotification_post()
   {
     $user = $this->post("user");
-    $response = $this->m_messages->getAllNotification($user);
+    $response = $this->M_messages->getAllNotification($user);
     if ($response['data']!=null) {
       $this->response($response);
     }else{
@@ -63,7 +63,7 @@ class Messages extends REST_Controller {
   public function getNotificationId_post()
   {
     $id = $this->post('id');
-    $response = $this->m_messages->getNotificationId($id);
+    $response = $this->M_messages->getNotificationId($id);
     if ($response['data']!=null) {
       $this->response($response);
     }else{
@@ -77,7 +77,7 @@ class Messages extends REST_Controller {
   public function deleteNotificationId_post()
   {
     $id = $this->post("id");
-    $response = $this->m_messages->deleteNotificationId($id);
+    $response = $this->M_messages->deleteNotificationId($id);
     if ($response['data']==true) {
       $this->response($response);
     }else{
@@ -91,7 +91,7 @@ class Messages extends REST_Controller {
   public function deleteMessageId_post()
   {
     $id = $this->post("id");
-    $response = $this->m_messages->deleteMessageId($id);
+    $response = $this->M_messages->deleteMessageId($id);
     if ($response['data']==true) {
       $this->response($response);
     }else{
@@ -105,7 +105,7 @@ class Messages extends REST_Controller {
   public function updateKonfirmasiProses_put()
   {
     $id = $this->put('id');
-    $response = $this->m_messages->updateKonfirmasiProses($id);
+    $response = $this->M_messages->updateKonfirmasiProses($id);
     if ($response['data']==true) {
       $this->response($response);
     }else{
@@ -119,13 +119,13 @@ class Messages extends REST_Controller {
   public function sendMessage_post()
   {
     // memeriksa apakah ada id pada database
-    $row_id = $this->m_messages->getId()->num_rows();
+    $row_id = $this->M_messages->getId()->num_rows();
     // mengambil 1 baris data terakhir
-    $old_id = $this->m_messages->getId()->row();
+    $old_id = $this->M_messages->getId()->row();
 
     if($row_id>0){
       // melakukan auto number dari id terakhir
-    $id = $this->PrimsLib->autonumber($old_id->id_pesan, 3, 12);
+    $id = $this->primslib->autonumber($old_id->id_pesan, 3, 12);
     }else{
       // generate id pertama kali jika tidak ada data sama sekali di dalam database
     $id = 'PSN000000000001';
@@ -143,7 +143,7 @@ class Messages extends REST_Controller {
                 );
 
 
-    $response = $this->m_messages->sendMessage($data);
+    $response = $this->M_messages->sendMessage($data);
     if ($response['data']==true) {
       $this->response($response);
     }else{

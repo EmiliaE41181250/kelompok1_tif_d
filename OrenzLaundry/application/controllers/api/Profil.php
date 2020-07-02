@@ -20,7 +20,7 @@ class Profil extends REST_Controller {
 
   function getUser_post()
   {
-    $response = $this->m_data_saya->getUser($this->post('id_user'));
+    $response = $this->M_data_saya->getUser($this->post('id_user'));
     if ($response['data']!=null) {
       $this->response($response);
     }else{
@@ -58,7 +58,7 @@ class Profil extends REST_Controller {
     }
 
     $where = array('id_user' => $this->put('id_user'));
-    $response = $this->m_data_saya->updateUser($data, $where);
+    $response = $this->M_data_saya->updateUser($data, $where);
     if ($response['data']==true) {
       $this->response($response);
     }else{
@@ -71,7 +71,7 @@ class Profil extends REST_Controller {
 
   function uploadfoto_put()
   {
-    $response = $this->m_data_saya->uploadfoto(
+    $response = $this->M_data_saya->uploadfoto(
       $this->put('id_user'),
       $this->put('foto')
       );

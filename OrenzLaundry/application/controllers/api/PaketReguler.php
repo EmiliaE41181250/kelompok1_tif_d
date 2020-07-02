@@ -19,7 +19,7 @@ class PaketReguler extends REST_Controller {
   
     function index_get()
     {
-      $response = $this->m_data_paket->getAllPaketRegulerMobile();
+      $response = $this->M_data_paket->getAllPaketRegulerMobile();
       if ($response['data']!=null) {
         $this->response($response);
       }else{

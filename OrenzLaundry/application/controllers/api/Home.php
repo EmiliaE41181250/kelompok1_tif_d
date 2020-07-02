@@ -77,7 +77,7 @@ class Home extends REST_Controller {
 
     if($row_id>0){
       // melakukan auto number dari id terakhir
-    $id = $this->PrimsLib->autonumber($old_id->id_user, 3, 12);
+    $id = $this->primslib->autonumber($old_id->id_user, 3, 12);
     }else{
       // generate id pertama kali jika tidak ada data sama sekali di dalam database
     $id = 'USR000000000001';
@@ -93,7 +93,7 @@ class Home extends REST_Controller {
       
     $datatoken = $this->db->get_where('user',array('email' => $this->input->post('email')));
     $tokenM = $datatoken->row()->device_token;
-    $firebase = $this->PrimsLib->SendNotification($tokenM, '', '', '');
+    $firebase = $this->primslib->SendNotification($tokenM, '', '', '');
     $response['firebase']=$firebase;
     $this->response($response);
   }

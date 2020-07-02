@@ -58,11 +58,11 @@ class laporan_rentang_hari extends CI_Controller
         $paper_size = 'A4';
         $oriantation = 'potrait';
         $html = $this->output->get_output();
-        $this->Dompdf->set_paper($paper_size, $oriantation);
+        $this->dompdf->set_paper($paper_size, $oriantation);
 
-        $this->Dompdf->load_html($html);
-        $this->Dompdf->render();
-        $this->Dompdf->stream("laporan_bulanan_".date('Y-m-d_H-i-s').".pdf", array('Attachment' => 0));
+        $this->dompdf->load_html($html);
+        $this->dompdf->render();
+        $this->dompdf->stream("laporan_bulanan_".date('Y-m-d_H-i-s').".pdf", array('Attachment' => 0));
     }
 
     function tahunan_report()
@@ -108,11 +108,11 @@ class laporan_rentang_hari extends CI_Controller
         $paper_size = 'A4';
         $oriantation = 'potrait';
         $html = $this->output->get_output();
-        $this->Dompdf->set_paper($paper_size, $oriantation);
+        $this->dompdf->set_paper($paper_size, $oriantation);
 
-        $this->Dompdf->load_html($html);
-        $this->Dompdf->render();
-        $this->Dompdf->stream("laporan_bulanan_".date('Y-m-d_H-i-s').".pdf", array('Attachment' => 0));
+        $this->dompdf->load_html($html);
+        $this->dompdf->render();
+        $this->dompdf->stream("laporan_bulanan_".date('Y-m-d_H-i-s').".pdf", array('Attachment' => 0));
     }
 
     function harian_report()
@@ -163,10 +163,10 @@ class laporan_rentang_hari extends CI_Controller
         $paper_size = 'A4';
         $oriantation = 'potrait';
         $html = $this->output->get_output();
-        $this->Dompdf->set_paper($paper_size, $oriantation);
+        $this->dompdf->set_paper($paper_size, $oriantation);
 
-        $this->Dompdf->load_html($html);
-        $this->Dompdf->render();
-        $this->Dompdf->stream("laporan_bulanan_".date('Y-m-d_H-i-s').".pdf", array('Attachment' => 0));
+        $this->dompdf->load_html($html);
+        $this->dompdf->render();
+        $this->dompdf->stream("laporan_bulanan_".date('Y-m-d_H-i-s').".pdf", array('Attachment' => 0));
     }
 }

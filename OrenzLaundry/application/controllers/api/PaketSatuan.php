@@ -19,7 +19,7 @@ class PaketSatuan extends REST_Controller {
 
   function index_get()
   {
-    $response = $this->m_data_paket->getAllPaketSatuanMobile();
+    $response = $this->M_data_paket->getAllPaketSatuanMobile();
     if ($response['data']!=null) {
       $this->response($response);
     }else{

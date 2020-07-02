@@ -54,7 +54,7 @@ class Promo extends CI_Controller
 
     if($row_id>0){
       // melakukan auto number dari id terakhir
-    $id = $this->PrimsLib->autonumber($old_id->id_promo, 3, 12);
+    $id = $this->primslib->autonumber($old_id->id_promo, 3, 12);
     }else{
       // generate id pertama kali jika tidak ada data sama sekali di dalam database
     $id = 'PRM000000000001';
@@ -226,10 +226,10 @@ class Promo extends CI_Controller
     $paper_size = 'A4';
     $oriantation = 'landscape';
     $html = $this->output->get_output();
-    $this->Dompdf->set_paper($paper_size, $oriantation);
+    $this->dompdf->set_paper($paper_size, $oriantation);
 
-    $this->Dompdf->load_html($html);
-    $this->Dompdf->render();
-    $this->Dompdf->stream("laporan_promo_".date('Y-m-d_H-i-s').".pdf", array('Attachment' => 0));
+    $this->dompdf->load_html($html);
+    $this->dompdf->render();
+    $this->dompdf->stream("laporan_promo_".date('Y-m-d_H-i-s').".pdf", array('Attachment' => 0));
   }
 }

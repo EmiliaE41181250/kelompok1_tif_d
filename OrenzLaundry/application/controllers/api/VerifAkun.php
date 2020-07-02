@@ -32,19 +32,19 @@ class VerifAkun extends REST_Controller {
 
   function index_get()
   {
-    $response = $this->m_login->all_login();
+    $response = $this->M_login->all_login();
     $this->response($response);
   }
 
   public function checkemail_post()
   {
-    $response = $this->m_login->getUser($this->post('id_user'));
+    $response = $this->M_login->getUser($this->post('id_user'));
     $this->response($response);
   }
 
   public function matchcode_post()
   {
-    $response = $this->m_login->matching($this->post('token'), $this->post('email'));
+    $response = $this->M_login->matching($this->post('token'), $this->post('email'));
     if ($response['data']!=null) {
         $this->response($response);
     }else{
@@ -59,14 +59,14 @@ class VerifAkun extends REST_Controller {
   {
     $id_user = $this->put('id_user');
     $status = $this->put('status');
-    $response = $this->m_login->update_status($id_user, $status);
+    $response = $this->M_login->update_status($id_user, $status);
     $this->response($response);
   }
 
   public function resendemail_post()
   {
     $email = $this->post('email');
-    $response = $this->m_login->resend_email($email);
+    $response = $this->M_login->resend_email($email);
 
     $this->response($response);
 
@@ -74,7 +74,7 @@ class VerifAkun extends REST_Controller {
     if($response){
 
       $this->load->library('ConfigEmail');
-      $config = $this->ConfigEmail->config_email();
+      $config = $this->configemail->config_email();
       // Load library email dan konfigurasinya
       $this->load->library('Email', $config);
       // Email dan nama pengirim
@@ -95,7 +95,7 @@ class VerifAkun extends REST_Controller {
           Silahkan verifikasi email anda dengan kode dibawah ini.';
       $message = '';
       $this->load->library('EmailtoUser');
-      $message = $this->EmailtoUser->verifikasiakun($subject, $nama_user, $pesan, $kode_token, $email);
+      $message = $this->emailtouser->verifikasiakun($subject, $nama_user, $pesan, $kode_token, $email);
       $this->Email->message($message);
       // Tampilkan pesan sukses atau error
       $this->Email->send();

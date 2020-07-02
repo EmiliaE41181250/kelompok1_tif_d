@@ -19,7 +19,7 @@ class Promosi extends REST_Controller {
 
   function index_get()
   {
-    $response = $this->model_promo->getAllmobile();
+    $response = $this->Model_promo->getAllmobile();
     if ($response['data']!=null) {
       $this->response($response);
     }else{
@@ -33,7 +33,7 @@ class Promosi extends REST_Controller {
   public function getIdbyName_post()
   {
     $id = $this->post('id');
-    $response = $this->model_promo->getIdbyNamemobile($id);
+    $response = $this->Model_promo->getIdbyNamemobile($id);
     if ($response['data']!=null) {
       $this->response($response);
     }else{
@@ -47,7 +47,7 @@ class Promosi extends REST_Controller {
   function getPromoTokenMobile_post()
   {
     $token = $this->post("token");
-    $response = $this->model_promo->getPromoTokenMobile($token);
+    $response = $this->Model_promo->getPromoTokenMobile($token);
     if ($response['data']!=null) {
       $this->response($response);
     }else{

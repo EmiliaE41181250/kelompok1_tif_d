@@ -21,7 +21,7 @@ class Transaksi extends REST_Controller {
 
   function index_get()
   {
-    $response = $this->m_notif->getAllmobile();
+    $response = $this->M_notif->getAllmobile();
     if ($response['data']!=null) {
       $this->response($response);
     }else{
@@ -35,7 +35,7 @@ class Transaksi extends REST_Controller {
   function getNamaPaketMobile_post()
   {
     $id_paket = $this->post('id_paket');
-    $response = $this->m_notif->getNamaPaketMobile($id_paket);
+    $response = $this->M_notif->getNamaPaketMobile($id_paket);
     if ($response['data']!=null) {
       $this->response($response);
     }else{
@@ -49,7 +49,7 @@ class Transaksi extends REST_Controller {
   function batalPesanan_post()
   {
     $id = $this->post('id');
-    $response = $this->m_notif->batalPesananMobile($id);
+    $response = $this->M_notif->batalPesananMobile($id);
     if ($response['data']==true) {
       $this->response($response);
     }else{
@@ -80,7 +80,7 @@ class Transaksi extends REST_Controller {
                       "updated_at" => date("Y-m-d H:i:s")
     );
 
-    $response = $this->m_notif->updateantartrsmobile($dataTrs, $where);
+    $response = $this->M_notif->updateantartrsmobile($dataTrs, $where);
     if ($response['data']==true) {
         $this->response($response);
     }else{
@@ -94,13 +94,13 @@ class Transaksi extends REST_Controller {
   function insertTrsMobile_post()
   {
     // memeriksa apakah ada id pada database
-    $row_id = $this->m_notif->getId()->num_rows();
+    $row_id = $this->M_notif->getId()->num_rows();
     // mengambil 1 baris data terakhir
-    $old_id = $this->m_notif->getId()->row();
+    $old_id = $this->M_notif->getId()->row();
 
     if($row_id>0){
       // melakukan auto number dari id terakhir
-    $id = $this->PrimsLib->autonumber($old_id->id_transaksi, 3, 12);
+    $id = $this->primslib->autonumber($old_id->id_transaksi, 3, 12);
     }else{
       // generate id pertama kali jika tidak ada data sama sekali di dalam database
     $id = 'TRS000000000001';
@@ -147,7 +147,7 @@ class Transaksi extends REST_Controller {
       "berat" => 1
     );
 
-    $response = $this->m_notif->insertTrs($dataTrs, $dataDetail);
+    $response = $this->M_notif->insertTrs($dataTrs, $dataDetail);
     if (($response['dataTrs']==true) && ($response['dataDetail']==true) ) {
 
       // kirim notif ke HP
@@ -156,13 +156,13 @@ class Transaksi extends REST_Controller {
       $title = "Transaksi anda berhasil dilakukan!";
       $message = "Tunggu sebentar, kami akan menjemput cucian ke lokasi anda sesuai jadwal!";
       $payload = array('intent' => 'notifikasi');
-      $firebase = $this->PrimsLib->SendNotification($tokenM, $title, $message, $payload);
+      $firebase = $this->primslib->SendNotification($tokenM, $title, $message, $payload);
       $response['firebase']=$firebase;
 
       // kirim notif ke Email
       $email = $datatoken->row()->Email;
       $this->load->library('ConfigEmail');
-      $config = $this->ConfigEmail->config_email();
+      $config = $this->configemail->config_email();
       $this->load->library('Email', $config);
       $this->Email->from('admin@orenzlaundry.com', 'Orenz Laundry');
       $this->Email->to($email);
@@ -173,7 +173,7 @@ class Transaksi extends REST_Controller {
           Selanjutnya kami akan menjemput pesanan ke lokasi yang telah anda tentukan, ditunggu yahh!!';
       $message = '';
       $this->load->library('EmailtoUser');
-      $message = $this->EmailtoUser->transaksiberhasil($subject, $nama_user, $pesan);
+      $message = $this->emailtouser->transaksiberhasil($subject, $nama_user, $pesan);
       $this->Email->message($message);
       
       $response['gmail']=$this->Email->send();

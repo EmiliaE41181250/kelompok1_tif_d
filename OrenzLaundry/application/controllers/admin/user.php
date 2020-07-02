@@ -51,7 +51,7 @@ class User extends CI_Controller
 
     if ($row_id > 0) {
       // melakukan auto number dari id terakhir
-      $id = $this->PrimsLib->autonumber($old_id->id_user, 3, 12);
+      $id = $this->primslib->autonumber($old_id->id_user, 3, 12);
     } else {
       // generate id pertama kali jika tidak ada data sama sekali di dalam database
       $id = 'USR000000000001';

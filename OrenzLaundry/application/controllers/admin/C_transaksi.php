@@ -171,7 +171,7 @@ class C_transaksi extends CI_Controller {
         $title = "Hai! Pesanan cucian Anda siap diantarkan, ";
         $message = "mohon atur lokasi Anda dan siapkan biaya tagihan untuk transaksi.";
         $payload = array('intent' => 'notifikasi');
-        print_r($this->PrimsLib->SendNotification($tokenM, $title, $message, $payload));
+        print_r($this->primslib->SendNotification($tokenM, $title, $message, $payload));
         print_r($message);
 
       }else if($this->input->post('status') == 2){
@@ -185,7 +185,7 @@ class C_transaksi extends CI_Controller {
         $title = "Yuk, konfirmasi pesanan cucian Anda sekarang!";
         $message = " ";
         $payload = array('intent' => 'notifikasi');
-        print_r($this->PrimsLib->SendNotification($tokenM, $title, $message, $payload));
+        print_r($this->primslib->SendNotification($tokenM, $title, $message, $payload));
         print_r($message);
       }else if($this->input->post('status') == 5){
         
@@ -273,11 +273,11 @@ class C_transaksi extends CI_Controller {
       $paper_size = 'A4';
       $oriantation = 'landscape';
       $html = $this->output->get_output();
-      $this->Dompdf->set_paper($paper_size, $oriantation);
+      $this->dompdf->set_paper($paper_size, $oriantation);
 
-      $this->Dompdf->load_html($html);
-      $this->Dompdf->render();
-      $this->Dompdf->stream("laporan_transaksi_".date('Y-m-d_H-i-s').".pdf", array('Attachment' => 0));
+      $this->dompdf->load_html($html);
+      $this->dompdf->render();
+      $this->dompdf->stream("laporan_transaksi_".date('Y-m-d_H-i-s').".pdf", array('Attachment' => 0));
     }
 
     public function nota($id) {
@@ -296,11 +296,11 @@ class C_transaksi extends CI_Controller {
       $paper_size = 'A6';
       $oriantation = 'potrait';
       $html = $this->output->get_output();
-      $this->Dompdf->set_paper($paper_size, $oriantation);
+      $this->dompdf->set_paper($paper_size, $oriantation);
 
-      $this->Dompdf->load_html($html);
-      $this->Dompdf->render();
-      $this->Dompdf->stream("laporan_nota_".date('Y-m-d_H-i-s').".pdf", array('Attachment' => 0));
+      $this->dompdf->load_html($html);
+      $this->dompdf->render();
+      $this->dompdf->stream("laporan_nota_".date('Y-m-d_H-i-s').".pdf", array('Attachment' => 0));
     }
     
 

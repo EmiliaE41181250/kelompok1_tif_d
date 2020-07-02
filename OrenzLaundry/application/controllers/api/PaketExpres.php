@@ -19,7 +19,7 @@ class PaketExpres extends REST_Controller {
   
     function index_get()
     {
-      $response = $this->m_data_paket->getAllPaketExpresMobile();
+      $response = $this->M_data_paket->getAllPaketExpresMobile();
       if ($response['data']!=null) {
         $this->response($response);
       }else{

@@ -40,7 +40,7 @@ class C_waktu extends CI_Controller
     $old_id = $this->M_data_waktu->getId()->row();
 
     if($row_id>0){
-    $id = $this->PrimsLib->autonumber($old_id->id, 3, 12);
+    $id = $this->primslib->autonumber($old_id->id, 3, 12);
     }else{
     $id = 'KRR000000000001';
     }

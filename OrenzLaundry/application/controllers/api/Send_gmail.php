@@ -20,14 +20,14 @@ class Send_gmail extends REST_Controller {
 
     function index_get()
     {
-        $response = $this->m_login->all_login();
+        $response = $this->M_login->all_login();
         $this->response($response);
     }
 
     public function checkuser_post()
     {
         $search = $this->post('search');
-        $response = $this->m_lupas->getUser($this->post('search'));
+        $response = $this->M_lupas->getUser($this->post('search'));
         if ($response['data']!=null) {
             $this->response($response);
         }else{
@@ -75,14 +75,14 @@ class Send_gmail extends REST_Controller {
     public function resendemail_post()
     {
         $email = $this->post('email');
-        $response = $this->m_login->resend_email($email);
+        $response = $this->M_login->resend_email($email);
 
         $this->response($response);
 
         if($response){
         $get_user = $this->db->query("SELECT * FROM user WHERE email = '$email'")->row();
         $this->load->library('ConfigEmail');
-        $config = $this->ConfigEmail->config_email();
+        $config = $this->configemail->config_email();
         // Load library email dan konfigurasinya
         $this->load->library('Email', $config);
         // Email dan nama pengirim
@@ -101,7 +101,7 @@ class Send_gmail extends REST_Controller {
             Silahkan masukkan TOKEN dibawah ini pada kolom verifikasi token, dengan begitu anda dapat melakukan reset password dan membuat password baru!.';
         $message = '';
         $this->load->library('EmailtoUser');
-        $message = $this->EmailtoUser->verifikasiakun($subject, $nama_user, $pesan, $kode_token, $email);
+        $message = $this->emailtouser->verifikasiakun($subject, $nama_user, $pesan, $kode_token, $email);
         $this->Email->message($message);
         // Tampilkan pesan sukses atau error
         $this->Email->send();
@@ -111,7 +111,7 @@ class Send_gmail extends REST_Controller {
 
     public function checktoken_post()
     {
-        $response = $this->m_lupas->getToken($this->post('email'), $this->post('token'));
+        $response = $this->M_lupas->getToken($this->post('email'), $this->post('token'));
         if ($response['data']!=null) {
             $this->response($response);
         }else{
@@ -124,7 +124,7 @@ class Send_gmail extends REST_Controller {
 
     public function getUserById_post()
     {
-        $response = $this->m_lupas->getUserById($this->post('id_user'));
+        $response = $this->M_lupas->getUserById($this->post('id_user'));
         if ($response['data']!=null) {
             $this->response($response);
         }else{
@@ -138,7 +138,7 @@ class Send_gmail extends REST_Controller {
     public function resetpassword_put()
     {
         $password = password_hash($this->put('password'), PASSWORD_DEFAULT);
-        $response = $this->m_lupas->putPassword($this->put('id_user'), $password);
+        $response = $this->M_lupas->putPassword($this->put('id_user'), $password);
         $this->response($response);
     }
 
