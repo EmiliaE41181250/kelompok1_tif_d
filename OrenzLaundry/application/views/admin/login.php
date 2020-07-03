@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Login</title>
+  <title>Login Orenz Laundry</title>
 
   <!-- Custom fonts for this template-->
   <link href="<?=base_url()?>/assets/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -35,7 +35,9 @@
             <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="p-5 text-center">
+                  <a href="<?=base_url('user')?>">
 									<img src="<?=base_url() . 'assets/files/logoorenz.png'?>" class="img-fluid text-center mb-3 ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}" alt="">
+                  </a>
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                   </div>

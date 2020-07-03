@@ -75,7 +75,7 @@ class Transaksi extends REST_Controller {
     $dataTrs = array(
                       "id_waktu" => $waktu,
                       "tgl_antar" => $tglJemput,
-                      "alamat_antar" => $alamat . ',' . $lat . ',' . $lang,
+                      "alamat_antar" => $alamat . '?' . $lat . '?' . $lang,
                       "updated_by" => $id_user,
                       "updated_at" => date("Y-m-d H:i:s")
     );

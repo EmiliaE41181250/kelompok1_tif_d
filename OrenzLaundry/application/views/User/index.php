@@ -35,7 +35,7 @@
         <div class="container nav-container">
             <div class="responsive-mobile-menu">
                 <div class="logo-wrapper">
-                    <a href="index.html" class="logo">
+                    <a href="<?=base_url('user')?>" class="logo">
                         <img src="<?=base_url()?>assets/user/img/logo orenz.png" alt="logo">
                     </a>
                 </div>
